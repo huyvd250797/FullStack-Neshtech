@@ -6,11 +6,13 @@
     <title>Document</title>
   </head>
   <body>
-    <h2>
+    <!-- * 4.[Bài tập] Biến, kiểu dữ liệu và toán tử -->
+    <h2>4.[Bài tập] Biến, kiểu dữ liệu và toán tử</h2>
+    <h3>
       Bài 1: Viết chương trình nhập điểm của một sinh viên cho các môn: Vật lý,
       Hóa học, và Sinh học. Sau đó hiển thị điểm trung bình và tổng của những
       điểm này.
-    </h2>
+    </h3>
 
     <input id="ly" type="text" placeholder="Vật lý" />
     <input id="hoa" type="text" placeholder="Hóa học" />
@@ -33,6 +35,34 @@
     <p><span id="areaCircle"></span></p>
     <p><span id="perimeterCircle"></span></p>
 
+    <!-- * 5.[Bài tập] Ứng dụng chuyển đổi tiền tệ -->
+    <h2>5.[Bài tập] Ứng dụng chuyển đổi tiền tệ</h2>
+    <h3>Chuyển đổi tiền tệ</h3>
+
+    <p>
+      <label for="">Amount</label>
+      <input id="amountCurr" type="number" placeholder="" value="1000" />
+      <button onclick="convertCurrency()">Convert</button>
+    </p>
+
+    <label for="fromCurr">From</label>
+    <select name="fromCurr" id="fromCurr">
+      <option value="VND">Vietnam Dong (VND)</option>
+      <option value="USD">US Dollar (USD)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="JPY">Japanese Yen (JPY)</option>
+    </select>
+
+    <label for="toCurr">To</label>
+
+    <select name="toCurr" id="toCurr">
+      <option value="VND">Vietnam Dong (VND)</option>
+      <option value="USD" selected>US Dollar (USD)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="JPY">Japanese Yen (JPY)</option>
+    </select>
+
+    <p id="resultCurr"></p>
     <script src="./index.js"></script>
   </body>
 </html>
