@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>
+      Bài 1: Viết chương trình nhập điểm của một sinh viên cho các môn: Vật lý,
+      Hóa học, và Sinh học. Sau đó hiển thị điểm trung bình và tổng của những
+      điểm này.
+    </h2>
+
+    <input id="ly" type="text" placeholder="Vật lý" />
+    <input id="hoa" type="text" placeholder="Hóa học" />
+    <input id="sinh" type="text" placeholder="Sinh học" />
+    <button onclick="sum()">Tính điểm trung bình</button>
+    <p>Tổng điểm TB 3 môn: <span id="tbmon"></span></p>
+
+    <h2>
+      Bài 2: Viết chương trình nhập một giá trị là độ 0C (Celsius) và chuyển nó
+      sang độ 0F (Fahrenheit)
+    </h2>
+    <p>Độ C</p>
+    <input id="do-c" type="number" placeholder="Nhập độ C" />
+    <button onclick="temperature()">Độ C thành độ F</button>
+    <p>Độ F: <span id="doF"></span></p>
+
+    <h2>Bài 3: Viết chương trình tính chu vi (bài 4) và diện tích hình tròn</h2>
+    <input id="radius" type="number" placeholder="Bán kính (cm)" />
+    <button onclick="calCircle()">Tính chu vi và diện tích</button>
+    <p><span id="areaCircle"></span></p>
+    <p><span id="perimeterCircle"></span></p>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
