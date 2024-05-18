@@ -7,8 +7,8 @@
 
 //* Toán tử + - * / & ++ ** --
 let num1 = 10;
-console.log(num1++); // log num1 sau đó mới ++ => log ra num1 = 10, sau đó num1++ = 11 nhưng đã log ra 10 rồi
-console.log(++num1); // num1 trước đó đã là 11, sau đó ++ là 12 sau đó log ra num1 = 12
+// console.log(num1++); // log num1 sau đó mới ++ => log ra num1 = 10, sau đó num1++ = 11 nhưng đã log ra 10 rồi
+// console.log(++num1); // num1 trước đó đã là 11, sau đó ++ là 12 sau đó log ra num1 = 12
 
 //! ==  : kiểm tra giá trị
 //! === : kiểm tra giá trị và kiểm tra kiểu dữ liệu
@@ -51,7 +51,7 @@ const calCircle = () => {
   ).innerHTML = `Chu vi hình tròn với bán kính ${radius} cm là: <b>${perimeterCircle}</b> cm`;
 };
 
-//* 5.[Bài tập] Ứng dụng chuyển đổi tiền tệ
+//TODO ------------------- 5. Ứng dụng chuyển đổi tiền tệ ------------------
 // convert currency
 const convertCurrency = () => {
   let amountCurr = document.getElementById("amountCurr").value;
@@ -112,4 +112,54 @@ const convertCurrency = () => {
   document.getElementById(
     "resultCurr"
   ).innerHTML = `${amountCurr} ${selectedFrom} = ${toFixCurr} ${selectedTo}`;
+};
+
+//TODO ------------------- 6. Tạo một ứng dụng máy tính bỏ túi ------------------
+
+const keyboardArea = () => {
+  // Khai báo biến chứa vùng click
+  let btnSelected = document.querySelector(".cal__keyboard");
+
+  let btnPress;
+  // Click trong vùng cal__keyboard
+  btnSelected.onclick = function (e) {
+    // bắt chính xác element được click và gán vào btnPress
+    btnPress = e.target;
+
+    // Đưa các keyboard vào mảng xử lý
+    let listBtnCal = document.querySelectorAll(".btn__cal");
+    // console.log(listBtnCal);
+
+    for (let i = 0; i < listBtnCal.length; i++) {
+      // Nếu click vào element có class btn__input
+      if (btnPress.closest(".btn__input")) {
+        // console.log(btnPress);
+        //  Thì mới hiển thị input vào monitor
+        document.getElementById("resultCal").innerText = btnPress.textContent;
+        // Chuyển text AC thành C
+        listBtnCal[0].innerText = "C";
+        // Chuyển text keyboard AC thành C
+        document.getElementsByClassName("btn__cal").innerText =
+          listBtnCal[0].innerText;
+      }
+      // nếu btnPress == listBtnCal[0] (nút AC)
+      else if (btnPress == listBtnCal[0]) {
+        // Nếu như click vào key có text là AC
+        if (btnPress.innerText == "AC") {
+          // Hiển thị 0 vào Monitor
+          document.getElementById("resultCal").innerText = `0`;
+        }
+        // Nếu như click vào key có text là C
+        else if (btnPress.innerText == "C") {
+          // Chuyển text C thành AC
+          btnPress.innerText = "AC";
+          // Chuyển text keyboard C thành AC
+          document.getElementsByClassName("btn__cal").innerText =
+            btnPress.innerText;
+          // Đồng thời Hiển thị 0 vào Monitor
+          document.getElementById("resultCal").innerText = `0`;
+        }
+      }
+    }
+  };
 };
