@@ -125,17 +125,15 @@ const keyboardArea = () => {
   btnSelected.onclick = function (e) {
     // bắt chính xác element được click và gán vào btnPress
     btnPress = e.target;
-
+    //! đưa biến btnPress có thể thấy ở function processCal()
     // Đưa các keyboard vào mảng xử lý
     let listBtnCal = document.querySelectorAll(".btn__cal");
     // console.log(listBtnCal);
+    processCal(btnPress, listBtnCal);
 
     for (let i = 0; i < listBtnCal.length; i++) {
       // Nếu click vào element có class btn__input
       if (btnPress.closest(".btn__input")) {
-        // console.log(btnPress);
-        //  Thì mới hiển thị input vào monitor
-        document.getElementById("resultCal").innerText = btnPress.textContent;
         // Chuyển text AC thành C
         listBtnCal[0].innerText = "C";
         // Chuyển text keyboard AC thành C
@@ -148,6 +146,10 @@ const keyboardArea = () => {
         if (btnPress.innerText == "AC") {
           // Hiển thị 0 vào Monitor
           document.getElementById("resultCal").innerText = `0`;
+          // Khi click vào key C clear toàn bộ nhớ Cal
+          //! gán countClick về 0 và press thành chuỗi rỗng để thực hiện lại từ đầu
+          countClick = 0;
+          pressed = "";
         }
         // Nếu như click vào key có text là C
         else if (btnPress.innerText == "C") {
@@ -162,4 +164,27 @@ const keyboardArea = () => {
       }
     }
   };
+  // processCal();
+};
+
+let countClick = 0;
+// Khai báo biến chưa chuỗi dãy số hiển thị trên monitor
+let pressed = "";
+// Handle
+//! btnpress là 1 biến số lấy từ btnPress của function keyboardArea()
+const processCal = (btnpress, listbtncal) => {
+  // !!! Fixing...
+  countClick += 1;
+
+  for (let i = 0; i < listbtncal.length; i++) {
+    // Nếu click vào element có class btn__input và số lần click = i
+    if (btnpress.closest(".btn__input") && countClick == i) {
+      // cộng chuỗi
+      pressed += btnpress.textContent;
+      console.log(pressed);
+      // Hiển thị lên monitor chuỗi dãy số đã click
+      document.getElementById("resultCal").innerText = pressed;
+    }
+  }
+  console.log(countClick);
 };
