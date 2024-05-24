@@ -1,0 +1,82 @@
+/** 1. Làm sử dụng sự kiện click chuột để di chuyển hình ảnh
+ Mỗi lần click hình ảnh sẽ được di chuyển sang trái/phải một khoảng cách. */
+
+.form-heli {
+  background-color: rgb(193, 230, 245);
+  padding: 10px;
+}
+
+#helicopter {
+  display: block;
+  width: 30%;
+}
+
+/** 2. Di chuyển hình ảnh nhân vật lên, xuống, sang trái, sang phải sử dụng các phím tương ứng.
+/* Việc này được thực hiện bằng cách thay đổi thuộc tính tọa độ của thẻ khi xử lý event. */
+.form-ironman {
+  background-color: rgb(193, 230, 245);
+  padding: 10px;
+}
+
+#ironman {
+  /* position: relative;
+  right: 0;
+  top: 0; */
+  width: 10%;
+}
+
+/** 3. Chỉ số khối cơ thể (Body mass index-BMI) là một thước đo sức khoẻ dựa trên cân nặng và chiều cao.
+Nó được tính bằng cách lấy cân nặng đơn vị tính kilogram chia cho bình phương của chiều cao đơn vị tính mét.
+BMI = Weight / (Height²)*/
+.info-BMI {
+  width: 30%;
+}
+
+.text-infoBMI {
+  line-height: 2rem;
+}
+
+.text-infoBMI:nth-child(1),
+.text-infoBMI:nth-child(2) {
+  font-weight: 600;
+  background-color: #a1a1a1;
+}
+
+.weight__input,
+.height__input {
+  padding: 0 10px;
+}
+
+.label__weight,
+.label__height {
+  font-weight: 700;
+  padding: 5px 0;
+}
+
+#weightInput,
+#heightInput {
+  border-radius: 5px;
+  border: 1px solid #333;
+  line-height: 1.4rem;
+  padding: 5px 8px;
+}
+
+.cal--bmi {
+  margin-top: 10px;
+}
+
+.UnderWeight-color {
+  color: red;
+}
+
+.Normal-color {
+  color: rgb(82, 241, 82);
+}
+
+.OverWeight-color {
+  color: yellow;
+}
+
+.Obese.color {
+  color: rgb(126, 0, 0);
+}

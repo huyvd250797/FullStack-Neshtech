@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./assets/styles/css.css" />
+  </head>
+  <body>
+    <!-- //* 1. Làm sử dụng sự kiện click chuột để di chuyển hình ảnh. -->
+    <!-- Mỗi lần click hình ảnh sẽ được di chuyển sang trái/phải một khoảng cách. -->
+
+    <form class="form-heli d-flex justify-content-end">
+      <img src="./assets/img/helicopter.png" alt="helicopter" id="helicopter" />
+      <div>
+        <p>1. Click to move the Helicopter</p>
+        <div onclick="heliMoveRight()" class="btn btn-info move-right">
+          Move right
+        </div>
+        <div onclick="heliMoveLeft()" class="btn btn-warning move-left">
+          Move left
+        </div>
+        <div onclick="heliMoveUp()" class="btn btn-success move-up">
+          Move up
+        </div>
+        <div onclick="heliMoveDown()" class="btn btn-danger move-down">
+          Move down
+        </div>
+      </div>
+    </form>
+
+    <!-- * 2. Di chuyển hình ảnh nhân vật lên, xuống, sang trái, sang phải sử dụng các phím tương ứng. -->
+    <!-- Việc này được thực hiện bằng cách thay đổi thuộc tính tọa độ của thẻ khi xử lý event. -->
+    <form class="form-ironman d-flex justify-content-end">
+      <!-- onload="start()" load hàm start() -->
+      <img
+        onload="start()"
+        src="./assets/img/ironman.png"
+        alt="ironman"
+        id="ironman"
+      />
+      <div>
+        <p>2. Press key <b>up, down, left, right</b> to move the Iron Man</p>
+      </div>
+    </form>
+
+    <!-- * 3. Chỉ số khối cơ thể (Body mass index-BMI) là một thước đo sức khoẻ dựa trên cân nặng và chiều cao. -->
+    <!--  Nó được tính bằng cách lấy cân nặng đơn vị tính kilogram chia cho bình phương của chiều cao đơn vị tính mét. -->
+    <form class="bmi__container d-flex align-items-center flex-column">
+      <div>
+        <p style="font-weight: 700">3. BMI Calculator</p>
+      </div>
+      <div class="container-fluid d-flex justify-content-center mb-3">
+        <div class="row info-BMI border">
+          <div class="col-6 text-infoBMI border">BMI</div>
+          <div class="col-6 text-infoBMI border">Interpretation</div>
+          <div class="col-6 text-infoBMI border">BMI < 18.5</div>
+          <div class="col-6 text-infoBMI border">UnderWeight</div>
+          <div class="col-6 text-infoBMI border">18.5 ≤ BMI ≤ 25.0</div>
+          <div class="col-6 text-infoBMI border">Normal</div>
+          <div class="col-6 text-infoBMI border">25.0 ≤ BMI < 30.0</div>
+          <div class="col-6 text-infoBMI border">OverWeight</div>
+          <div class="col-6 text-infoBMI border">30.0 ≤ BMI</div>
+          <div class="col-6 text-infoBMI border">Obese</div>
+        </div>
+      </div>
+
+      <div class="inputWH d-flex justify-content-around">
+        <div class="weight__input d-flex flex-column">
+          <label class="label__weight" for="weightInput">Weight</label>
+          <input
+            id="weightInput"
+            type="number"
+            min="1"
+            placeholder="Enter Weight (kg)"
+          />
+        </div>
+        <div class="height__input d-flex flex-column">
+          <label class="label__height" for="heightInput">Height</label>
+          <input
+            id="heightInput"
+            type="number"
+            min="1"
+            placeholder="Enter Height (m)"
+          />
+        </div>
+      </div>
+      <p style="font-style: italic; margin-top: 5px">Age from 20 - 120</p>
+      <p id="resultBMI"></p>
+      <div onclick="getWHIput()" id="cal-bmi" class="btn btn-success cal--bmi">
+        Calculate
+      </div>
+    </form>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
