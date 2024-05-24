@@ -114,9 +114,16 @@ const convertCurrency = () => {
   ).innerHTML = `${amountCurr} ${selectedFrom} = ${toFixCurr} ${selectedTo}`;
 };
 
-//TODO ------------------- 6. Tạo một ứng dụng máy tính bỏ túi ------------------
+//TODO ------------------- 6. Tạo một ứng dụng máy tính ------------------
+
+// Khai báo biến đếm số lần click
+let countClick = 0;
 
 const keyboardArea = () => {
+  // Sau khi chạy xong displayMonitorHandle(btnPress, listBtnCal);
+  // thì mới tăng số lần click lên 1
+  countClick += 1;
+
   // Khai báo biến chứa vùng click
   let btnSelected = document.querySelector(".cal__keyboard");
 
@@ -125,11 +132,11 @@ const keyboardArea = () => {
   btnSelected.onclick = function (e) {
     // bắt chính xác element được click và gán vào btnPress
     btnPress = e.target;
-    //! đưa biến btnPress có thể thấy ở function processCal()
     // Đưa các keyboard vào mảng xử lý
     let listBtnCal = document.querySelectorAll(".btn__cal");
-    // console.log(listBtnCal);
-    processCal(btnPress, listBtnCal);
+    //! đưa biến btnPress có thể thấy ở function processCal()
+    displayMonitorHandle(btnPress, listBtnCal);
+    calculatorHandle(btnPress, listBtnCal);
 
     for (let i = 0; i < listBtnCal.length; i++) {
       // Nếu click vào element có class btn__input
@@ -167,15 +174,12 @@ const keyboardArea = () => {
   // processCal();
 };
 
-let countClick = 0;
 // Khai báo biến chưa chuỗi dãy số hiển thị trên monitor
 let pressed = "";
-// Handle
-//! btnpress là 1 biến số lấy từ btnPress của function keyboardArea()
-const processCal = (btnpress, listbtncal) => {
-  // !!! Fixing...
-  countClick += 1;
 
+// Handle displayMonitorHandle
+//! btnpress là 1 biến số lấy từ btnPress của function keyboardArea()
+const displayMonitorHandle = (btnpress, listbtncal) => {
   for (let i = 0; i < listbtncal.length; i++) {
     // Nếu click vào element có class btn__input và số lần click = i
     if (btnpress.closest(".btn__input") && countClick == i) {
@@ -186,5 +190,41 @@ const processCal = (btnpress, listbtncal) => {
       document.getElementById("resultCal").innerText = pressed;
     }
   }
-  console.log(countClick);
+  // console.log(countClick);
 };
+
+let savePressed1 = "";
+let savePressed2 = "";
+
+// Handle tính toán
+const calculatorHandle = (btnpress) => {
+  // Kiểm tra nếu click vào element có class .btn__action
+  if (btnpress.closest(".btn__action")) {
+    console.log(btnpress);
+    //? Nếu chuỗi savePressed1 rỗng thì thực hiện gán press vào chuỗi
+    if (savePressed1 == "") {
+      savePressed1 = pressed;
+      // sau đó reset pressed và counClick
+      pressed = "";
+      countClick = 0;
+      // console.log("a1", savePressed1);
+    }
+    //? Nếu chuỗi savePressed2 thì thực hiện gán press vào chuỗi
+    else {
+      savePressed2 = pressed;
+      // sau đó reset pressed và counClick
+      pressed = "";
+      countClick = 0;
+      // console.log("a2", savePressed2);
+    }
+  }
+  console.log(savePressed1, savePressed2);
+  // resultCal(savePressed1, savePressed2);
+};
+
+// Hàm kết quả
+// const resultCal = (num1, num2) => {
+//   let result = parseInt(num1) + parseInt(num2);
+//   pressed = result;
+//   document.getElementById("resultCal").innerText = pressed;
+// };

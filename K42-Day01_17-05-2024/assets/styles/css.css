@@ -53,6 +53,7 @@ body {
 .btn__action {
   background-color: #ff9f0a;
   color: #fff;
+  font-size: 2rem;
 }
 
 .btn__input {
@@ -74,4 +75,10 @@ body {
   color: #fff;
   padding: 25px 22px 0 22px;
   font-size: 2.2rem;
+}
+
+/** Handle calculator */
+.active-btn {
+  background-color: #fff;
+  color: #ff9f0a;
 }
