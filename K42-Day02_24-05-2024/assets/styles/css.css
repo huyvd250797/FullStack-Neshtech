@@ -62,21 +62,35 @@ BMI = Weight / (Height²)*/
 }
 
 .cal--bmi {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
-.UnderWeight-color {
+.underWeight-color {
   color: red;
+  font-weight: 600;
 }
 
-.Normal-color {
-  color: rgb(82, 241, 82);
+.normal-color {
+  color: rgb(0, 161, 0);
+  font-weight: 600;
 }
 
-.OverWeight-color {
-  color: yellow;
+.overWeight-color {
+  color: rgb(161, 161, 0);
+  font-weight: 600;
 }
 
-.Obese.color {
+.obese-color {
   color: rgb(126, 0, 0);
+  font-weight: 600;
+}
+
+/** 4. Viết một ứng dụng cho phép tính được số ngày trong một tháng. 
+VD: Tháng 1 có 31 ngày, tháng 2 có 28 hoặc 29 ngày  */
+
+.month-input {
+  border: 1px solid #333;
+  border-radius: 5px;
+  line-height: 1.5rem;
+  padding: 3px 8px;
 }

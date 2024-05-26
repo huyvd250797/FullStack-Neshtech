@@ -57,7 +57,7 @@
 
     <!-- * 3. Chỉ số khối cơ thể (Body mass index-BMI) là một thước đo sức khoẻ dựa trên cân nặng và chiều cao. -->
     <!--  Nó được tính bằng cách lấy cân nặng đơn vị tính kilogram chia cho bình phương của chiều cao đơn vị tính mét. -->
-    <form class="bmi__container d-flex align-items-center flex-column">
+    <form class="bmi__container d-flex align-items-center flex-column mt-5">
       <div>
         <p style="font-weight: 700">3. BMI Calculator</p>
       </div>
@@ -66,40 +66,76 @@
           <div class="col-6 text-infoBMI border">BMI</div>
           <div class="col-6 text-infoBMI border">Interpretation</div>
           <div class="col-6 text-infoBMI border">BMI < 18.5</div>
-          <div class="col-6 text-infoBMI border">UnderWeight</div>
+          <div class="col-6 text-infoBMI border underWeight-color">
+            UnderWeight
+          </div>
           <div class="col-6 text-infoBMI border">18.5 ≤ BMI ≤ 25.0</div>
-          <div class="col-6 text-infoBMI border">Normal</div>
+          <div class="col-6 text-infoBMI border normal-color">Normal</div>
           <div class="col-6 text-infoBMI border">25.0 ≤ BMI < 30.0</div>
-          <div class="col-6 text-infoBMI border">OverWeight</div>
+          <div class="col-6 text-infoBMI border overWeight-color">
+            OverWeight
+          </div>
           <div class="col-6 text-infoBMI border">30.0 ≤ BMI</div>
-          <div class="col-6 text-infoBMI border">Obese</div>
+          <div class="col-6 text-infoBMI border obese-color">Obese</div>
         </div>
       </div>
 
       <div class="inputWH d-flex justify-content-around">
         <div class="weight__input d-flex flex-column">
-          <label class="label__weight" for="weightInput">Weight</label>
+          <label class="label__weight" for="weight">Weight</label>
           <input
             id="weightInput"
             type="number"
-            min="1"
+            name="weight"
             placeholder="Enter Weight (kg)"
           />
         </div>
         <div class="height__input d-flex flex-column">
-          <label class="label__height" for="heightInput">Height</label>
+          <label class="label__height" for="height">Height</label>
           <input
             id="heightInput"
             type="number"
-            min="1"
+            name="height"
             placeholder="Enter Height (m)"
           />
         </div>
       </div>
       <p style="font-style: italic; margin-top: 5px">Age from 20 - 120</p>
       <p id="resultBMI"></p>
-      <div onclick="getWHIput()" id="cal-bmi" class="btn btn-success cal--bmi">
-        Calculate
+      <input
+        onclick="getWHIput()"
+        id="cal-bmi"
+        value="Calculate"
+        type="submit"
+        class="btn btn-success cal--bmi"
+      />
+    </form>
+
+    <!-- * 4. Viết một ứng dụng cho phép tính được số ngày trong một tháng. -->
+    <!-- /VD: Tháng 1 có 31 ngày, tháng 2 có 28 hoặc 29 ngày -->
+
+    <form action="" class="d-flex flex-column align-items-center mt-5">
+      <p style="font-weight: 700">
+        4. Viết một ứng dụng cho phép tính được số ngày trong một tháng
+      </p>
+      <div class="">
+        <label class="d-block" for="monthInput">Month</label>
+        <input
+          id="inputMonth"
+          class="month-input"
+          type="number"
+          name="monthInput"
+          maxlength="2"
+          placeholder="Enter Month"
+        />
+        <input
+          id="daysofmonth"
+          onclick="DaysOfMonth()"
+          class="btn btn-info ms-1"
+          type="submit"
+          value="Search"
+        />
+        <p id="DayofMonth"></p>
       </div>
     </form>
 

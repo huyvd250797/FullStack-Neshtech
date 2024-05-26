@@ -169,10 +169,14 @@ const start = () => {
 const getWHIput = () => {
   let weightInput = document.getElementById("weightInput").value;
   let heightInput = document.getElementById("heightInput").value;
-  if (weightInput == "") {
+  if (weightInput.length == 0) {
     alert("Enter Weight");
-  } else if (heightInput == "") {
+  } else if (weightInput < 30 || weightInput > 500) {
+    alert("Weight must be between 30kg and 500kg");
+  } else if (heightInput.length == 0) {
     alert("Enter Height");
+  } else if (heightInput < 0.5 || heightInput > 3) {
+    alert("Height must be between 0.5m and 3m");
   } else {
     calBMI(weightInput, heightInput);
   }
@@ -181,16 +185,83 @@ const getWHIput = () => {
 const calBMI = (weight, height) => {
   let bmi = parseFloat(weight) / (parseFloat(height) * parseFloat(height));
   let resultBMI = "";
+  let styleBMI = "";
   if (bmi < 18.5) {
     resultBMI = "UnderWeight";
-  } else if (18.5 <= bmi < 25) {
+    styleBMI = "red";
+  } else if (bmi >= 18.5 && bmi < 25) {
     resultBMI = "Normal";
-  } else if (25 <= bmi < 30) {
+    styleBMI = "rgb(0, 161, 0)";
+  } else if (bmi >= 25 && bmi < 30) {
     resultBMI = "OverWeight";
-  } else if (30 <= bmi) {
+    styleBMI = "rgb(161, 161, 0)";
+  } else if (bmi >= 30) {
     resultBMI = "Obese";
+    styleBMI = "rgb(126, 0, 0)";
   }
-  document.getElementById("resultBMI").innerHTML = `BMI: ${bmi
+  document.getElementById("resultBMI").innerHTML = `<b>BMI</b>: ${bmi
     .toFixed(2)
-    .toString()} kg/m² (${resultBMI})`;
+    .toString()} kg/m² (<span style="color:${styleBMI};font-weight:700">${resultBMI}</span>)`;
 };
+
+//! Dùng preventDefault() cho input type="submit"
+document.getElementById("cal-bmi").addEventListener("click", function (e) {
+  e.preventDefault();
+});
+
+// ------------------------------------ - ----------------------------------- */
+
+//* 4. Viết một ứng dụng cho phép tính được số ngày trong một tháng (using switch case)
+// VD: Tháng 1 có 31 ngày, tháng 2 có 28 hoặc 29 ngày
+
+const DaysOfMonth = () => {
+  let getMonths = document.getElementById("inputMonth").value;
+  let days;
+  if (getMonths.length == 0) {
+    alert("Enter Months to Search");
+  } else if (getMonths < 1 || getMonths > 12) {
+    alert("Month must be between 1 and 12");
+  } else {
+    switch (parseInt(getMonths)) {
+      // Các tháng có 31 ngày
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 21:
+        days = 31;
+        break;
+
+      // Các tháng có 30 ngày
+      case 4:
+      case 6:
+      case 9:
+      case 11:
+        days = 30;
+        break;
+
+      // Tháng 2
+      case 2:
+        days = 28;
+
+      default:
+        break;
+    }
+  }
+  if (days == 28) {
+    document.getElementById(
+      "DayofMonth"
+    ).innerHTML = `Month: ${getMonths} is ${days} or ${days + 1} days`;
+  } else if (days.length != 0) {
+    document.getElementById(
+      "DayofMonth"
+    ).innerHTML = `Month: ${getMonths} is ${days} days`;
+  }
+};
+
+//! Dùng preventDefault() cho input type="submit"
+document.getElementById("daysofmonth").addEventListener("click", function (e) {
+  e.preventDefault();
+});
