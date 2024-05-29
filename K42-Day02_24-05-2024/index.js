@@ -265,3 +265,124 @@ const DaysOfMonth = () => {
 document.getElementById("daysofmonth").addEventListener("click", function (e) {
   e.preventDefault();
 });
+
+// ------------------------------------ - ----------------------------------- */
+
+//* 6. Viết ứng dụng vui có tên "Do You Love Me"
+// Click vào Yes ==> I love You too, di chuột đến No thì nhảy sang vị trí khác
+
+const moveRandPosition = () => {
+  // get btn-no
+  let getBtnNo = document.getElementById("btn-no");
+
+  // get area moving
+  let getArea = document.getElementById("movingRandPosition");
+  // set default
+  getBtnNo.style.position = "relative";
+  getBtnNo.style.left = "0px";
+  getBtnNo.style.top = "0px";
+
+  // get height that btn-no can move
+  let heightScr = getArea.innerHeight;
+  // get width that btn-no can move
+  let widthScr = getArea.innerWidth;
+
+  console.log(heightScr, widthScr);
+  // moving to random position in area
+  getBtnNo.style.left =
+    parseInt(getBtnNo.style.left) + Math.random() * 15 + "rem";
+  getBtnNo.style.top =
+    parseInt(getBtnNo.style.top) + Math.random() * 15 + "rem";
+};
+
+const clickedBtnYes = () => {
+  document.getElementById("yes-i-do").innerHTML = `Yes I Do 💕 `;
+};
+
+// ------------------------------------ - ----------------------------------- */
+
+//* 11. Viết chương trình tính thuế thu nhập cá nhân.
+
+const getInCome = () => {
+  // get thu nhập tính thuế nhập vào
+  let inComeTaxes = document.getElementById("income-taxes").value;
+
+  // bậc thuế
+  let taxBracket;
+  // Thuế suất
+  let taxRate;
+  // Thuế TNCN
+  let tax;
+  // Net income
+  let netIncome;
+
+  if (inComeTaxes.length == 0) {
+    alert("Enter your Income Taxes!!!");
+  } else if (inComeTaxes > 1000 && inComeTaxes <= 5000000) {
+    taxBracket = 1;
+    taxRate = 5;
+  } else if (inComeTaxes > 5000000 && inComeTaxes <= 10000000) {
+    taxBracket = 2;
+    taxRate = 10;
+  } else if (inComeTaxes > 10000000 && inComeTaxes <= 18000000) {
+    taxBracket = 3;
+    taxRate = 15;
+  } else if (inComeTaxes > 18000000 && inComeTaxes <= 32000000) {
+    taxBracket = 4;
+    taxRate = 20;
+  } else if (inComeTaxes > 32000000 && inComeTaxes <= 52000000) {
+    taxBracket = 5;
+    taxRate = 25;
+  } else if (inComeTaxes > 52000000 && inComeTaxes <= 80000000) {
+    taxBracket = 6;
+    taxRate = 30;
+  } else if (inComeTaxes > 80000000) {
+    taxBracket = 7;
+    taxRate = 35;
+  } else {
+    alert("Income Taxes must be greater 1000");
+  }
+
+  // Khai báo biến format to VND
+  let taxFormatVND;
+  let netFormatVND;
+  let incomeFormatVND;
+
+  //? Thuế TNCN = Thuế suất / 100 * Thu nhập tính thuế
+  tax = (parseInt(taxRate) / 100) * parseInt(inComeTaxes);
+  // Format to VND
+  taxFormatVND = tax.toLocaleString("it-IT", {
+    style: "currency",
+    currency: "VND",
+  });
+
+  //? Thực lãnh = Thu nhập tính thuế - TNCN
+  netIncome = inComeTaxes - tax;
+  // Format to VND
+  netFormatVND = netIncome.toLocaleString("it-IT", {
+    style: "currency",
+    currency: "VND",
+  });
+
+  // Gán giá trị vào value của Input
+  incomeFormatVND = parseInt(inComeTaxes).toLocaleString("it-IT", {
+    style: "currency",
+    currency: "VND",
+  });
+  console.log(incomeFormatVND, netFormatVND);
+  document.getElementById("income-taxes").value = incomeFormatVND;
+  document.getElementById("tax-bracket").value = taxBracket;
+  document.getElementById("tax-rate").value = `${taxRate}%`;
+  document.getElementById("net-income").value = `${netFormatVND}`;
+  document.getElementById("tax").innerHTML = `Your tax: ${taxFormatVND}`;
+};
+
+//! Dùng preventDefault() cho input type="submit"
+document.getElementById("cal-taxes").addEventListener("click", function (e) {
+  e.preventDefault();
+});
+
+// ------------------------------------ - ----------------------------------- */
+
+//* 12. Viết chương trình tính lãi ngân hàng (lãi mẹ đẻ lãi con) khi biết số tiền ban đầu,
+// số tháng cho vay và lãi xuất hàng tháng.

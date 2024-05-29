@@ -139,6 +139,86 @@
       </div>
     </form>
 
+    <!-- * 6. Viết ứng dụng vui có tên "Do You Love Me" -->
+    <!-- Click vào Yes ==> I love You too, di chuột đến No thì nhảy sang vị trí khác -->
+    <form
+      id="movingRandPosition"
+      style="height: 500px"
+      action=""
+      class="d-flex justify-content-center align-items-center flex-column mt-5"
+    >
+      <p style="font-weight: 700">6. Ứng dụng vui</p>
+      <h3>Will you marry me?</h3>
+      <div class="d-flex">
+        <div
+          onclick="clickedBtnYes()"
+          id="btn-yes"
+          class="btn btn-success btn-yes me-3"
+        >
+          Yes
+        </div>
+        <div id="yes-i-do"></div>
+        <div
+          id="btn-no"
+          onmouseover="moveRandPosition()"
+          class="btn btn-danger btn-no"
+        >
+          No
+        </div>
+      </div>
+    </form>
+
+    <!-- * 11. Viết chương trình tính thuế thu nhập cá nhân. -->
+
+    <form class="container-fluid w-50">
+      <p style="font-weight: 700">
+        11. Viết chương trình tính thuế thu nhập cá nhân.
+      </p>
+      <div class="mb-3">
+        <label for="Income-Taxes" class="form-label">Income Taxes</label>
+        <input
+          type="text"
+          class="form-control"
+          id="income-taxes"
+          placeholder="Enter your Income Taxes (VND)"
+          required
+        />
+      </div>
+      <div class="row">
+        <div class="col-6 mb-3">
+          <label for="tax-bracket" class="form-label">Tax Bracket</label>
+          <input type="number" class="form-control" id="tax-bracket" disabled />
+        </div>
+        <div class="col-6 mb-3">
+          <label for="tax-rate" class="form-label">Tax Rate</label>
+          <input type="text" class="form-control" id="tax-rate" disabled />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="netincome" class="form-label">Net Income</label>
+        <input
+          type="text"
+          class="form-control"
+          id="net-income"
+          placeholder="Your Net Income here"
+          disabled
+        />
+      </div>
+      <p id="tax"></p>
+
+      <button
+        onclick="getInCome()"
+        id="cal-taxes"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Calculator
+      </button>
+    </form>
+
+    <!-- * 12. Viết chương trình tính lãi suất ngân hàng. -->
+
     <script src="./index.js"></script>
   </body>
 </html>
