@@ -185,11 +185,11 @@
         />
       </div>
       <div class="row">
-        <div class="col-6 mb-3">
+        <div class="col-6 col-sm-12 mb-3">
           <label for="tax-bracket" class="form-label">Tax Bracket</label>
           <input type="number" class="form-control" id="tax-bracket" disabled />
         </div>
-        <div class="col-6 mb-3">
+        <div class="col-6 col-sm-12 mb-3">
           <label for="tax-rate" class="form-label">Tax Rate</label>
           <input type="text" class="form-control" id="tax-rate" disabled />
         </div>
@@ -217,7 +217,103 @@
       </button>
     </form>
 
+    <!-- ---------------------------------- - ---------------------------------- -->
+
     <!-- * 12. Viết chương trình tính lãi suất ngân hàng. -->
+    <form id="formDepositInterest" class="container-fluid w-50 mt-5">
+      <p style="font-weight: 700">
+        12. Viết chương trình tính lãi suất ngân hàng.
+      </p>
+
+      <!-- select term -->
+      <div class="mb-3">
+        <select
+          id="select-term"
+          class="form-select"
+          aria-label="Default select example"
+          onchange="getDepositTerm()"
+        >
+          <option value="0" selected>Deposit term</option>
+          <option value="30">1 Month</option>
+          <option value="60">2 Month</option>
+          <option value="90">3 Month</option>
+          <option value="180">6 Month</option>
+          <option value="270">9 Month</option>
+          <option value="365">12 Month</option>
+          <option value="540">18 Month</option>
+          <option value="730">24 Month</option>
+          <option value="1095">36 Month</option>
+        </select>
+      </div>
+
+      <!-- enter deposit amount -->
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          id="deposit-amount"
+          placeholder="Deposit amount"
+        />
+        <span class="input-group-text">VND</span>
+      </div>
+      <div class="row mt-3 d-flex align-items-center">
+        <div class="col-6 col-sm-12">
+          <div class="input-group">
+            <input
+              type="number"
+              class="form-control"
+              id="deposit-interest-rate"
+              placeholder="Deposit interest rate"
+              disabled
+            />
+            <span class="input-group-text">%/year</span>
+          </div>
+        </div>
+
+        <!-- checked Unable Edit DIR -->
+        <div class="col-6 col-sm-12">
+          <input
+            style="border: 1px solid #585858"
+            class="form-check-input"
+            type="checkbox"
+            id="unableEdit-dir"
+            onclick="editDepositInterest()"
+          />
+          <label
+            style="font-style: italic; color: #585858; user-select: none"
+            class="form-check-label"
+            for="unableEdit-dir"
+          >
+            Edit Deposit interest rate
+          </label>
+        </div>
+      </div>
+
+      <!-- btn cal-Total amount received -->
+      <div class="input-group mt-3">
+        <input
+          type="text"
+          class="form-control"
+          id="total-amount"
+          placeholder="Total amount received"
+          disabled
+        />
+        <span class="input-group-text">VND</span>
+      </div>
+
+      <p id="amount-interest"></p>
+
+      <button
+        onclick="calDepositInterest()"
+        id="cal-interest"
+        type="submit"
+        class="btn btn-success"
+      >
+        Calculator
+      </button>
+
+      <button onclick="refresh()" class="btn btn-warning">Refresh</button>
+    </form>
 
     <script src="./index.js"></script>
   </body>

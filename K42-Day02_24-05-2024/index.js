@@ -386,3 +386,95 @@ document.getElementById("cal-taxes").addEventListener("click", function (e) {
 
 //* 12. Viết chương trình tính lãi ngân hàng (lãi mẹ đẻ lãi con) khi biết số tiền ban đầu,
 // số tháng cho vay và lãi xuất hàng tháng.
+
+// Hàm get Deposit Term, onchange khi thay đổi sẽ lấy giá trị thay đổi
+const getDepositTerm = () => {
+  // get value select
+  let depositTerm = document.getElementById("select-term").value;
+  // Khai báo biến lãi suất
+  let depositInterest = 0;
+  //? Nếu lãi value deposti term = 1 hoặc = 2, thì lãi suất là 1.6%
+  if (depositTerm == 30 || depositTerm == 60) {
+    depositInterest = 1.6;
+  } else if (depositTerm == 90) {
+    depositInterest = 1.9;
+  } else if (depositTerm == 180 || depositTerm == 270) {
+    depositInterest = 2.9;
+  } else if (depositTerm == 365) {
+    depositInterest = 4.6;
+  } else if (depositTerm != 0) {
+    depositInterest = 4.7;
+  }
+
+  // gán vào value DIR (%)
+  document.getElementById("deposit-interest-rate").value = depositInterest;
+};
+
+// hàm check Unable edit deposit-interest-rate
+const editDepositInterest = () => {
+  let checkbox = document.getElementById("unableEdit-dir");
+  let unableDIR = document.getElementById("deposit-interest-rate");
+
+  // khi thay đổi check or no check, lắng nghe sự kiện thay đổi
+  checkbox.addEventListener("change", (e) => {
+    //? Nếu checked thì disabled = false
+    if (e.currentTarget.checked) {
+      // unableDIR.removeAttribute("disabled");
+      unableDIR.disabled = false;
+    }
+    //? Nếu no checked thì disabled = true
+    else {
+      unableDIR.disabled = true;
+    }
+  });
+};
+
+// Hàm tính lãi suất và thực nhận sau kỳ hạn
+const calDepositInterest = () => {
+  // get giá trị depositTerm
+  let depositTerm = document.getElementById("select-term").value;
+
+  // get giá trị amount
+  let depositAmount = document.getElementById("deposit-amount").value;
+
+  // get giá trị DIR
+  let getDepositInterest = document.getElementById(
+    "deposit-interest-rate"
+  ).value;
+
+  // Khai báo biến lãi suất trong kỳ hạn
+  let amountInterest;
+
+  // Khai báo biến tổng nhận trong kỳ hạn
+  let totalAmount;
+
+  // Tính lãi suất
+  amountInterest =
+    (((depositAmount * getDepositInterest) / 100) * depositTerm) / 365;
+
+  // Tính tổng nhận
+  totalAmount = parseFloat(depositAmount) + parseFloat(amountInterest);
+
+  //! toLocaleString(): ngăn cách hàng ngàn, chục, trăm, đơn vị bằng dấu ,
+  let totalAmountVND = totalAmount.toLocaleString();
+  let amountInterestVND = amountInterest.toLocaleString();
+  let depositAmountVND = parseInt(depositAmount).toLocaleString();
+
+  document.getElementById("total-amount").value = totalAmountVND;
+
+  document.getElementById(
+    "amount-interest"
+  ).innerHTML = `Amount Interest: ${amountInterestVND} VND`;
+
+  document.getElementById("deposit-amount").value = depositAmountVND;
+};
+
+function refresh() {
+  let form = document.getElementById("formDepositInterest");
+  form.reset();
+}
+
+//! Dùng preventDefault() cho input type="submit"
+document.getElementById("cal-interest").addEventListener("click", function (e) {
+  e.preventDefault();
+});
