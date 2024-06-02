@@ -478,3 +478,63 @@ function refresh() {
 document.getElementById("cal-interest").addEventListener("click", function (e) {
   e.preventDefault();
 });
+
+//* -------------------------------------------------------------------------- */
+//*                                    LOOP                                    */
+//* -------------------------------------------------------------------------- */
+
+//* 3. Thực hành  Viết chương trình nhập vào một số bất kỳ lớn hơn 0.
+// Tính tổng các phần tử từ 1 đến số vừa nhập vào.
+
+const getIntegerNumber = () => {
+  let integeNum = document.getElementById("enterIntegerNumber").value;
+
+  let sum = 0;
+  if (integeNum.length == 0) {
+    alert("Enter Integer Number");
+  } else {
+    for (let i = 1; i <= parseInt(integeNum); i++) {
+      sum += i;
+    }
+    console.log(sum);
+    document.getElementById(
+      "resultTotal"
+    ).innerHTML = `Total <b>1 → ${integeNum}</b> = <span style="color:red;font-weight:700">${sum}</span>`;
+  }
+};
+
+//! Dùng preventDefault() cho input type="submit"
+document
+  .getElementById("cal-totalNumber")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+  });
+
+//* 4: Viết chương trình nhận vào một số từ hộp thoại, việc nhập kết thúc khi người dùng nhập vào giá trị -1.
+// Mỗi giá trị nhập được sẽ được hiển thị ra và thực hiện tính tổng các giá trị đó.
+// Ví dụ: Nhập 2 => in ra 2, Nhập tiếp 5 => in ra 7 (2+5)
+//TODO - Sử dụng While()
+const getInputInNum = () => {
+  // Khai báo biến và nhập số
+  let inputNumIn = prompt("Enter a number: ");
+
+  // Khai báo biến tổng
+  let totalNum = 0;
+
+  // nếu nhập -1 thì kết thúc vòng lặp
+  while (inputNumIn != -1 && isNaN(inputNumIn) == false) {
+    // Hiển thị dữ liệu vừa nhập bên trên
+    alert("Added: " + inputNumIn);
+
+    // Tính tổng
+    totalNum += parseInt(inputNumIn);
+
+    // Hiển thị giá trị tổng
+    alert("Total = " + totalNum);
+
+    // Sau đó tiếp tục hiển thị hộp thoại nhập dữ liệu
+    inputNumIn = prompt("Enter a number: ");
+  }
+  // Hiển thị tổng cuối cùng
+  alert("Final Total = " + totalNum);
+};
