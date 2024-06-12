@@ -510,7 +510,7 @@ document
     e.preventDefault();
   });
 
-//* 4: Viết chương trình nhận vào một số từ hộp thoại, việc nhập kết thúc khi người dùng nhập vào giá trị -1.
+//* 4.1: Viết chương trình nhận vào một số từ hộp thoại, việc nhập kết thúc khi người dùng nhập vào giá trị -1.
 // Mỗi giá trị nhập được sẽ được hiển thị ra và thực hiện tính tổng các giá trị đó.
 // Ví dụ: Nhập 2 => in ra 2, Nhập tiếp 5 => in ra 7 (2+5)
 //TODO - Sử dụng While()
@@ -537,4 +537,82 @@ const getInputInNum = () => {
   }
   // Hiển thị tổng cuối cùng
   alert("Final Total = " + totalNum);
+};
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* 4.2: Viết chương hình hiển thị thẻ <hr> theo độ rộng từ 1 đến 100.
+// Kết quả sẽ được hiển thị hình tam giác hr có độ dài từ 1 -> 100.
+let i = 1;
+let striangle = "";
+const createStriangle = () => {
+  while (i < 100) {
+    striangle += `<hr style="width:${i}%;margin:2px 0">`;
+    // console.log(striangle);
+    document.getElementById("striangle").innerHTML = striangle;
+    i++;
+  }
+};
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* 6: Tạo một table gồm 10 dòng và 10 cột.
+// Sử dụng vòng lặp lồng nhau
+let cell = "";
+const createTable = () => {
+  // Khai báo biến chứa table
+  cell = "<table border='1' width='300' cellspacing='0' cellpadding='3'>";
+
+  for (i = 1; i <= 10; i++) {
+    //! Thêm <tr></tr> dưới <table> để tạo row
+    cell = cell + "<tr>";
+
+    for (j = 1; j <= 10; j++) {
+      //! trong row thêm td để tạo dữ liệu
+      cell = cell + "<td>" + i * j + "</td>";
+    }
+    // sau khi tạo xong dữ liệu row đó, thêm thẻ đóng tr
+    cell = cell + "</tr>";
+  }
+  // Khi hoàn tất thêm thẻ đóng table
+  cell = cell + "</table>";
+  document.getElementById("table10x10").innerHTML = cell;
+};
+
+//* -------------------------------------------------------------------------- */
+//*                                    6. LOOP2                                */
+//* -------------------------------------------------------------------------- */
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* 1. Viết một ứng dụng để in ra trang web một bảng cửu chương
+const multiplicationTable = () => {
+  cell = "<table   cellspacing='5' cellpadding='15'>";
+  // i sẽ là row => i sẽ tăng dần từ 1 -> 9
+  // ! để i = 0 để thực hiện làm title cho bcc
+  for (let i = 0; i <= 9; i++) {
+    // tạo thẻ tr
+    cell += `<tr class="tr-${i}">`;
+
+    // Bảng cửu chương bắt đầu từ 2 -> j = 2, và kết thúc = 9
+    for (let j = 2; j <= 9; j++) {
+      // Nếu i == 0 thì sẽ thực hiện làm tiêu đề
+      if (i == 0) {
+        cell = cell + `<td class="td-${j}x">${j} x` + "</td>";
+        document.getElementById("multiplicationTable").innerHTML = cell;
+      } else {
+        // Trong 1 hàng thì sẽ nhân 1 đầu tiên (i=1) và sau 9 lần sẽ tăng i lên
+        // Và row thứ 2 sẽ nhân 2 ,...
+        cell =
+          cell +
+          `<td class="td-${j}${i}">` +
+          `${j} x ${i} = ` +
+          j * i +
+          "</td>";
+      }
+    }
+    cell = cell + "</tr>";
+  }
+  cell = cell + "</table>";
+  document.getElementById("multiplicationTable").innerHTML = cell;
 };

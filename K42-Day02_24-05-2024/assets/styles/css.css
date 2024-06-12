@@ -94,3 +94,58 @@ VD: Tháng 1 có 31 ngày, tháng 2 có 28 hoặc 29 ngày  */
   line-height: 1.5rem;
   padding: 3px 8px;
 }
+
+/** 6: Tạo một table gồm 10 dòng và 10 cột. Sử dụng vòng lặp lồng nhau */
+
+#table10x10 {
+  box-shadow: 3px 3px 5px 1px #b9b9b9;
+}
+
+#table10x10 td {
+  text-align: center;
+  border: 1px solid #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+#table10x10 td:hover {
+  background-color: #e2e2e2;
+}
+
+#table10x10 td:active {
+  transform: scale(0.9);
+  transition: all 0.2;
+}
+
+/** -------------------------------------------------------------------------- */
+/**                                    6. LOOP2                                */
+/** -------------------------------------------------------------------------- */
+
+/* ------------------------------------ - ----------------------------------- */
+
+/** 1. Viết một ứng dụng để in ra trang web một bảng cửu chương */
+
+#multiplicationTable {
+  border-collapse: collapse;
+  box-shadow: 2px 2px 8px 2px #b9b9b9;
+  border-radius: 0 0 10px 10px;
+  user-select: none;
+}
+
+#multiplicationTable tr:first-child {
+  background-color: #aaaaaa !important;
+  font-weight: 700;
+}
+
+#multiplicationTable tr:nth-child(odd) {
+  background-color: #ebebeb;
+}
+
+#multiplicationTable td {
+  text-align: center;
+  border-right: 1px solid rgb(187, 187, 187);
+}
+
+#multiplicationTable td:last-child {
+  border-right: none;
+}

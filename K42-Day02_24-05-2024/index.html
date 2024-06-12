@@ -368,7 +368,7 @@ Ví dụ: Nhập 2 => in ra 2, Nhập tiếp 5 => in ra 7 (2+5) -->
       <div class="d-flex flex-column align-items-center mt-5">
         <p>
           <b>
-            4. Viết chương trình nhận vào một số từ hộp thoại, việc nhập kết
+            4.1. Viết chương trình nhận vào một số từ hộp thoại, việc nhập kết
             thúc khi người dùng nhập vào giá trị -1</b
           >
         </p>
@@ -393,7 +393,56 @@ Ví dụ: Nhập 2 => in ra 2, Nhập tiếp 5 => in ra 7 (2+5) -->
       </div>
     </form>
 
-    <div class="mb-5"></div>
+    <!-- * 4.2: Viết chương hình hiển thị thẻ <hr> theo độ rộng từ 1 đến 100. -->
+    <!-- Kết quả sẽ được hiển thị hình tam giác hr có độ dài từ 1 -> 100. -->
+    <p class="d-flex flex-column align-items-center fw-bold">
+      4.2: Viết chương hình hiển thị thẻ < hr > theo độ rộng từ 1 đến 100
+    </p>
+
+    <div
+      onclick="createStriangle()"
+      id="striangle"
+      class="btn d-flex flex-column align-items-center"
+    >
+      create Striangle
+    </div>
+
+    <!-- * 6: Tạo một table gồm 10 dòng và 10 cột. -->
+    <!-- Sử dụng vòng lặp lồng nhau -->
+    <div
+      class="d-flex flex-column justify-content-center align-items-center mt-5"
+    >
+      <p class="fw-bold">6: Tạo một table gồm 10 dòng và 10 cột</p>
+      <div onclick="createTable()" class="btn btn-primary mb-3">
+        Create table 10x10
+      </div>
+      <div id="table10x10" class="mb-5"></div>
+    </div>
+
+    <!-- * -------------------------------------------------------------------------- */ -->
+    <!-- *                                    6. LOOP2                                */ -->
+    <!-- * -------------------------------------------------------------------------- */ -->
+
+    <div class="d-flex flex-column align-items-center mt-5">
+      <p style="color: blue; font-weight: 700">
+        <-------------------- LOOP 2 -------------------->
+      </p>
+      <!-- 1. Viết một ứng dụng để in ra bảng cửu chương -->
+      <p class="fw-bold">1. Viết một ứng dụng để in ra bảng cửu chương</p>
+    </div>
+
+    <form action="">
+      <div
+        class="container container-fluid d-flex flex-column align-items-center justify-content-center"
+      >
+        <div onclick="multiplicationTable()" class="btn btn-secondary mb-3">
+          Multiplication Table
+        </div>
+        <div class="multiplicationTable-container mb-5">
+          <div id="multiplicationTable"></div>
+        </div>
+      </div>
+    </form>
 
     <script src="./index.js"></script>
   </body>
