@@ -444,6 +444,304 @@ Ví dụ: Nhập 2 => in ra 2, Nhập tiếp 5 => in ra 7 (2+5) -->
       </div>
     </form>
 
+    <!-- * 2. Ứng dụng cho phép hiển thị n số nguyên tố đầu tiên -->
+    <div class="d-flex flex-column align-items-center mt-3">
+      <!-- 1. Viết một ứng dụng để in ra bảng cửu chương -->
+      <p class="fw-bold">
+        2. Ứng dụng cho phép hiển thị n số nguyên tố đầu tiên
+      </p>
+    </div>
+    <form action="">
+      <div class="container container-fluid w-50">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <label for="enterAmountNumber" class="form-label"
+              >Enter amount prime number</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="enterAmountNumber"
+              placeholder="Amount prime number"
+            />
+          </div>
+          <div class="col-lg-6 col-sm-12 d-flex align-items-end">
+            <button
+              onclick="getPrimeNumber()"
+              id="getPrimeNum"
+              type="submit"
+              class="btn btn-warning"
+            >
+              Get
+            </button>
+          </div>
+        </div>
+        <p id="amountPrimeNum" class="mt-2 d-flex row"></p>
+      </div>
+    </form>
+
+    <!-- ---------------------------------- - ---------------------------------- -->
+
+    <!-- //* Bài 3.1: Sử dụng vòng lặp để đếm từ 1 đến 100 (x->n) 
+    Khi số là 99, hiển thị hộp thoại thông báo là đã hoàn thành. -->
+    <div class="d-flex flex-column align-items-center mt-5">
+      <p class="fw-bold">3.1: Đếm từ số x → n</p>
+    </div>
+
+    <form action="">
+      <div class="container container-fluid w-50">
+        <div class="row">
+          <div class="col-lg-4 col-sm-12">
+            <label for="enterFromNumber" class="form-label">From number</label>
+            <input
+              type="number"
+              class="form-control"
+              id="enterFromNumber"
+              placeholder="Integer Number"
+            />
+          </div>
+          <div class="col-lg-4 col-sm-12">
+            <label for="enterToNumber" class="form-label">To number</label>
+            <input
+              type="number"
+              class="form-control"
+              id="enterToNumber"
+              placeholder="Integer Number"
+            />
+          </div>
+          <div class="col-lg-4 col-sm-12 d-flex align-items-end">
+            <button
+              onclick="countFromToNumber()"
+              id="countFromNumToNum"
+              type="submit"
+              class="btn btn-dark"
+            >
+              Count
+            </button>
+          </div>
+        </div>
+        <div
+          class="mt-3"
+          style="background-color: #ddd; height: 15px; width: 65%; padding: 3px"
+        >
+          <div id="resultCountProgress"></div>
+        </div>
+        <p id="resultCountNum" class="mt-2 d-flex row"></p>
+      </div>
+    </form>
+    <!-- /* ------------------------- - ------------------------- */ -->
+
+    <!-- * Bài 3.2: Lấy thông tin nhiệt độ hiện tại được nhập bởi người truy cập. 
+     Nếu nhiệt độ nhập vào trên 100, yêu cầu người dùng giảm nhiệt độ. 
+     Nếu nhiệt độ dưới 20, yêu cầu người dùng tăng nhiệt độ. -->
+    <div class="d-flex flex-column align-items-center mt-5">
+      <p class="fw-bold">3.2: Kiểm tra nhiệt độ</p>
+    </div>
+
+    <form action="">
+      <div class="container container-fluid w-50">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <label for="enterTemperature" class="form-label">Temperature</label>
+            <input
+              type="number"
+              class="form-control"
+              id="enterTemperature"
+              placeholder="Temperature °C"
+            />
+          </div>
+
+          <div class="col-lg-6 col-sm-12 d-flex align-items-end">
+            <button
+              onclick="checkTemperature()"
+              id="checkTemp"
+              type="submit"
+              class="btn btn-outline-info"
+            >
+              Check
+            </button>
+          </div>
+        </div>
+
+        <p id="resultTemp" class="mt-2 d-flex row"></p>
+      </div>
+    </form>
+
+    <!-- /* ------------------------- - ------------------------- */ -->
+
+    <!-- //* Bài 3.3: Hiển thị ra 20 số trong dãy fibonacci đầu tiên. -->
+    <!-- //* Bài 3.4: Tìm số đầu tiên trong dãy fibonacci chia hết cho 5. -->
+    <!-- //* Bài 3.5: Tính tổng của 20 số đầu tiên trong dãy fibonacci. -->
+
+    <div class="d-flex flex-column align-items-center mt-5">
+      <p class="fw-bold">3.3: Hiển thị ra N số trong dãy fibonacci đầu tiên</p>
+      <p class="fw-bold">
+        3.4: Tìm số đầu tiên trong dãy fibonacci chia hết cho X
+      </p>
+      <p class="fw-bold">
+        3.5: Tính tổng của N số đầu tiên trong dãy fibonacci
+      </p>
+    </div>
+
+    <form action="">
+      <div class="container container-fluid w-50">
+        <div class="row">
+          <div class="col-lg-3 col-sm-12">
+            <label for="enterAmountFib" class="form-label"
+              >Amount Fibonacci</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="enterAmountFib"
+              placeholder="Amount first Fibonacci"
+            />
+          </div>
+
+          <div class="col-lg-3 col-sm-12">
+            <label for="enterDivisible" class="form-label"
+              >Divisible by number</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="enterDivisible"
+              placeholder="Number"
+            />
+          </div>
+
+          <div class="col-lg-3 col-sm-12">
+            <label for="enterTotalFib" class="form-label"
+              >Divisible by number</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="enterTotalFib"
+              placeholder="Number"
+            />
+          </div>
+
+          <div class="col-lg-3 col-sm-12 d-flex align-items-end">
+            <button
+              onclick="showFibNum()"
+              id="showFib"
+              type="submit"
+              class="btn btn-outline-danger"
+            >
+              Show
+            </button>
+          </div>
+        </div>
+
+        <div id="resultFib" class="mt-2 d-flex row"></div>
+      </div>
+    </form>
+
+    <!-- /* ------------------------- - ------------------------- */ -->
+
+    <!-- //* Bài 3.6: Tính tổng của 30 số chia hết cho 7 đầu tiên trong các số tự nhiên. -->
+
+    <!-- /* ------------------------- - ------------------------- */ -->
+
+    <!-- //* Bài 3.7: Hãy viết một chương trình in ra các số từ 1 đến 100. Nhưng nếu số chia hết cho 3 thì in ra "Fizz", 5 thì in ra "Buzz" thay vì in ra số đó. Và nếu số đó chia hết cho cả 3 và 5 thì in ra chữ "FizzBuzz". -->
+
+    <!-- /* ------------------------- - ------------------------- */ -->
+
+    <!-- //* Bài 3.8: Game đoán số (Phiên bản nâng cấp) -->
+    <div class="d-flex flex-column align-items-center mt-5">
+      <p class="fw-bold">3.8: Game đoán số (Phiên bản nâng cấp v1.1)</p>
+    </div>
+
+    <form class="form-guess-number-hide" action="">
+      <div class="container container-fluid w-50">
+        <!-- information attempt -->
+        <div class="row row-gap-3">
+          <div class="col-lg-6 col-sm-12">
+            <label for="guessAttempt" class="form-label">Attempt</label>
+            <input
+              type="number"
+              class="form-control"
+              id="guessAttempt"
+              placeholder="Amount of attempt"
+              disabled
+            />
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <label for="attemptLeft" class="form-label">Attempt left</label>
+            <input
+              type="number"
+              class="form-control"
+              id="attemptLeft"
+              placeholder="Lose when here is 0"
+              disabled
+            />
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <label for="UsedNum" class="form-label">Used number</label>
+            <input
+              type="number"
+              class="form-control"
+              id="UsedNum"
+              placeholder="List used number"
+              disabled
+            />
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <label for="guessHint" class="form-label">Hint</label>
+            <input
+              type="text"
+              class="form-control"
+              id="guessHint"
+              placeholder="Amount of attempt"
+              disabled
+            />
+          </div>
+        </div>
+
+        <!-- input enter guess Number -->
+        <div class="d-flex justify-content-center mt-4">
+          <input
+            type="number"
+            class="form-control"
+            id="enterGuessNum"
+            placeholder="Enter number"
+          />
+        </div>
+
+        <!-- button group event -->
+        <div class="groupEventBtn d-flex justify-content-evenly mt-4">
+          <div>
+            <div id="getGuessAttempt" class="btn btn-primary">Get attempt</div>
+          </div>
+          <div>
+            <div id="checkGuessNum" class="btn btn-success">Check Number</div>
+          </div>
+          <div>
+            <div id="getGuessHint" class="btn btn-danger">Hint</div>
+          </div>
+          <div>
+            <div id="resetGuess" class="btn btn-warning">Refresh</div>
+          </div>
+        </div>
+
+        <p id="resultTemp" class="mt-2 d-flex row"></p>
+      </div>
+    </form>
+
+    <div class="container container-fluid">
+      <div class="d-flex justify-content-center align-items-end">
+        <button
+          onclick="startGuess()"
+          id="startGuess"
+          type="submit"
+          class="btn btn-success"
+        >
+          Start
+        </button>
+      </div>
+    </div>
+
     <script src="./index.js"></script>
   </body>
 </html>

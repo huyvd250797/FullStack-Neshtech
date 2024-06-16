@@ -611,8 +611,267 @@ const multiplicationTable = () => {
           "</td>";
       }
     }
-    cell = cell + "</tr>";
+    cell += "</tr>";
   }
-  cell = cell + "</table>";
+  cell += "</table>";
   document.getElementById("multiplicationTable").innerHTML = cell;
 };
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* 2. Ứng dụng cho phép hiển thị n số nguyên tố đầu tiên
+
+//? Hàm check số nguyên tố
+function checkPrime(num) {
+  // khai báo biến isPrime và gán cờ = 1 nếu là số nguyên tố
+  var isPrime = 1;
+
+  // số nguyên tố là số lớn hơn 2, nếu < 2 => không phải là số nguyên tố
+  if (num < 2) {
+    isPrime = 0;
+  } else {
+    //  Chạy i từ 2 -> i < num, vì nếu chạy đến n tức là i = n => n % n == 0
+    //! => phải trừ trường hợp i = n
+    for (let i = 2; i < num; i++) {
+      // số nguyên tố chỉ có thể chia hết cho 1 và chính nó.
+      //! nếu chia được cho một trong các số từ 2 đến n - 1 => không phải số nguyên tố
+      if (num % i == 0) {
+        isPrime = 0;
+      }
+    }
+  }
+  return isPrime;
+}
+
+const getPrimeNumber = () => {
+  let getInputAmount = document.getElementById("enterAmountNumber").value;
+  // Khai báo biến đếm số lượng số nguyên tố
+  // nếu là số nguyên tố sẽ tăng countAmountPrimes + 1
+  let countAmountPrime = 0;
+  // Khai bao biến chứa chuỗi danh sách Prime Number
+  let listPrimeNum = "";
+
+  // Nếu số lượng nhập vào = 0 hoặc lớn hơn 1000 thì cảnh báo (giới hạn tài nguyên)
+  if (getInputAmount > 1000 || getInputAmount == 0) {
+    alert("Please Enter value between from 1 to 1000");
+  } else {
+    // Biến đếm nhỏ hơn số lượng nhập vào thì thoát vòng lặp
+    for (let i = 0; countAmountPrime < parseInt(getInputAmount); i++) {
+      // checkPrime(i) == 1 ? (countAmountPrime += 1) : countAmountPrime;
+      if (checkPrime(i) == 1) {
+        // Nếu là Prime Number thì tăng biến đếm lên 1 đơn vị
+        countAmountPrime += 1;
+
+        // Thêm Prime Number vào danh sách
+        listPrimeNum += `<div class="col-lg-2 d-flex justify-content-center border border-secondary-subtle" >${i}</div>`;
+        document.getElementById(
+          "amountPrimeNum"
+        ).innerHTML = `<b>${getInputAmount} First Prime Number is:</b>${listPrimeNum}`;
+      }
+      // Ngược lại nếu không phải Prime Number thì không tăng biến đếm
+      else {
+        countAmountPrime;
+      }
+    }
+  }
+};
+
+//! Dùng preventDefault() cho input type="submit"
+document.getElementById("getPrimeNum").addEventListener("click", function (e) {
+  e.preventDefault();
+});
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* Bài 3.1: Sử dụng vòng lặp để đếm từ 1 đến 100. Khi số là 99, hiển thị hộp thoại thông báo là đã hoàn thành.
+
+const countFromToNumber = () => {
+  let fromNum = document.getElementById("enterFromNumber").value;
+  let toNum = document.getElementById("enterToNumber").value;
+
+  // Create progress bar
+  let progressCount = document.getElementById("resultCountProgress");
+  progressCount.style.width = 0 + "%";
+  progressCount.style.height = 100 + "%";
+  progressCount.style.background = "#4CAF50";
+
+  // Khai báo i = fromNum (number)
+  let i = parseInt(fromNum);
+
+  // Khai báo biến để hiện thị số giây thời gian xử lý
+  let secondCounter = "00";
+
+  // thời gian xử lý
+  let getSecond = setInterval(() => {
+    secondCounter = parseInt(secondCounter);
+    secondCounter++;
+    if (secondCounter < 10) {
+      secondCounter = "0" + secondCounter;
+    }
+    console.log(secondCounter);
+  }, 1000);
+
+  // dùng setInterval để tăng i theo thời gian
+  let intervalMaking = setInterval(() => {
+    if (i <= parseInt(toNum)) {
+      // // Nếu i / toNum = 1 (đã đếm xong từ fromNum đến toNum)
+
+      // run progress bar
+      let percentCount = (progressCount.style.width =
+        (i / parseInt(toNum)) * 100 + "%");
+
+      // run i
+      document.getElementById(
+        "resultCountNum"
+      ).innerHTML = `Counting from ${fromNum} to ${toNum} (${parseFloat(
+        percentCount
+      ).toFixed(2)}%) - 00:${secondCounter} seconds <br> ${i}`;
+
+      // Nếu đã thực hiện xong thì DONE
+      if (i / parseInt(toNum) == 1) {
+        // DONE progress
+        document.getElementById(
+          "resultCountNum"
+        ).innerHTML = `✅ DONE! Counted ${fromNum} → ${toNum} in 00:${secondCounter} seconds`;
+        // Sau khi xử lý xong thì dừng interval & timeout
+        clearInterval(intervalMaking);
+        clearInterval(getSecond);
+        clearTimeout(getTimeOut);
+      } else {
+        // Nếu chưa xong tăng i lên
+        i++;
+      }
+    }
+  }, 50); // milisecond
+
+  // Nếu thời gian xử lý vượt quá 60000 milisecod (60s) thì ngưng xử lý
+  let getTimeOut = setTimeout(() => {
+    clearInterval(intervalMaking);
+    clearInterval(getSecond);
+    alert("Timed Out !!!");
+  }, 60000);
+};
+//! Dùng preventDefault() cho input type="submit"
+document
+  .getElementById("countFromNumToNum")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+  });
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* Bài 3.2: Sử dụng hàm prompt() để lấy thông tin nhiệt độ hiện tại được nhập bởi người truy cập. Nếu nhiệt độ nhập vào trên 100, yêu cầu người dùng giảm nhiệt độ. Nếu nhiệt độ dưới 20, yêu cầu người dùng tăng nhiệt độ.
+const checkTemperature = () => {
+  let getTemp = document.getElementById("enterTemperature").value;
+  if (getTemp > 100) {
+    document.getElementById("resultTemp").innerHTML = `It's so HOT 🔥🔥🔥`;
+  } else if (getTemp < 20) {
+    document.getElementById("resultTemp").innerHTML = `It's so COOL ❄❄❄`;
+  } else {
+    document.getElementById(
+      "resultTemp"
+    ).innerHTML = `Feel like so Comfortable 🎈🎈🎈`;
+  }
+};
+
+//! Dùng preventDefault() cho input type="submit"
+document.getElementById("checkTemp").addEventListener("click", function (e) {
+  e.preventDefault();
+});
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* Bài 3.3: Hiển thị ra 20 số trong dãy fibonacci đầu tiên.
+const showFibNum = () => {
+  let amountFibNum = document.getElementById("enterAmountFib").value;
+  let divisibleByNum = document.getElementById("enterDivisible").value;
+  let amountTotalFib = document.getElementById("enterTotalFib").value;
+
+  let fib = [];
+  for (let i = 0; i < amountFibNum; i++) {
+    // push phần tử fib vào arr
+    fib.push(fibonacci(i));
+  }
+
+  // Khai báo biến chia hết cho 5
+  let divisible = 0;
+  let divisiblePosition = 0;
+
+  //* Bài 3.4: Tìm số đầu tiên trong dãy fibonacci chia hết cho 5.
+  for (let i = 0; i < fib.length; i++) {
+    if (fib[i] % divisibleByNum == 0) {
+      divisible = fib[i];
+      divisiblePosition = i + 1;
+      // gặp trường hợp đầu tiên chia hết cho 5 thì lấy và break vòng lặp
+      break;
+    } else {
+      divisible =
+        "<span style='color:red; font-weight:700; padding:0'>Have no number divisible by " +
+        divisibleByNum +
+        "</span>";
+      divisiblePosition = "is NULL";
+    }
+  }
+
+  // Khai báo biến tỉnh tổng first Fib
+  let fibSumNum = 0;
+
+  //* Bài 3.5: Tính tổng của 20 số đầu tiên trong dãy fibonacci.
+  if (amountTotalFib <= amountFibNum) {
+    for (let i = 0; i < amountTotalFib; i++) {
+      fibSumNum += fib[i];
+    }
+  } else {
+    fibSumNum =
+      "Amount Fibonacci just have " +
+      amountFibNum +
+      ". Cannot calculator " +
+      amountTotalFib +
+      " Fibonacci number";
+  }
+
+  // result
+  document.getElementById(
+    "resultFib"
+  ).innerHTML = `<span class="fib fibAmount">${amountFibNum} first fibonacci number: </span>
+  <span class="fib fibList">→ ${fib}</span>
+  <span class="fib fibDivisibleNum">First number above divisible by ${divisibleByNum}:</span>
+  <span class="fib fibDivisible">→ ${divisible} with position ${divisiblePosition}</span>
+  <span class="fib fibTotalNum">Total ${amountTotalFib} first number above:</span>
+  <span class="fib fibSumNum">→ ${fibSumNum}</span>
+  `;
+};
+
+//! Dùng preventDefault() cho input type="submit"
+document.getElementById("showFib").addEventListener("click", function (e) {
+  e.preventDefault();
+});
+
+//? hàm lấy từng phần tử fibonacci
+const fibonacci = (num) => {
+  if (num <= 1) return 1;
+  return fibonacci(num - 1) + fibonacci(num - 2);
+};
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* Bài 3.6: Tính tổng của 30 số chia hết cho 7 đầu tiên trong các số tự nhiên.
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* Bài 3.7: Hãy viết một chương trình in ra các số từ 1 đến 100. Nhưng nếu số chia hết cho 3 thì in ra "Fizz", 5 thì in ra "Buzz" thay vì in ra số đó. Và nếu số đó chia hết cho cả 3 và 5 thì in ra chữ "FizzBuzz".
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* Bài 3.8: Game đoán số (Phiên bản nâng cấp)
+
+const startGuess = () => {
+  let startGuess = document.querySelector(".form-guess-number-hide");
+  let hideBtnStart = document.getElementById("startGuess");
+  startGuess.classList.remove("form-guess-number-hide");
+  hideBtnStart.classList.add("form-guess-number-hide");
+};
+
+// Hàm kiểm tra số đã đoán
+const checkGuessNumber = () => {};
+/* ------------------------------------ - ----------------------------------- */

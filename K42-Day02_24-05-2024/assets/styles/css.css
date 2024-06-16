@@ -149,3 +149,44 @@ VD: Tháng 1 có 31 ngày, tháng 2 có 28 hoặc 29 ngày  */
 #multiplicationTable td:last-child {
   border-right: none;
 }
+
+/* ------------------------------------ - ----------------------------------- */
+
+/** Bài 3.3: Hiển thị ra 20 số trong dãy fibonacci đầu tiên.*/
+.fib {
+  line-height: 1.8rem;
+}
+.fibAmount {
+  font-weight: 700;
+}
+
+.fibList {
+}
+/** Bài 3.4: Tìm số đầu tiên trong dãy fibonacci chia hết cho 5.*/
+.fibDivisibleNum {
+  font-weight: 700;
+}
+
+.fibDivisible {
+  font-weight: 700;
+  color: rgb(0, 110, 255);
+}
+/** Bài 3.5: Tính tổng của 20 số đầu tiên trong dãy fibonacci.*/
+.fibTotalNum {
+  font-weight: 700;
+}
+
+.fibSumNum {
+  color: rgb(255, 94, 0);
+}
+
+/* ------------------------- - ------------------------- */
+
+/** Bài 3.8: Game đoán số (Phiên bản nâng cấp) */
+.form-guess-number-hide {
+  display: none;
+}
+
+#enterGuessNum {
+  width: 20%;
+}
