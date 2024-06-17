@@ -872,6 +872,90 @@ const startGuess = () => {
   hideBtnStart.classList.add("form-guess-number-hide");
 };
 
-// Hàm kiểm tra số đã đoán
-const checkGuessNumber = () => {};
+//TODO Khai báo biến chưa số cần đoán
+let finalNumber = Math.floor(1 + Math.random() * 101);
+console.log(finalNumber);
+
+// Khai báo biến đếm số lần đã đoán
+let guessCounter = 0;
+
+//* Hàm kiểm tra số đã đoán
+const checkGuessNumber = () => {
+  let guessNum = document.getElementById("enterGuessNum").value;
+
+  // Khai báo mảng chứa các số đã nhập
+  let listUsedNum = [];
+
+  // Nếu chưa nhập number thì cảnh báo
+  if (guessNum.length == 0 || guessNum <= 0) {
+    alert("Let's enter guess number");
+  }
+  // ngược lại tăng biến đếm và xử lý
+  else {
+    // tăng biến đếm
+    guessCounter++;
+
+    // gọi hàm getAttempt để đưa biến vào
+    getAttempt(guessCounter);
+
+    // Kiểm tra số nhập vào và kết quả
+    // Kết quả > số nhập
+    if (finalNumber > guessNum) {
+      alert(
+        "final Number is greater than " + guessNum + " ( X > " + guessNum + " )"
+      );
+    }
+    // Kết quả < số nhập
+    else if (finalNumber < guessNum) {
+      alert(
+        "final Number is less than " + guessNum + " ( X < " + guessNum + " )"
+      );
+    }
+    // Kết quả = số nhập
+    else {
+      alert("Exactly! Is's " + finalNumber);
+      // Lấy tất cả button có class btnExecute => sẽ thành 1 array chứa các element đó
+      let listBtnExe = document.querySelectorAll(".btnExecute");
+
+      // lặp qua và gắn disabled vào từng button
+      listBtnExe.forEach((item) => {
+        item.disabled = true;
+      });
+    }
+  }
+};
+
+// gen số ngẫu nhiên từ 1 -> 5
+let attempt = Math.floor(1 + Math.random() * 5);
+
+//* Hàm random số lần đoán số
+const getAttempt = (num) => {
+  let guessAttempt = (document.getElementById("guessAttempt").value = attempt);
+
+  // Khi click get attempt thì disable btn này
+  document.getElementById("getGuessAttempt").disabled = true;
+
+  // Nếu số lần đếm (lần đoán) > lần thử thì player thua
+  if (num >= attempt) {
+    alert("You lost");
+    // Lấy tất cả button có class btnExecute => sẽ thành 1 array chứa các element đó
+    let listBtnExe = document.querySelectorAll(".btnExecute");
+
+    // lặp qua và gắn disabled vào từng button
+    listBtnExe.forEach((item) => {
+      item.disabled = true;
+    });
+  }
+  // ngược lại lần thử sẽ giảm đi
+  else {
+    document.getElementById("attemptLeft").value = attempt - num;
+  }
+};
+
+// Hàm gợi ý
+const getHint = () => {};
+
+// Hàm refresh game
+const refreshGame = () => {};
+
 /* ------------------------------------ - ----------------------------------- */

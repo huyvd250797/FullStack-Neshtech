@@ -184,9 +184,9 @@ VD: Tháng 1 có 31 ngày, tháng 2 có 28 hoặc 29 ngày  */
 
 /** Bài 3.8: Game đoán số (Phiên bản nâng cấp) */
 .form-guess-number-hide {
-  display: none;
+  /* display: none; */
 }
 
 #enterGuessNum {
-  width: 20%;
+  width: 50%;
 }
