@@ -873,22 +873,22 @@ const startGuess = () => {
 };
 
 //TODO Khai báo biến chưa số cần đoán
-let finalNumber = Math.floor(1 + Math.random() * 101);
+let finalNumber = Math.floor(1 + Math.random() * 100);
 console.log(finalNumber);
 
 // Khai báo biến đếm số lần đã đoán
 let guessCounter = 0;
 
-//* Hàm kiểm tra số đã đoán
+// // Khai báo mảng chứa các số đã nhập
+// let listUsedNum = [];
+
+//! Hàm kiểm tra số đã đoán
 const checkGuessNumber = () => {
   let guessNum = document.getElementById("enterGuessNum").value;
 
-  // Khai báo mảng chứa các số đã nhập
-  let listUsedNum = [];
-
   // Nếu chưa nhập number thì cảnh báo
-  if (guessNum.length == 0 || guessNum <= 0) {
-    alert("Let's enter guess number");
+  if (guessNum.length == 0 || guessNum <= 0 || guessNum > 100) {
+    alert("Let's enter guess number to 1 → 100");
   }
   // ngược lại tăng biến đếm và xử lý
   else {
@@ -913,7 +913,13 @@ const checkGuessNumber = () => {
     }
     // Kết quả = số nhập
     else {
-      alert("Exactly! Is's " + finalNumber);
+      alert("Exactly! It's " + finalNumber);
+
+      // In ra kết quả
+      document.getElementById(
+        "resultNumber"
+      ).innerHTML = `Result: X = ${finalNumber} - You WIN! 🎉`;
+
       // Lấy tất cả button có class btnExecute => sẽ thành 1 array chứa các element đó
       let listBtnExe = document.querySelectorAll(".btnExecute");
 
@@ -922,13 +928,21 @@ const checkGuessNumber = () => {
         item.disabled = true;
       });
     }
+    // Lấy danh sách giá trị đã check
+    let listUsed = document.getElementById("UsedNum").value;
+
+    // Nối chuỗi các ký tự đó
+    listUsed += guessNum;
+
+    // In danh sách các số đã đoán
+    document.getElementById("UsedNum").value = `${listUsed}, `;
   }
 };
 
 // gen số ngẫu nhiên từ 1 -> 5
 let attempt = Math.floor(1 + Math.random() * 5);
 
-//* Hàm random số lần đoán số
+//! Hàm random số lần đoán số
 const getAttempt = (num) => {
   let guessAttempt = (document.getElementById("guessAttempt").value = attempt);
 
@@ -937,7 +951,13 @@ const getAttempt = (num) => {
 
   // Nếu số lần đếm (lần đoán) > lần thử thì player thua
   if (num >= attempt) {
-    alert("You lost");
+    alert("You have no attempt more!");
+
+    // In kết quả
+    document.getElementById(
+      "resultNumber"
+    ).innerHTML = `Result: X = ${finalNumber} - You LOST! 💀`;
+
     // Lấy tất cả button có class btnExecute => sẽ thành 1 array chứa các element đó
     let listBtnExe = document.querySelectorAll(".btnExecute");
 
@@ -953,9 +973,41 @@ const getAttempt = (num) => {
 };
 
 // Hàm gợi ý
-const getHint = () => {};
+let countHint = 30;
+
+//! Hàm hint
+const getHint = () => {
+  let guessNum = document.getElementById("enterGuessNum").value;
+
+  // Khai báo số ngẫu nhiên so sánh với số X
+  let valueHint = Math.floor(1 + Math.random() * 100);
+
+  if (guessNum.length == 0 || guessNum <= 0 || guessNum > 100) {
+    alert("Let's enter guess number to 1 → 100");
+  } else {
+    if (countHint > 0) {
+      // Tăng đếm số lần hint
+      countHint--;
+
+      // Trừ hint
+      document.getElementById("badge-hint").innerHTML = countHint;
+
+      // Show hint
+      if (finalNumber < valueHint) {
+        document.getElementById("guessHint").value = `X < ${valueHint}`;
+      } else {
+        document.getElementById("guessHint").value = `X > ${valueHint}`;
+      }
+    } else {
+      alert("You have no hint more");
+      document.getElementById("getGuessHint").disabled = true;
+    }
+  }
+};
 
 // Hàm refresh game
-const refreshGame = () => {};
+const refreshGame = () => {
+  location.reload();
+};
 
 /* ------------------------------------ - ----------------------------------- */

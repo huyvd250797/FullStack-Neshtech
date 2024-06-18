@@ -650,7 +650,7 @@ Ví dụ: Nhập 2 => in ra 2, Nhập tiếp 5 => in ra 7 (2+5) -->
 
     <!-- //* Bài 3.8: Game đoán số (Phiên bản nâng cấp) -->
     <div class="d-flex flex-column align-items-center mt-5">
-      <p class="fw-bold">3.8: Game đoán số (Phiên bản nâng cấp v1.1)</p>
+      <p class="fw-bold">3.8: Game đoán số X (Phiên bản nâng cấp v1.2)</p>
     </div>
 
     <div class="form-guess-number-hide" action="">
@@ -680,7 +680,7 @@ Ví dụ: Nhập 2 => in ra 2, Nhập tiếp 5 => in ra 7 (2+5) -->
           <div class="col-lg-4 col-sm-12">
             <label for="UsedNum" class="form-label">Used number</label>
             <input
-              type="number"
+              type="text"
               class="form-control"
               id="UsedNum"
               placeholder="List used number"
@@ -705,8 +705,13 @@ Ví dụ: Nhập 2 => in ra 2, Nhập tiếp 5 => in ra 7 (2+5) -->
             type="number"
             class="form-control"
             id="enterGuessNum"
-            placeholder="Enter number"
+            placeholder="Enter guess number"
           />
+        </div>
+
+        <!-- Result X -->
+        <div class="d-flex justify-content-center mt-3">
+          <div id="resultNumber"></div>
         </div>
 
         <!-- button group event -->
@@ -730,20 +735,34 @@ Ví dụ: Nhập 2 => in ra 2, Nhập tiếp 5 => in ra 7 (2+5) -->
             </button>
           </div>
           <div>
-            <button id="getGuessHint" class="btnExecute btn btn-danger">
+            <button
+              id="getGuessHint"
+              onclick="getHint()"
+              class="btnExecute btn btn-danger position-relative"
+            >
               Hint
+              <span
+                id="badge-hint"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"
+              >
+                30
+              </span>
             </button>
           </div>
           <div>
-            <button id="resetGuess" class="btn btn-warning">Refresh</button>
+            <button
+              id="resetGuess"
+              onclick="refreshGame()"
+              class="btn btn-warning"
+            >
+              Refresh
+            </button>
           </div>
         </div>
-
-        <p id="resultTemp" class="mt-2 d-flex row"></p>
       </div>
     </div>
 
-    <div class="container container-fluid">
+    <div class="container container-fluid mb-5">
       <div class="d-flex justify-content-center align-items-end">
         <button
           onclick="startGuess()"
