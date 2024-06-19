@@ -972,9 +972,10 @@ const getAttempt = (num) => {
   }
 };
 
-// Hàm gợi ý
+// Khai báo biến countHint (tối đa 30 lần hint)
 let countHint = 30;
 
+// Hàm gợi ý
 //! Hàm hint
 const getHint = () => {
   let guessNum = document.getElementById("enterGuessNum").value;
@@ -986,7 +987,7 @@ const getHint = () => {
     alert("Let's enter guess number to 1 → 100");
   } else {
     if (countHint > 0) {
-      // Tăng đếm số lần hint
+      // giảm đếm số lần hint
       countHint--;
 
       // Trừ hint
@@ -995,6 +996,8 @@ const getHint = () => {
       // Show hint
       if (finalNumber < valueHint) {
         document.getElementById("guessHint").value = `X < ${valueHint}`;
+      } else if (finalNumber == valueHint) {
+        document.getElementById("guessHint").value = `X < ${valueHint + 1}`;
       } else {
         document.getElementById("guessHint").value = `X > ${valueHint}`;
       }
