@@ -14,7 +14,7 @@
 
 /* ------------------------------------ - ----------------------------------- */
 
-//* 2. nhận một số nhập vào và chèn dấu (-) giữa 2  số chẵn.
+//* 2.2. nhận một số nhập vào và chèn dấu (-) giữa 2  số chẵn.
 // Ví dụ nếu bạn nhập vào 025468 thì kết quả của chương trình sẽ là 0-254-6-8.
 
 // Hàm chuyển
@@ -47,7 +47,7 @@ const convertListNumber = () => {
 
 /* ------------------------------------ - ----------------------------------- */
 
-//* 3. Chuyển các ký tự chữ thường sang thành chữ hoa. -->
+//* 2.3. Chuyển các ký tự chữ thường sang thành chữ hoa. -->
 // VD: Nếu nhập vào chuỗi 'The Quick Brown Fox' kết quả của chương trình là 'tHE qUICK bROWN fOX'. -->
 
 const convertListText = () => {
@@ -56,7 +56,6 @@ const convertListText = () => {
   // Khai báo chữ thường, chữ hoa
   let UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let LOWER = "abcdefghijklmnopqrstuvwxyz";
-  let unknown = " ";
 
   // Khai báo mảng rổng
   let listResultText = [];
@@ -86,4 +85,79 @@ const convertListText = () => {
   console.log(listResultText);
   document.getElementById("resultTextConverted").value =
     listResultText.join("");
+};
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* 3.3. Ứng dụng cho phép tra cứu các từ tiếng Anh sang tiếng Việt.
+// Danh sách các từ được lưu trữ trong các mảng.
+
+// hàm load danh sách list Eng - Vie
+const loadListWord = () => {
+  let listWordEng = [
+    "Happy",
+    "Mature",
+    "Money",
+    "Life",
+    "Think",
+    "Active",
+    "Passion",
+    "Attitude",
+    "Married",
+    "Freedom",
+  ];
+
+  let listWordVie = [
+    "Vui vẻ",
+    "Trưởng thành",
+    "Tiền bạc",
+    "Cuộc sống",
+    "Suy nghĩ",
+    "Hành động",
+    "Niềm đam mê",
+    "Thái độ",
+    "Kết hôn",
+    "Tự do",
+  ];
+
+  document.getElementById("list-word").innerHTML = listWordEng.join(", ");
+
+  // Return về Object chứa 2 giá trị là 2 array trên
+  return {
+    engList: listWordEng,
+    vieList: listWordVie,
+  };
+};
+// Hàm translate
+const translateText = () => {
+  let getText = document.getElementById("enterEnglish").value;
+
+  //? Object.values(getListText): Lấy giá trị của Object => lấy được 2 mảng
+  if (getText.length == 0) {
+    alert("Enter text to translate");
+  } else {
+    let getListText = loadListWord();
+    let arrListText = Object.values(getListText);
+
+    // arrListText[0]: là listEng
+    // arrListText[1]: là listVie
+    for (let i = 0; i < arrListText[0].length; i++) {
+      // Nếu từ nhập vào === 1 trong các từ trong mảng Eng
+      // Thì in ra từ trong mảng Vie tại vị trí của Eng
+      if (arrListText[0][i] === getText) {
+        document.getElementById("translateText").value = `${arrListText[1][i]}`;
+        // Sau khi tìm chính xác break vòng lặp
+        break;
+      } else {
+        document.getElementById(
+          "translateText"
+        ).value = `Can not read this word, Try again !!!`;
+      }
+    }
+  }
+};
+
+// hàm đảo vị trí ngôn ngữ
+const swapTranslate = () => {
+  alert("This function is building, wait for the next upgrade");
 };

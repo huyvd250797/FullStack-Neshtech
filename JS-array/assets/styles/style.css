@@ -2,3 +2,24 @@
   margin-top: 30px;
   margin-bottom: 30px;
 }
+
+/* * 3.1. Ứng dụng cho phép tra cứu các từ tiếng Anh sang tiếng Việt. --> */
+/* Danh sách các từ được lưu trữ trong các mảng. --> */
+
+.get-list-word {
+  font-size: 0.8rem;
+  padding: 0 2px;
+  cursor: pointer;
+}
+.arrow-up-down {
+  /* Xoay 90 độ */
+  transform: rotate(90deg);
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #0d6efd;
+}
+
+.arrow-up-down:hover,
+.get-list-word:hover {
+  opacity: 0.8;
+}

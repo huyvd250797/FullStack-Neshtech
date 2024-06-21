@@ -15,18 +15,22 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <link
+      rel="stylesheet"
+      href="../../../neshtech-k40_fullstack/1.Code/Day02_31-03-2024/fonts/fontawesome-free-6.5.1-web/css/all.min.css"
+    />
     <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
   <body>
     <script src="./main.js"></script>
     <div id="app">
-      <!--* 2. nhận một số nhập vào và chèn dấu (-) giữa 2  số chẵn. -->
+      <!--* 2.2. nhận một số nhập vào và chèn dấu (-) giữa 2  số chẵn. -->
       <!-- Ví dụ nếu bạn nhập vào 025468 thì kết quả của chương trình sẽ là 0-254-6-8. -->
       <div
         class="container container-fluid part d-flex flex-column align-items-center"
       >
         <div class="title d-flex flex-column">
-          <h4>2. Chèn dấu (-) giữa 2 số chẵn</h4>
+          <h4>2.2. Chèn dấu (-) giữa 2 số chẵn</h4>
           <p style="font-style: italic; font-size: 0.9rem">
             Nếu nhập vào 025468 thì kết quả của chương trình sẽ là 0-254-6-8
           </p>
@@ -58,13 +62,13 @@
         </div>
       </div>
 
-      <!--* 2. Chuyển các ký tự chữ thường sang thành chữ hoa. -->
+      <!--* 2.3. Chuyển các ký tự chữ thường sang thành chữ hoa. -->
       <!-- VD: Nếu nhập vào chuỗi 'The Quick Brown Fox' kết quả của chương trình là 'tHE qUICK bROWN fOX'. -->
       <div
         class="container container-fluid part d-flex flex-column align-items-center"
       >
         <div class="title d-flex flex-column">
-          <h4>3. Chuyển các ký tự chữ thường sang thành chữ hoa</h4>
+          <h4>2.3. Chuyển các ký tự chữ thường sang thành chữ hoa</h4>
           <p style="font-style: italic; font-size: 0.9rem">
             Nếu nhập vào chuỗi 'The Quick Brown Fox' kết quả của chương trình là
             'tHE qUICK bROWN fOX'
@@ -96,6 +100,71 @@
 
           <button onclick="convertListText()" class="btn btn-success">
             Convert
+          </button>
+        </div>
+      </div>
+
+      <!--* 3.1. Ứng dụng cho phép tra cứu các từ tiếng Anh sang tiếng Việt. -->
+      <!-- Danh sách các từ được lưu trữ trong các mảng. -->
+      <div
+        class="container container-fluid part d-flex flex-column align-items-center mt-5"
+      >
+        <div class="title d-flex flex-column">
+          <h4>
+            3.1. Ứng dụng cho phép tra cứu các từ tiếng Anh sang tiếng Việt
+            (v1.0)
+          </h4>
+          <p style="font-style: italic; font-size: 0.9rem">
+            Khi tìm kiếm, tìm vị trí của từ tiếng Anh trong mảng 1. Nếu tìm thấy
+            thì hiển thị từ tiếng Việt ở cùng vị trí trong mảng 2.
+          </p>
+        </div>
+
+        <div class="content w-50">
+          <div class="mb-3">
+            <div class="list- title">
+              Danh sách các từ:
+
+              <i
+                onclick="loadListWord()"
+                class="fa-solid fa-turn-down get-list-word"
+              ></i>
+            </div>
+            <div id="list-word"></div>
+          </div>
+          <div class="mb-3">
+            <label for="enterEnglish" class="form-label">English</label>
+            <input
+              type="text"
+              class="form-control"
+              id="enterEnglish"
+              placeholder="Enter Text"
+            />
+            <!-- Chỉ cho phép nhập ký tự tiếng anh -->
+            <!-- onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" -->
+          </div>
+
+          <!-- Đảo vị trí -->
+          <div class="mb-3">
+            <i
+              onclick="swapTranslate()"
+              class="fa-solid fa-arrow-right-arrow-left arrow-up-down"
+            ></i>
+          </div>
+
+          <div class="mb-3">
+            <label for="translateText" class="form-label">Vietnamese</label>
+            <input
+              type="text"
+              class="form-control"
+              id="translateText"
+              placeholder="Translation"
+              disabled
+            />
+          </div>
+
+          <button onclick="translateText()" class="btn btn-warning">
+            Translate
           </button>
         </div>
       </div>
