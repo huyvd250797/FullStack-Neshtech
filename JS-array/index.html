@@ -163,9 +163,41 @@
             />
           </div>
 
-          <button onclick="translateText()" class="btn btn-warning">
+          <button onclick="translateText()" class="btn btn-info">
             Translate
           </button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------- - ---------------------------------- -->
+      <!-- * 3.5. Ứng dụng vui. 
+      Khi người dùng gõ bàn phím thì một dòng chữ cố định sẽ lần lượt hiện ra. 
+      Cho dù người dùng gõ chữ nào thì cũng lần lượt hiện ra dòng chữ cố định đó.-->
+
+      <div
+        class="container container-fluid part d-flex flex-column align-items-center mt-5"
+      >
+        <div class="title d-flex flex-column">
+          <h4>3.1. Ứng dụng vui: "TYPE ME"</h4>
+          <p style="font-style: italic; font-size: 0.9rem">
+            Gõ bàn phím thì một dòng chữ cố định sẽ lần lượt hiện ra.
+          </p>
+        </div>
+
+        <div class="content w-50">
+          <div class="mb-3">
+            <div class="mb-3">
+              <label for="enterAnything" class="form-label">Type me</label>
+              <textarea
+                onkeyup="typeMe()"
+                class="form-control"
+                id="enterAnything"
+                rows="3"
+                placeholder="Type anything in here..."
+              ></textarea>
+              <div id="refreshTypeMe"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

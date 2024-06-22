@@ -161,3 +161,61 @@ const translateText = () => {
 const swapTranslate = () => {
   alert("This function is building, wait for the next upgrade");
 };
+
+/* ------------------------------------ - ----------------------------------- */
+
+//* 3.5. Ứng dụng vui.
+// Khi người dùng gõ bàn phím thì một dòng chữ cố định sẽ lần lượt hiện ra.
+// Cho dù người dùng gõ chữ nào thì cũng lần lượt hiện ra dòng chữ cố định đó.
+
+// Khai báo biến đếm số lần nhấn phím
+let countPressKey = 0;
+
+// Khai báo biến hiển thị kết quả Type Me
+let resultTypeMe = "";
+
+let randNumTypeMe = Math.floor(Math.random() * 4);
+console.log(randNumTypeMe);
+
+//* Hàm type me
+const typeMe = () => {
+  // Tăng biến count khi nhấn phím
+  countPressKey++;
+
+  // create object to random content
+  let showText = {
+    txt1: "You are very handsome!!!",
+    txt2: "I LOVE YOU <3",
+    txt3: "Will you marry me?",
+    txt4: "You are so cool",
+  };
+
+  // Khai báo biến lấy giá trị object
+  let arrListText = Object.values(showText);
+
+  //? arrListText[randNumTypeMe]
+  //! randNumTypeMe: giá trị ngẫu nhiên
+  //! arrListText[randNumTypeMe]: lấy phần tử ngẫu nhiên trong mảng arrListText
+  //! arrListText: mảng chứa value của các phần tử trong object
+  //TODO ==> Lấy value ngẫu nhiên trong Object
+  for (let i = 1; i <= arrListText[randNumTypeMe].length; i++) {
+    // Nếu số lần nhấn phím = với i chạy thì in ra ký tự vị trí i-1
+    if (countPressKey == i) {
+      resultTypeMe += arrListText[randNumTypeMe][i - 1];
+      document.getElementById("enterAnything").value = resultTypeMe;
+    }
+    // Nếu số lần nhấn phím = với chiều dài arr ký tự thì disabled
+    else if (countPressKey == arrListText[randNumTypeMe].length) {
+      document.getElementById("enterAnything").disabled = true;
+      document.getElementById(
+        "refreshTypeMe"
+      ).innerHTML = `<input onclick="refreshTypeMe()" class="btn btn-primary mt-3" type="reset" value="OK"></input>`;
+    }
+  }
+};
+
+// Hàm refresh Type me
+const refreshTypeMe = () => {
+  alert("Your messenger was sent ✅");
+  location.reload();
+};
