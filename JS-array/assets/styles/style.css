@@ -23,3 +23,28 @@
 .get-list-word:hover {
   opacity: 0.8;
 }
+
+/* TODO ---------------------------- 6. Luyện tập mảng --------------------------- */
+.hide-form {
+  display: none;
+}
+
+.your-arr {
+  color: rgb(76, 76, 255);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.arr-modal-header {
+  background-color: #143463;
+}
+
+.arr-modal-header--text {
+  color: #fff;
+}
+
+#arr-null {
+  color: rgb(255, 76, 76);
+  font-style: italic;
+  font-size: 0.8rem;
+}

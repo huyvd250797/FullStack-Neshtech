@@ -175,7 +175,6 @@ let countPressKey = 0;
 let resultTypeMe = "";
 
 let randNumTypeMe = Math.floor(Math.random() * 4);
-console.log(randNumTypeMe);
 
 //* Hàm type me
 const typeMe = () => {
@@ -219,3 +218,152 @@ const refreshTypeMe = () => {
   alert("Your messenger was sent ✅");
   location.reload();
 };
+
+/* ------------------------------------ - ----------------------------------- */
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 1- Viết chương trình khởi tạo mảng số nguyên gồm 10 phần tử.
+// Chương trình thực hiện tính và hiển thị xem có bao nhiêu số nguyên lớn hơn hoặc bằng 10.
+
+//* --------------------------- Hàm get Arr length --------------------------- */
+const getArrayLength = () => {
+  let getArrLength = document.getElementById("enterArrLength").value;
+
+  // show btn Create Array
+  let getBtnCreateArr = document.querySelector(".create-array");
+
+  // Nếu dữ liệu nhập từ 4 - 12 thì xử lý
+  if (getArrLength >= 4 && getArrLength <= 12) {
+    //? gán getArrLength vào hàm createIndexArr() và run
+    createIndexArr(getArrLength);
+
+    // remove class hide-form
+    getBtnCreateArr.classList.remove("hide-form");
+    //! Clear data input
+    clearAllArr();
+  } else {
+    alert("Enter array length between 4 - 12");
+
+    // clear data input enterArrLength
+    document.getElementById("enterArrLength").value = "";
+  }
+};
+
+//* --------------------- Hàm create các phần tử của mảng -------------------- */
+
+const createIndexArr = (index) => {
+  let createInputArr = "";
+  // index sẽ là giá trị nhập vào khi tạo array length
+  for (let i = 0; i < index; i++) {
+    createInputArr += `
+    <div class="col-lg-3 col-sm-12">
+      <div class="input-group input-group-sm mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-sm">${i + 1}</span>
+      <input type="text" class="form-control item-array" aria-label="" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    </div>
+    `;
+  }
+  document.getElementById(
+    "resultCreateArrLength"
+  ).innerHTML = `Array length is ${index}`;
+  document.getElementById("indexOfArr").innerHTML = createInputArr;
+};
+
+// Khai báo mảng rỗng
+let getListArr = [];
+
+//* --------------------------- * Hàm create array --------------------------- */
+const createArray = () => {
+  // Lấy tất cả element có class item-array thành nodelist
+  let listItemArr = document.querySelectorAll(".item-array");
+
+  for (let i = 0; i < listItemArr.length; i++) {
+    //? listItemArr[i].value
+    //! listItemArr[i]: lấy dc input tag
+    //! .value: value của input tag
+    getListArr.push(listItemArr[i].value);
+    document.getElementById(
+      "reviewArr"
+    ).innerHTML = `Your Array is: <span class="your-arr">[${getListArr.join(
+      ", "
+    )}]</span>`;
+    document.getElementById(
+      "reviewArrModal"
+    ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
+    // Nếu giá trị của input NULL thì hiện cảnh báo
+    if (listItemArr[i].value.length === 0) {
+      document.querySelector("#arr-null").classList.remove("hide-form");
+    }
+  }
+
+  document.getElementById("create-arr").disabled = true;
+};
+
+//? Hàm Btn Yes
+const btnYesArr = () => {
+  document.querySelector(".reviewArray").classList.remove("hide-form");
+};
+
+//? Hàm Btn NO & X
+const btnNoArr = () => {
+  // Chuyển thành mảng rỗng
+  getListArr = [];
+
+  // Gỡ btn create arr = false
+  document.getElementById("create-arr").disabled = false;
+};
+
+//! ------------------------- hàm clear all data Arr ------------------------- */
+const clearAllArr = () => {
+  // Chuyển thành mảng rỗng
+  getListArr = [];
+
+  // Gỡ btn create arr = false
+  document.getElementById("create-arr").disabled = false;
+
+  // add class hide-form
+  document.querySelector(".reviewArray").classList.add("hide-form");
+
+  // add class hide-form khi null value element arr
+  document.querySelector("#arr-null").classList.add("hide-form");
+};
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 2- Viết chương trình khởi tạo mảng số nguyên gồm 10 phần tử khác nhau.
+// Chương trình hiển thị ra được phần tử có giá trị lớn nhất trong mảng và vị trí của phần tử đó.
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 3- Viết chương trình khởi tạo mảng số nguyên.
+// Hiển hiện giá trị lớn nhất trong mảng đó. In ra giá trị trung bình của các phần tử trong mảng.
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 4- Viết chương trình khởi tạo/nhập vào một mảng số nguyên
+// và đảo ngược các phần tử trong mảng đó.
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 5- Viết chương trình đếm số nguyên âm trong một chuỗi
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 6- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử,
+// nhập/tạo phần tử số nguyên V. Chương trình tìm xem V có nằm trong gg số nguyên không?
+// Nếu V thuộc mảng số nguyên thì in ra "V is in the array"
+// còn lại in ra "V is not in the array".
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 7- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử,
+// nhập/tạo phần tử số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không,
+// nếu V thuộc mảng đã cho xoá V khỏi mảng
+// (Bản chất việc xoá ở đây tức là dịch phần tử ở bên phải V sang vị trí của V,
+// và gán 0 cho phần tử cuối cùng của mảng)
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 8- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử.
+// Chương trình sắp xếp mảng theo thứ tự giảm dần và hiển thị ra mảng đã được sắp xếp.
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 9- Viết chương trình khởi tạo/nhập vào 2 mảng số nguyên gồm 10 phần tử,
+// gọi là mảng a và b.
+// Mảng c là một mảng được khai báo gồm 20 phần tử số nguyên.
+// Chương trình sẽ lưu các phần tử được nối từ hai mảng b và a vào mảng c.
+// Hiển thị mảng c.

@@ -200,6 +200,123 @@
           </div>
         </div>
       </div>
+
+      <!--TODO ------------------------ 6. Luyện tập mảng. ------------------------- -->
+      <div
+        class="container container-fluid part d-flex flex-column align-items-center"
+      >
+        <div class="title d-flex flex-column">
+          <h4>6. Xử lý mảng</h4>
+          <p style="font-style: italic; font-size: 0.9rem">
+            Các dạng xử lý mảng
+          </p>
+        </div>
+        <!-- Array length -->
+        <div class="content w-50">
+          <div class="form-arr-length">
+            <div class="mb-3">
+              <label for="enterArrLength" class="form-label"
+                >Array Length</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="enterArrLength"
+                placeholder="4 - 12"
+              />
+            </div>
+
+            <!-- Create array length btn -->
+            <button onclick="getArrayLength()" class="btn btn-primary mb-3">
+              OK
+            </button>
+          </div>
+
+          <!-- Result Arr length -->
+          <div id="resultCreateArrLength" class="mb-2"></div>
+
+          <!-- Create index arr -->
+          <div id="indexOfArr" class="row"></div>
+
+          <!-- Btn Create Array -->
+          <button
+            id="create-arr"
+            onclick="createArray()"
+            class="btn btn-success hide-form create-array"
+            data-bs-toggle="modal"
+            data-bs-target="#createArrModal"
+          >
+            Create Array
+          </button>
+          <!-- preview arr -->
+          <div id="reviewArr" class="hide-form reviewArray mt-3"></div>
+        </div>
+      </div>
+
+      <!-- END create Arr -->
+
+      <!--* -------------------------------- Modal -------------------------------- -->
+      <div
+        class="modal fade"
+        id="createArrModal"
+        data-bs-backdrop="static"
+        tabindex="-1"
+        aria-labelledby="createArrModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- modal header -->
+            <div class="modal-header arr-modal-header">
+              <h1
+                class="modal-title fs-5 arr-modal-header--text"
+                id="createArrModalLabel"
+              >
+                <i
+                  style="color: #ffc107"
+                  class="fa-solid fa-triangle-exclamation"
+                ></i>
+                Do you want to create Array?
+              </h1>
+              <button
+                onclick="btnNoArr()"
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <!-- modal body -->
+            <div class="modal-body">
+              Review Your Array:
+              <div id="reviewArrModal"></div>
+              <p id="arr-null" class="hide-form">
+                Your array exists NULL value. <br />Continue create?
+              </p>
+            </div>
+
+            <!-- modal footer -->
+            <div class="modal-footer arr-modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                No
+              </button>
+              <button
+                onclick="btnYesArr()"
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
