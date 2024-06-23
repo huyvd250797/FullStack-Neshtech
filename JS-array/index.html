@@ -200,8 +200,9 @@
           </div>
         </div>
       </div>
-
-      <!--TODO ------------------------ 6. Luyện tập mảng. ------------------------- -->
+      <!-- TODO ----------------------------------------------------------------------- -->
+      <!-- TODO                          6. Luyện tập mảng.                             -->
+      <!-- TODO ----------------------------------------------------------------------- -->
       <div
         class="container container-fluid part d-flex flex-column align-items-center"
       >
@@ -227,7 +228,14 @@
             </div>
 
             <!-- Create array length btn -->
-            <button onclick="getArrayLength()" class="btn btn-primary mb-3">
+            <button
+              onclick="getArrayLength()"
+              class="btn btn-primary mb-3"
+              type="button"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              title="Create array length"
+            >
               OK
             </button>
           </div>
@@ -251,9 +259,72 @@
           <!-- preview arr -->
           <div id="reviewArr" class="hide-form reviewArray mt-3"></div>
         </div>
+
+        <!--? --------------------------- START Function arr ---------------------------- -->
+
+        <!-- select functional -->
+        <div class="selectFn-container w-50 mt-3 mb-3">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Select functional</option>
+            <option value="1">
+              1. Find X value Greater/Less than or equal to N (X ≥ N || X ≤ N)
+            </option>
+            <option value="2">2. Find Max/Min value and its position</option>
+            <option value="3">3. Calculator average all element</option>
+            <option value="4">4. Reverse array</option>
+            <option value="5">5. Count Positive/Negative integers</option>
+            <option value="6">6. Find X</option>
+            <option value="7">7. Find X and add X to array</option>
+            <option value="8">8. Find X and delete X from array</option>
+            <option value="9">9. Sort array</option>
+            <option value="10">10. Array concatenation</option>
+          </select>
+        </div>
+
+        <p>Enter N value to compare</p>
+
+        <!-- TODO ---------------------- TODO Bài 1: compare value ---------------------- -->
+        <!-- X ≤ N -->
+        <div
+          id="compare-value"
+          class="input-group mb-3 w-25 inputGroup-compare hide"
+        >
+          <button
+            onclick="compareLessThan()"
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon1"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Find numbers ≤ N"
+          >
+            X ≤
+          </button>
+          <input
+            id="inputGroup-compare"
+            type="number"
+            class="form-control input-compare"
+            placeholder="N"
+            aria-label="Example text with button addon"
+            aria-describedby="button-addon1 & button-addon2"
+          />
+          <!-- X ≥ N -->
+          <button
+            onclick="compareGreaterThan()"
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Find numbers ≥ N"
+          >
+            ≤ X
+          </button>
+        </div>
+        <!--? --------------------------- END Function arr ---------------------------- -->
       </div>
 
-      <!-- END create Arr -->
+      <!-- END Arr -->
 
       <!--* -------------------------------- Modal -------------------------------- -->
       <div
@@ -291,7 +362,7 @@
             <div class="modal-body">
               Review Your Array:
               <div id="reviewArrModal"></div>
-              <p id="arr-null" class="hide-form">
+              <p id="arr-null" class="hide-form mt-2">
                 Your array exists NULL value. <br />Continue create?
               </p>
             </div>
@@ -299,6 +370,7 @@
             <!-- modal footer -->
             <div class="modal-footer arr-modal-footer">
               <button
+                onclick="btnNoArr()"
                 type="button"
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"

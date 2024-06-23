@@ -48,3 +48,11 @@
   font-style: italic;
   font-size: 0.8rem;
 }
+
+.inputGroup-compare {
+}
+
+.input-compare-title,
+.input-compare {
+  text-align: center;
+}

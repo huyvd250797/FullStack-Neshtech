@@ -221,10 +221,8 @@ const refreshTypeMe = () => {
 
 /* ------------------------------------ - ----------------------------------- */
 
-//TODO ------------------------------------ - ----------------------------------- */
-//* Bài 1- Viết chương trình khởi tạo mảng số nguyên gồm 10 phần tử.
-// Chương trình thực hiện tính và hiển thị xem có bao nhiêu số nguyên lớn hơn hoặc bằng 10.
-
+//TODO ------------------------------------ 6. Luyện tập mảng ----------------------------------- */
+// Khai báo mảng gồm N phần tử
 //* --------------------------- Hàm get Arr length --------------------------- */
 const getArrayLength = () => {
   let getArrLength = document.getElementById("enterArrLength").value;
@@ -250,7 +248,6 @@ const getArrayLength = () => {
 };
 
 //* --------------------- Hàm create các phần tử của mảng -------------------- */
-
 const createIndexArr = (index) => {
   let createInputArr = "";
   // index sẽ là giá trị nhập vào khi tạo array length
@@ -259,7 +256,7 @@ const createIndexArr = (index) => {
     <div class="col-lg-3 col-sm-12">
       <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm">${i + 1}</span>
-      <input type="text" class="form-control item-array" aria-label="" aria-describedby="inputGroup-sizing-sm">
+      <input type="number" class="form-control item-array" aria-label="" aria-describedby="inputGroup-sizing-sm">
       </div>
     </div>
     `;
@@ -330,7 +327,37 @@ const clearAllArr = () => {
 };
 
 //TODO ------------------------------------ - ----------------------------------- */
-//* Bài 2- Viết chương trình khởi tạo mảng số nguyên gồm 10 phần tử khác nhau.
+//* Bài 1- Viết chương trình khởi tạo mảng số nguyên gồm N phần tử.
+// Chương trình thực hiện tính và hiển thị xem có bao nhiêu số nguyên lớn hơn hoặc bằng N.
+
+// Hàm get valueCompare
+const getCompareValue = () => {
+  let getcompareval = document.getElementById("inputGroup-compare").value;
+  return getcompareval;
+};
+
+// Hàm compare X ≤ N
+const compareLessThan = () => {
+  for (let i = 0; i < getListArr.length; i++) {
+    if (parseInt(getListArr[i]) <= parseInt(getCompareValue())) {
+      console.log(getListArr[i]);
+    }
+  }
+};
+// Hàm compare X ≥ N
+const compareGreaterThan = () => {
+  for (let i = 0; i < getListArr.length; i++) {
+    if (parseInt(getListArr[i]) >= parseInt(getCompareValue())) {
+      console.log(getListArr[i]);
+    }
+  }
+};
+
+// Hiển thị form chức năng 1.
+const showForm01 = () => {};
+
+//TODO ------------------------------------ - ----------------------------------- */
+//* Bài 2- Viết chương trình khởi tạo mảng số nguyên gồm N phần tử khác nhau.
 // Chương trình hiển thị ra được phần tử có giá trị lớn nhất trong mảng và vị trí của phần tử đó.
 
 //TODO ------------------------------------ - ----------------------------------- */
@@ -345,24 +372,24 @@ const clearAllArr = () => {
 //* Bài 5- Viết chương trình đếm số nguyên âm trong một chuỗi
 
 //TODO ------------------------------------ - ----------------------------------- */
-//* Bài 6- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử,
+//* Bài 6- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử,
 // nhập/tạo phần tử số nguyên V. Chương trình tìm xem V có nằm trong gg số nguyên không?
 // Nếu V thuộc mảng số nguyên thì in ra "V is in the array"
 // còn lại in ra "V is not in the array".
 
 //TODO ------------------------------------ - ----------------------------------- */
-//* Bài 7- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử,
+//* Bài 7- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử,
 // nhập/tạo phần tử số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không,
 // nếu V thuộc mảng đã cho xoá V khỏi mảng
 // (Bản chất việc xoá ở đây tức là dịch phần tử ở bên phải V sang vị trí của V,
 // và gán 0 cho phần tử cuối cùng của mảng)
 
 //TODO ------------------------------------ - ----------------------------------- */
-//* Bài 8- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử.
+//* Bài 8- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử.
 // Chương trình sắp xếp mảng theo thứ tự giảm dần và hiển thị ra mảng đã được sắp xếp.
 
 //TODO ------------------------------------ - ----------------------------------- */
-//* Bài 9- Viết chương trình khởi tạo/nhập vào 2 mảng số nguyên gồm 10 phần tử,
+//* Bài 9- Viết chương trình khởi tạo/nhập vào 2 mảng số nguyên gồm N phần tử,
 // gọi là mảng a và b.
 // Mảng c là một mảng được khai báo gồm 20 phần tử số nguyên.
 // Chương trình sẽ lưu các phần tử được nối từ hai mảng b và a vào mảng c.
