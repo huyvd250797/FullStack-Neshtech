@@ -270,7 +270,7 @@ const createIndexArr = (index) => {
 // Khai báo mảng rỗng
 let getListArr = [];
 
-//* --------------------------- * Hàm create array --------------------------- */
+//* --------------------------- * START: Hàm create array * --------------------------- */
 const createArray = () => {
   // Lấy tất cả element có class item-array thành nodelist
   let listItemArr = document.querySelectorAll(".item-array");
@@ -297,9 +297,14 @@ const createArray = () => {
   document.getElementById("create-arr").disabled = true;
 };
 
+//* --------------------------- * END:  Hàm create array * --------------------------- */
+
 //? Hàm Btn Yes
 const btnYesArr = () => {
   document.querySelector(".reviewArray").classList.remove("hide-form");
+
+  // remove hide-form to form select
+  document.getElementById("selectFnContainer").classList.remove("hide-form");
 };
 
 //? Hàm Btn NO & X
@@ -309,9 +314,12 @@ const btnNoArr = () => {
 
   // Gỡ btn create arr = false
   document.getElementById("create-arr").disabled = false;
+
+  // add hide-form to form select
+  document.getElementById("selectFnContainer").classList.add("hide-form");
 };
 
-//! ------------------------- hàm clear all data Arr ------------------------- */
+//! ------------------------- * START: hàm clear all data Arr * ------------------------- */
 const clearAllArr = () => {
   // Chuyển thành mảng rỗng
   getListArr = [];
@@ -324,9 +332,14 @@ const clearAllArr = () => {
 
   // add class hide-form khi null value element arr
   document.querySelector("#arr-null").classList.add("hide-form");
+
+  // add hide-form to form select
+  document.getElementById("selectFnContainer").classList.add("hide-form");
 };
 
-//TODO ------------------------------------ - ----------------------------------- */
+//! ------------------------- * END: hàm clear all data Arr * ------------------------- */
+
+//TODO ------------------------------------ Bài 1: Compare Value ----------------------------------- */
 //* Bài 1- Viết chương trình khởi tạo mảng số nguyên gồm N phần tử.
 // Chương trình thực hiện tính và hiển thị xem có bao nhiêu số nguyên lớn hơn hoặc bằng N.
 
@@ -338,27 +351,226 @@ const getCompareValue = () => {
 
 // Hàm compare X ≤ N
 const compareLessThan = () => {
+  // khai báo mảng rỗng chứa kết quả
+  let arrReult = [];
   for (let i = 0; i < getListArr.length; i++) {
+    // Nếu phần tử trong mảng <= số cần kiểm tra
     if (parseInt(getListArr[i]) <= parseInt(getCompareValue())) {
-      console.log(getListArr[i]);
+      arrReult.push(getListArr[i]);
     }
+    document.getElementById(
+      "resultCompare"
+    ).innerHTML = `List numbers <span class="hightlight-red">≤ ${getCompareValue()}</span> is: <b>[${arrReult.join(
+      ", "
+    )}]</b>`;
   }
 };
 // Hàm compare X ≥ N
 const compareGreaterThan = () => {
+  // khai báo mảng rỗng chứa kết quả
+  let arrReult = [];
   for (let i = 0; i < getListArr.length; i++) {
+    // Nếu phần tử trong mảng >= số cần kiểm tra
     if (parseInt(getListArr[i]) >= parseInt(getCompareValue())) {
-      console.log(getListArr[i]);
+      arrReult.push(getListArr[i]);
     }
+    document.getElementById(
+      "resultCompare"
+    ).innerHTML = `List numbers <span class="hightlight-red">≥ ${getCompareValue()}</span> is: <b>[${arrReult.join(
+      ", "
+    )}]</b>`;
   }
 };
 
-// Hiển thị form chức năng 1.
-const showForm01 = () => {};
+//! Hàm show func01: Bài 1 _ Compare Value
+const showFunc01 = () => {
+  document.getElementById("funcCompare01").innerHTML = `
+  <p class="title-func">1.Functional: Compare</p>
+  <p class="sub-title-func">Enter number N to compare</p>
+  <p>Review your Array: <span id="reviewArrFunc01"></span></p>
 
-//TODO ------------------------------------ - ----------------------------------- */
+  <div
+    id="compare-value"
+    class="input-group mb-3 w-25 inputGroup-compare"
+  >
+    <!-- X ≤ N -->
+    <button
+      onclick="compareLessThan()"
+      class="btn btn-outline-secondary less-btn"
+      type="button"
+      id="button-addon1"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Find numbers ≤ N"
+    >
+      X ≤
+    </button>
+    <input
+      id="inputGroup-compare"
+      type="number"
+      class="form-control input-compare"
+      placeholder="N"
+      aria-label="Example text with button addon"
+      aria-describedby="button-addon1 & button-addon2"
+    />
+    <!-- X ≥ N -->
+    <button
+      onclick="compareGreaterThan()"
+      class="btn btn-outline-secondary greater-btn"
+      type="button"
+      id="button-addon2"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Find numbers ≥ N"
+    >
+      ≤ X
+    </button>
+  </div>
+
+  <!-- Show result compared -->
+  <div id="resultCompare"></div>
+  `;
+
+  // Show preview your array
+  document.getElementById(
+    "reviewArrFunc01"
+  ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
+};
+
+//TODO ------------------------------------ Bài 2: Find Min/Max value ----------------------------------- */
 //* Bài 2- Viết chương trình khởi tạo mảng số nguyên gồm N phần tử khác nhau.
 // Chương trình hiển thị ra được phần tử có giá trị lớn nhất trong mảng và vị trí của phần tử đó.
+
+// hàm find min
+const findMin = () => {
+  // khai báo min = phần tử đầu tiên trong mảng
+  let min = getListArr[0];
+  for (let i = 1; i < getListArr.length; i++) {
+    // Nếu phần tử đang xét < min => min là phần tử đó
+    if (getListArr[i] < min) {
+      min = getListArr[i];
+    }
+    // ngược lại min vẫn là min
+    else {
+      min;
+    }
+  }
+  // document.getElementById("inputMaxVal").value = "";
+  document.getElementById("inputMinVal").value = min;
+};
+
+// hàm find max
+const findMax = () => {
+  // khai báo max = phần tử đầu tiên trong mảng
+  let max = getListArr[0];
+  for (let i = 1; i < getListArr.length; i++) {
+    // Nếu phần tử đang xét < max => max là phần tử đó
+    if (getListArr[i] > max) {
+      max = getListArr[i];
+    }
+    // ngược lại max vẫn là max
+    else {
+      max;
+    }
+  }
+  // document.getElementById("inputMinVal").value = "";
+  document.getElementById("inputMaxVal").value = max;
+};
+
+// hàm find both
+const findBoth = () => {
+  findMin();
+  findMax();
+};
+
+//! Hàm show func02: Bài 2 _ Find Min/Max value
+const showFunc02 = () => {
+  document.getElementById("funcCompare02").innerHTML = `
+  <p class="title-func">2.Functional: Find Min/Max value</p>
+
+  <!-- preview arr -->
+  <p>Review your Array: <span id="reviewArrFunc02"></span></p>
+
+  <!-- form show min max -->
+  <div
+    class="inputGroup-minmax-func d-flex justify-content-between w-50 mt-2"
+  >
+    <!-- result Min -->
+    <div class="input-group mb-3 input-min w-25">
+      <span class="input-group-text" id="basic-addon1">Min</span>
+      <input
+        id="inputMinVal"
+        type="text"
+        class="form-control"
+        placeholder="Min value"
+        aria-label="Min value"
+        aria-describedby="basic-addon1"
+        disabled
+      />
+    </div>
+
+    <!-- result Max -->
+    <div class="input-group mb-3 input-max w-25">
+      <span class="input-group-text" id="basic-addon1">Max</span>
+      <input
+        id="inputMaxVal"
+        type="text"
+        class="form-control"
+        placeholder="Max value"
+        aria-label="Max value"
+        aria-describedby="basic-addon1"
+        disabled
+      />
+    </div>
+
+    <!-- btn get value min/max or both -->
+    <div
+      class="btn-group btnGroup-minmax"
+      role="group"
+      aria-label="Basic radio toggle button group"
+    >
+      <!-- min -->
+      <input
+        onclick="findMin()"
+        type="radio"
+        class="btn-check btn-min"
+        name="btnradio"
+        id="btnMin"
+        autocomplete="off"
+        checked
+      />
+      <label class="btn btn-outline-primary" for="btnMin">Min</label>
+
+      <!-- both -->
+      <input
+        onclick="findBoth()"
+        type="radio"
+        class="btn-check btn-both"
+        name="btnradio"
+        id="btnBoth"
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-primary" for="btnBoth">Both</label>
+
+      <!-- max -->
+      <input
+        onclick="findMax()"
+        type="radio"
+        class="btn-check btn-max"
+        name="btnradio"
+        id="btnMax"
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-primary" for="btnMax">Max</label>
+    </div>
+  </div>
+  `;
+
+  // Show preview your array
+  document.getElementById(
+    "reviewArrFunc02"
+  ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
+};
 
 //TODO ------------------------------------ - ----------------------------------- */
 //* Bài 3- Viết chương trình khởi tạo mảng số nguyên.
@@ -394,3 +606,18 @@ const showForm01 = () => {};
 // Mảng c là một mảng được khai báo gồm 20 phần tử số nguyên.
 // Chương trình sẽ lưu các phần tử được nối từ hai mảng b và a vào mảng c.
 // Hiển thị mảng c.
+
+//* ------------------------------------ - ----------------------------------- */
+// Hàm get value theo chức năng
+const handleSelectChange = (e) => {
+  // e: event
+  // target: khi chọn option
+  // value: lấy value của option
+  //? ==> khi 'onchange' sẽ bắt sự kiện 'change' và lấy 'giá trị tại target' đã được 'change'
+  let itemSelected = e.target.value;
+  if (itemSelected == 1) {
+    showFunc01();
+  } else if (itemSelected == 2) {
+    showFunc02();
+  }
+};

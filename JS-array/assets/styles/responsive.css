@@ -1,0 +1,34 @@
+/* PC */
+@media (min-width: 1024px) {
+}
+
+/* TABLET & PC */
+@media (min-width: 740px) {
+}
+
+/* TABLET */
+@media (min-width: 740px) and (max-width: 1023px) {
+}
+
+/* MOBILE & TABLET */
+@media (max-width: 1023px) {
+}
+
+/* MOBILE */
+@media (max-width: 739px) {
+  /*TODO ------------------------------------ Bài 1: Compare Value ----------------------------------- */
+  #compare-value {
+    width: 50% !important;
+  }
+
+  /*TODO ------------------------------------ Bài 2: Find Min/Max value ----------------------------------- */
+  .inputGroup-minmax-func {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-min,
+  .input-max {
+    width: 100% !important;
+  }
+}

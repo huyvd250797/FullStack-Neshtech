@@ -20,6 +20,7 @@
       href="../../../neshtech-k40_fullstack/1.Code/Day02_31-03-2024/fonts/fontawesome-free-6.5.1-web/css/all.min.css"
     />
     <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/responsive.css" />
   </head>
   <body>
     <script src="./main.js"></script>
@@ -263,9 +264,19 @@
         <!--? --------------------------- START Function arr ---------------------------- -->
 
         <!-- select functional -->
-        <div class="selectFn-container w-50 mt-3 mb-3">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Select functional</option>
+        <div
+          id="selectFnContainer"
+          class="selectFn-container w-50 mt-3 mb-3 hide-form"
+        >
+          <label class="label-formSelect" for="formSelect">Functional</label>
+          <!--! onchange="handleSelectChange(event)" ==> sử dụng onchange & event-->
+          <select
+            id="formSelect"
+            onchange="handleSelectChange(event)"
+            class="form-select"
+            aria-label="Default select example"
+          >
+            <option>Select functional</option>
             <option value="1">
               1. Find X value Greater/Less than or equal to N (X ≥ N || X ≤ N)
             </option>
@@ -281,47 +292,18 @@
           </select>
         </div>
 
-        <p>Enter N value to compare</p>
-
-        <!-- TODO ---------------------- TODO Bài 1: compare value ---------------------- -->
-        <!-- X ≤ N -->
+        <!-- TODO ---------------------- TODO Bài 1: Compare Value ---------------------- -->
         <div
-          id="compare-value"
-          class="input-group mb-3 w-25 inputGroup-compare hide"
-        >
-          <button
-            onclick="compareLessThan()"
-            class="btn btn-outline-secondary"
-            type="button"
-            id="button-addon1"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Find numbers ≤ N"
-          >
-            X ≤
-          </button>
-          <input
-            id="inputGroup-compare"
-            type="number"
-            class="form-control input-compare"
-            placeholder="N"
-            aria-label="Example text with button addon"
-            aria-describedby="button-addon1 & button-addon2"
-          />
-          <!-- X ≥ N -->
-          <button
-            onclick="compareGreaterThan()"
-            class="btn btn-outline-secondary"
-            type="button"
-            id="button-addon2"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Find numbers ≥ N"
-          >
-            ≤ X
-          </button>
-        </div>
-        <!--? --------------------------- END Function arr ---------------------------- -->
+          id="funcCompare01"
+          class="funcCompare-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+
+        <!-- TODO ---------------------- TODO Bài 2: Find Min/Max value ---------------------- -->
+        <div
+          id="funcCompare02"
+          class="funcMinMax-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+        <!--? --------------------------- END Functional arr ---------------------------- -->
       </div>
 
       <!-- END Arr -->

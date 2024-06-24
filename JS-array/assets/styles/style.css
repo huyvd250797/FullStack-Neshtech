@@ -26,7 +26,7 @@
 
 /* TODO ---------------------------- 6. Luyện tập mảng --------------------------- */
 .hide-form {
-  display: none;
+  display: none !important;
 }
 
 .your-arr {
@@ -55,4 +55,35 @@
 .input-compare-title,
 .input-compare {
   text-align: center;
+}
+
+.label-formSelect {
+  font-weight: 600;
+  margin: 2px 0;
+}
+
+/*TODO ------------------------------------ Bài 1: Compare Value ----------------------------------- */
+
+/* title Func */
+.title-func {
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+/* sub-title Func */
+.sub-title-func {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #5e5e5e;
+}
+
+/* highlight bold  red */
+.hightlight-red {
+  font-weight: 700;
+  color: rgb(255, 86, 86);
+}
+
+/*TODO ------------------------------------ Bài 2: Find Min/Max value ----------------------------------- */
+.btnGroup-minmax {
+  height: 38px !important;
 }
