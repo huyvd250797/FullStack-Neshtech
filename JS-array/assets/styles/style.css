@@ -87,3 +87,29 @@
 .btnGroup-minmax {
   height: 38px !important;
 }
+
+/*TODO ------------------------------------ Bài 3: Calculator average ----------------------------------- */
+
+.label-cal-avg {
+  font-weight: 600;
+}
+
+#avgDetail {
+  margin: 5px 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #7c7c7c;
+}
+
+/*TODO ------------------------------------ Bài 4: Reverse Array  ----------------------------------- */
+.review-arr-func04 {
+  color: rgb(76, 76, 255);
+  font-weight: 400;
+  font-size: 1.02rem;
+}
+
+.reverse-arr-func04 {
+  color: rgb(255, 86, 86);
+  font-weight: 400;
+  font-size: 1.02rem;
+}

@@ -16,6 +16,16 @@
 
 /* MOBILE */
 @media (max-width: 739px) {
+  #arrPractice {
+    width: 100% !important;
+  }
+
+  .content-array {
+    width: 70% !important;
+  }
+  .selectFn-container {
+    width: 70% !important;
+  }
   /*TODO ------------------------------------ Bài 1: Compare Value ----------------------------------- */
   #compare-value {
     width: 50% !important;
@@ -31,4 +41,10 @@
   .input-max {
     width: 100% !important;
   }
+  /*TODO ------------------------------------ Bài 4: Reverse Array  ----------------------------------- */
+  .inputReverseArr {
+    width: 70% !important;
+  }
 }
+
+/*TODO ------------------------------------ Bài 3: Calculator average ----------------------------------- */

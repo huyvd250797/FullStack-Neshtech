@@ -205,6 +205,7 @@
       <!-- TODO                          6. Luyện tập mảng.                             -->
       <!-- TODO ----------------------------------------------------------------------- -->
       <div
+        id="arrPractice"
         class="container container-fluid part d-flex flex-column align-items-center"
       >
         <div class="title d-flex flex-column">
@@ -214,7 +215,7 @@
           </p>
         </div>
         <!-- Array length -->
-        <div class="content w-50">
+        <div class="content content-array w-50">
           <div class="form-arr-length">
             <div class="mb-3">
               <label for="enterArrLength" class="form-label"
@@ -268,6 +269,7 @@
           id="selectFnContainer"
           class="selectFn-container w-50 mt-3 mb-3 hide-form"
         >
+          <!-- hide-form -->
           <label class="label-formSelect" for="formSelect">Functional</label>
           <!--! onchange="handleSelectChange(event)" ==> sử dụng onchange & event-->
           <select
@@ -284,24 +286,72 @@
             <option value="3">3. Calculator average all element</option>
             <option value="4">4. Reverse array</option>
             <option value="5">5. Count Positive/Negative integers</option>
-            <option value="6">6. Find X</option>
-            <option value="7">7. Find X and add X to array</option>
-            <option value="8">8. Find X and delete X from array</option>
+            <option value="6">6. Find X in array</option>
+            <option value="7">7. Find X & Add X to array</option>
+            <option value="8">8. Find X & Delete X from array</option>
             <option value="9">9. Sort array</option>
             <option value="10">10. Array concatenation</option>
           </select>
         </div>
 
-        <!-- TODO ---------------------- TODO Bài 1: Compare Value ---------------------- -->
+        <!-- TODO ---------------------- Bài 1: Compare Value ---------------------- -->
         <div
-          id="funcCompare01"
-          class="funcCompare-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+          id="func01"
+          class="func-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
         ></div>
 
-        <!-- TODO ---------------------- TODO Bài 2: Find Min/Max value ---------------------- -->
+        <!-- TODO ---------------------- Bài 2: Find Min/Max value ---------------------- -->
         <div
-          id="funcCompare02"
+          id="func02"
           class="funcMinMax-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+
+        <!-- TODO ---------------------- Bài 3: Calculator average ---------------------- -->
+        <div
+          id="func03"
+          class="funcCalAvg-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+
+        <!-- TODO ---------------------- Bài 4: Reverse Array ---------------------- -->
+        <div
+          id="func04"
+          class="funcReverse-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+
+        <!-- TODO ---------------------- Bài 5: Count Positive/Negative Number ---------------------- -->
+        <div
+          id="func05"
+          class="funcCountPosNeg-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+
+        <!-- TODO ---------------------- Bài 6: Find X in array ---------------------- -->
+        <div
+          id="func06"
+          class="funcFindX-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+
+        <!-- TODO ---------------------- Bài 7: Find X & Add X to array  ---------------------- -->
+        <div
+          id="func07"
+          class="funcAddX-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+
+        <!-- TODO ---------------------- Bài 8: Find X & Delete X from array ---------------------- -->
+        <div
+          id="func08"
+          class="funcDelX-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+
+        <!-- TODO ---------------------- Bài 9: Sort array ---------------------- -->
+        <div
+          id="func09"
+          class="funcReverse-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        ></div>
+
+        <!-- TODO ---------------------- Bài 10: Array Concatenation ---------------------- -->
+        <div
+          id="func10"
+          class="funcReverse-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
         ></div>
         <!--? --------------------------- END Functional arr ---------------------------- -->
       </div>

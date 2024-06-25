@@ -317,6 +317,9 @@ const btnNoArr = () => {
 
   // add hide-form to form select
   document.getElementById("selectFnContainer").classList.add("hide-form");
+
+  // Nếu trường hợp NULL value -> click No thì add hide-form
+  document.querySelector("#arr-null").classList.add("hide-form");
 };
 
 //! ------------------------- * START: hàm clear all data Arr * ------------------------- */
@@ -384,8 +387,8 @@ const compareGreaterThan = () => {
 
 //! Hàm show func01: Bài 1 _ Compare Value
 const showFunc01 = () => {
-  document.getElementById("funcCompare01").innerHTML = `
-  <p class="title-func">1.Functional: Compare</p>
+  document.getElementById("func01").innerHTML = `
+  <p class="title-func">1. Functional: Compare</p>
   <p class="sub-title-func">Enter number N to compare</p>
   <p>Review your Array: <span id="reviewArrFunc01"></span></p>
 
@@ -447,7 +450,7 @@ const findMin = () => {
   let min = getListArr[0];
   for (let i = 1; i < getListArr.length; i++) {
     // Nếu phần tử đang xét < min => min là phần tử đó
-    if (getListArr[i] < min) {
+    if (parseInt(getListArr[i]) < parseInt(min)) {
       min = getListArr[i];
     }
     // ngược lại min vẫn là min
@@ -465,7 +468,7 @@ const findMax = () => {
   let max = getListArr[0];
   for (let i = 1; i < getListArr.length; i++) {
     // Nếu phần tử đang xét < max => max là phần tử đó
-    if (getListArr[i] > max) {
+    if (parseInt(getListArr[i]) > parseInt(max)) {
       max = getListArr[i];
     }
     // ngược lại max vẫn là max
@@ -485,8 +488,8 @@ const findBoth = () => {
 
 //! Hàm show func02: Bài 2 _ Find Min/Max value
 const showFunc02 = () => {
-  document.getElementById("funcCompare02").innerHTML = `
-  <p class="title-func">2.Functional: Find Min/Max value</p>
+  document.getElementById("func02").innerHTML = `
+  <p class="title-func">2. Functional: Find Min/Max value</p>
 
   <!-- preview arr -->
   <p>Review your Array: <span id="reviewArrFunc02"></span></p>
@@ -572,35 +575,169 @@ const showFunc02 = () => {
   ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
 };
 
-//TODO ------------------------------------ - ----------------------------------- */
+//TODO ------------------------------------ Bài 3: Calculator average ----------------------------------- */
 //* Bài 3- Viết chương trình khởi tạo mảng số nguyên.
 // Hiển hiện giá trị lớn nhất trong mảng đó. In ra giá trị trung bình của các phần tử trong mảng.
 
-//TODO ------------------------------------ - ----------------------------------- */
+// hàm tính trung bình
+const calAvgValue = () => {
+  // Khai báo biến sum all
+  let sumAll = 0;
+
+  // Khai báo biến tính TB
+  let averageValue = 0;
+
+  // Khai báo mảng rỗng chưa danh sách
+  let listElement = [];
+
+  for (let i = 0; i < getListArr.length; i++) {
+    listElement.push(getListArr[i]);
+    // cộng dồn
+    sumAll += parseInt(getListArr[i]);
+  }
+
+  // Tính trung bình cộng
+  averageValue = sumAll / getListArr.length;
+  console.log((averageValue = sumAll / getListArr.length));
+  document.getElementById("avgDetail").innerHTML = `(${listElement.join(
+    "+"
+  )}) / ${getListArr.length} = ${averageValue.toFixed(2)}`;
+  document.getElementById("resultAVGvalue").value = averageValue.toFixed(2);
+};
+//! Hàm show func03: Bài 3 _ Calculator average all element
+const showFunc03 = () => {
+  document.getElementById("func03").innerHTML = `
+  <p class="title-func">3. Functional: Calculator average all value</p>
+
+  <!-- preview arr -->
+  <p>Review your Array: <span id="reviewArrFunc03"></span></p>
+  <div class="row g-3 w-50">
+    <div class="col-lg-auto col-sm-12">
+      <input
+        type="text"
+        readonly
+        class="form-control-plaintext label-cal-avg"
+        value="Average value all element"
+      />
+    </div>
+    <div class="col-lg-auto col-sm-12">
+      <label for="resultAVGvalue" class="visually-hidden"
+        >AVG value</label
+      >
+      <input
+        type="number"
+        class="form-control"
+        id="resultAVGvalue"
+        placeholder="AVG value"
+        disabled
+      />
+      <p id="avgDetail"></p>
+    </div>
+    <div class="col-lg-auto col-sm-12">
+      <button onclick="calAvgValue()" class="btn btn-danger mb-3">
+        Calculator Avegare
+      </button>
+    </div>
+  </div>
+  `;
+  // Show preview your array
+  document.getElementById(
+    "reviewArrFunc03"
+  ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
+};
+
+//TODO ------------------------------------ Bài 4: Reverse Array ----------------------------------- */
 //* Bài 4- Viết chương trình khởi tạo/nhập vào một mảng số nguyên
 // và đảo ngược các phần tử trong mảng đó.
 
-//TODO ------------------------------------ - ----------------------------------- */
+// Hàm đảo ngược mảng
+const reverseArray = () => {
+  // Khai báo mảng mới là mảng đảo ngược với mảng ban đầu
+  let reversedArr = [];
+
+  // Chạy i bắt đầu từ length -1 của mảng gốc
+  // Chạy đến khi nào i = 0
+  for (let i = getListArr.length - 1; i >= 0; i--) {
+    // push các phần tử vào mảng đảo ngược
+    reversedArr.push(getListArr[i]);
+  }
+  document.getElementById("reverseArrFunc04").value = reversedArr.join(", ");
+
+  // add class
+  document
+    .getElementById("reverseArrFunc04")
+    .classList.add("reverse-arr-func04");
+};
+
+//! Hàm show func04: Bài 4 _ CReverse Array
+const showFunc04 = () => {
+  document.getElementById("func04").innerHTML = `
+  <p class="title-func">4. Functional: Reverse Array</p>
+
+  <div class="inputReverseArr w-25">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Original</span>
+      <input
+        id="reviewArrFunc04"
+        type="text"
+        class="form-control"
+        placeholder="Original array"
+        aria-label="Original array"
+        aria-describedby="basic-addon1"
+        disabled
+      />
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Reverse</span>
+      <input
+        id="reverseArrFunc04"
+        type="text"
+        class="form-control"
+        placeholder="Reverse array"
+        aria-label="Reverse array"
+        aria-describedby="basic-addon1"
+        disabled
+      />
+    </div>
+  </div>
+  <button onclick="reverseArray()" type="button" class="btn btn-dark">
+    Reverse
+  </button>
+  `;
+  // Show preview your array
+  // khác với các bài trên, preview thẳng vào input
+  document.getElementById("reviewArrFunc04").value = getListArr.join(", ");
+
+  // add class
+  document.getElementById("reviewArrFunc04").classList.add("review-arr-func04");
+};
+
+//TODO ------------------------------------ Bài 5: Count Positive/Negative Number ----------------------------------- */
 //* Bài 5- Viết chương trình đếm số nguyên âm trong một chuỗi
 
-//TODO ------------------------------------ - ----------------------------------- */
+//TODO ------------------------------------ Bài 6: Find X in array ----------------------------------- */
 //* Bài 6- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử,
 // nhập/tạo phần tử số nguyên V. Chương trình tìm xem V có nằm trong gg số nguyên không?
 // Nếu V thuộc mảng số nguyên thì in ra "V is in the array"
 // còn lại in ra "V is not in the array".
 
-//TODO ------------------------------------ - ----------------------------------- */
+//TODO ------------------------------------ Bài 7: Find X & Add X to array ----------------------------------- */
 //* Bài 7- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử,
+// nhập/tạo phần tử số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không,
+// nếu V không thuộc mảng đã cho thêm V vào mảng
+
+//TODO ------------------------------------ Bài 8: Find X & Delete X from array ----------------------------------- */
+//* Bài 8- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử,
 // nhập/tạo phần tử số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không,
 // nếu V thuộc mảng đã cho xoá V khỏi mảng
 // (Bản chất việc xoá ở đây tức là dịch phần tử ở bên phải V sang vị trí của V,
 // và gán 0 cho phần tử cuối cùng của mảng)
 
-//TODO ------------------------------------ - ----------------------------------- */
-//* Bài 8- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử.
+//TODO ------------------------------------ Bài 9: Sort array ----------------------------------- */
+//* Bài 9- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử.
 // Chương trình sắp xếp mảng theo thứ tự giảm dần và hiển thị ra mảng đã được sắp xếp.
 
-//TODO ------------------------------------ - ----------------------------------- */
+//TODO ------------------------------------ Bài 10: Array Concatenation ----------------------------------- */
 //* Bài 9- Viết chương trình khởi tạo/nhập vào 2 mảng số nguyên gồm N phần tử,
 // gọi là mảng a và b.
 // Mảng c là một mảng được khai báo gồm 20 phần tử số nguyên.
@@ -619,5 +756,9 @@ const handleSelectChange = (e) => {
     showFunc01();
   } else if (itemSelected == 2) {
     showFunc02();
+  } else if (itemSelected == 3) {
+    showFunc03();
+  } else if (itemSelected == 4) {
+    showFunc04();
   }
 };
