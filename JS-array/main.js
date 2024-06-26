@@ -289,7 +289,7 @@ const createArray = () => {
       "reviewArrModal"
     ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
     // Nếu giá trị của input NULL thì hiện cảnh báo
-    if (listItemArr[i].value.length === 0) {
+    if (listItemArr[i].value.length == 0) {
       document.querySelector("#arr-null").classList.remove("hide-form");
     }
   }
@@ -611,7 +611,7 @@ const showFunc03 = () => {
 
   <!-- preview arr -->
   <p>Review your Array: <span id="reviewArrFunc03"></span></p>
-  <div class="row g-3 w-50">
+  <div class="row content-avg-cal g-3 w-50">
     <div class="col-lg-auto col-sm-12">
       <input
         type="text"
@@ -713,8 +713,392 @@ const showFunc04 = () => {
 };
 
 //TODO ------------------------------------ Bài 5: Count Positive/Negative Number ----------------------------------- */
-//* Bài 5- Viết chương trình đếm số nguyên âm trong một chuỗi
+//* Bài 5- Viết chương trình đếm số nguyên dương/âm trong một chuỗi
+// Khai báo mảng chứa giá trị dương
+let positiveArrVal = [];
 
+// Khai báo mảng chứa giá trị âm
+let negativeArrVal = [];
+
+// Hàm đếm số nguyên dương / âm
+const processPosNevNumber = () => {
+  // Khai báo mảng chứa vị trí giá trị dương
+  let positiveArrPos = [];
+  // Khai báo total giá trị dương
+  let sumPositive = 0;
+
+  // Khai báo mảng chứa vị trí giá trị âm
+  let negativeArrPos = [];
+  // Khai báo total giá trị âm
+  let sumNegative = 0;
+
+  // Khai báo mảng chứa vị trí giá trị zero
+  let zeroArrPos = [];
+
+  for (let i = 0; i < getListArr.length; i++) {
+    // POSITIVE
+    if (getListArr[i] > 0) {
+      // push mảng dương
+      positiveArrVal.push(getListArr[i]);
+
+      // push mảng vị trí dương
+      positiveArrPos.push(i + 1);
+
+      // Tổng giá trị dương
+      sumPositive += parseInt(getListArr[i]);
+
+      // Gọi hàm check chẵn,lẻ dương
+      checkEvenOddPositive();
+    }
+    // NEGATIVE
+    else if (getListArr[i] < 0) {
+      // push mảng âm
+      negativeArrVal.push(getListArr[i]);
+
+      // push mảng vị trí âm
+      negativeArrPos.push(i + 1);
+
+      // Tổng giá trị âm
+      sumNegative += parseInt(getListArr[i]);
+
+      // Gọi hàm check chẵn,lẻ âm
+      checkEvenOddNegative();
+    } else {
+      // push mảng vị trí zero
+      zeroArrPos.push(i + 1);
+    }
+  }
+
+  //? hiển thị arr giá trị dương
+  document.getElementById("listPositiveNum").value = `[${positiveArrVal.join(
+    ", "
+  )}]`;
+
+  //? hiển thị arr vị trí giá trị dương
+  document.getElementById("positiveNumPos").value = `[${positiveArrPos.join(
+    ", "
+  )}]`;
+
+  //? hiển thị tổng giá trị dương
+  document.getElementById("totalPositive").value = `${sumPositive}`;
+
+  /* ------------------------------------ - ----------------------------------- */
+
+  //? hiển thị arr giá trị âm
+  document.getElementById("listNegativeNum").value = `[${negativeArrVal.join(
+    ", "
+  )}]`;
+
+  //? hiển thị arr vị trí giá trị âm
+  document.getElementById("negativeNumPos").value = `[${negativeArrPos.join(
+    ", "
+  )}]`;
+
+  //? hiển thị tổng giá trị âm
+  document.getElementById("totalNegative").value = `${sumNegative}`;
+
+  /* ------------------------------------ - ----------------------------------- */
+
+  //? hiển thị arr vị trí giá trị zero
+  document.getElementById("zeroPos").value = `[${zeroArrPos.join(", ")}]`;
+};
+
+//* hàm kiểm tra chẵn,lẻ number dương
+const checkEvenOddPositive = () => {
+  // Khai báo biến tổng chẵn
+  let sumEven = 0;
+
+  // Khai báo biến tổng lẻ
+  let sumOdd = 0;
+
+  for (let i = 0; i < positiveArrVal.length; i++) {
+    // chẵn
+    if (positiveArrVal[i] % 2 == 0) {
+      sumEven += parseInt(positiveArrVal[i]);
+    }
+    // lẻ
+    else {
+      sumOdd += parseInt(positiveArrVal[i]);
+    }
+  }
+  document.getElementById("evenPositiveNum").value = sumEven;
+  document.getElementById("oddPositiveNum").value = sumOdd;
+};
+
+//* hàm kiểm tra chẵn,lẻ number âm
+const checkEvenOddNegative = () => {
+  // Khai báo biến tổng chẵn
+  let sumEven = 0;
+
+  // Khai báo biến tổng lẻ
+  let sumOdd = 0;
+
+  for (let i = 0; i < negativeArrVal.length; i++) {
+    // chẵn
+    if (negativeArrVal[i] % 2 == 0) {
+      sumEven += parseInt(negativeArrVal[i]);
+    }
+    // lẻ
+    else {
+      sumOdd += parseInt(negativeArrVal[i]);
+    }
+  }
+  document.getElementById("evenNegativeNum").value = sumEven;
+  document.getElementById("oddNegativeNum").value = sumOdd;
+};
+
+//! Hàm show func04: Bài 4 _ CReverse Array
+const showFunc05 = () => {
+  document.getElementById("func05").innerHTML = `
+  <p class="title-func">
+  5. Functional: Count Positive/Negative Number
+</p>
+
+<!-- preview arr -->
+<p>Review your Array: <span id="reviewArrFunc05"></span></p>
+<div class="PosNev-container">
+  <button
+    onclick="processPosNevNumber()"
+    type="button"
+    class="btn btn-dark"
+  >
+    Get value
+  </button>
+  <!--? Positive -->
+  <div
+    class="row g-3 group-positive d-flex justify-content-center align-items-center"
+  >
+    <div
+      class="col-12 item-func05 d-flex justify-content-center align-items-center"
+    >
+      <div class="item-func05-text">POSITIVE</div>
+    </div>
+
+    <!-- Positive Number -->
+    <div class="col-6 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1"
+          >Positive</span
+        >
+        <input
+          id="listPositiveNum"
+          type="text"
+          class="form-control"
+          placeholder="List positive number"
+          aria-label="List positive number"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+
+    <!-- Positive Position -->
+    <div class="col-6 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1"
+          >Position</span
+        >
+        <input
+          id="positiveNumPos"
+          type="text"
+          class="form-control"
+          placeholder="List position number"
+          aria-label="List position number"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+    <!-- Total Positive number -->
+    <div class="col-4 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">Total</span>
+        <input
+          id="totalPositive"
+          type="text"
+          class="form-control"
+          placeholder="Total value"
+          aria-label="Total"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+
+    <!-- Even Positive number -->
+    <div class="col-4 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">Even</span>
+        <input
+          id="evenPositiveNum"
+          type="text"
+          class="form-control"
+          placeholder="Total value"
+          aria-label="Even number"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+    <!-- Odd Positive number -->
+    <div class="col-4 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">Odd</span>
+        <input
+          id="oddPositiveNum"
+          type="text"
+          class="form-control"
+          placeholder="Total value"
+          aria-label="Odd number"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+  </div>
+
+  <!--? Negative -->
+  <div
+    class="row g-3 group-negative d-flex justify-content-center align-items-center"
+  >
+    <div
+      class="col-12 item-func05 d-flex justify-content-center align-items-center"
+    >
+      <div class="item-func05-text">NEGATIVE</div>
+    </div>
+    <!-- Negative Number -->
+    <div class="col-6 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1"
+          >Negative</span
+        >
+        <input
+          id="listNegativeNum"
+          type="text"
+          class="form-control"
+          placeholder="List negative number"
+          aria-label="List negative number"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+
+    <!-- Negative Position -->
+    <div class="col-6 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1"
+          >Position</span
+        >
+        <input
+          id="negativeNumPos"
+          type="text"
+          class="form-control"
+          placeholder="List negative number"
+          aria-label="List negative number"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+    <!-- Total Negative number -->
+    <div class="col-4 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">Total</span>
+        <input
+          id="totalNegative"
+          type="text"
+          class="form-control"
+          placeholder="Total value"
+          aria-label="Total"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+
+    <!-- Even Negative number -->
+    <div class="col-4 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">Even</span>
+        <input
+          id="evenNegativeNum"
+          type="text"
+          class="form-control"
+          placeholder="Total value"
+          aria-label="Even number"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+    <!-- Odd Negative number -->
+    <div class="col-4 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">Odd</span>
+        <input
+          id="oddNegativeNum"
+          type="text"
+          class="form-control"
+          placeholder="Total value"
+          aria-label="Odd number"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+  </div>
+
+  <!--? ZERO -->
+  <div
+    class="row g-3 group-zero d-flex justify-content-center align-items-center"
+  >
+    <div
+      class="col-12 item-func05 d-flex justify-content-center align-items-center"
+    >
+      <div class="item-func05-text">ZERO</div>
+    </div>
+    <!-- ZERO Number -->
+    <div class="col-4 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">Zero</span>
+        <input
+          id="listZero"
+          type="text"
+          class="form-control"
+          placeholder="0"
+          aria-label="0"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+
+    <!-- ZERO Position -->
+    <div class="col-8 item-func05">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1"
+          >Position</span
+        >
+        <input
+          id="zeroPos"
+          type="text"
+          class="form-control"
+          placeholder="Zero"
+          aria-label="Zero"
+          aria-describedby="basic-addon1"
+          readonly
+        />
+      </div>
+    </div>
+  </div>
+</div>
+  `;
+  // Show preview your array
+  document.getElementById(
+    "reviewArrFunc05"
+  ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
+};
 //TODO ------------------------------------ Bài 6: Find X in array ----------------------------------- */
 //* Bài 6- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử,
 // nhập/tạo phần tử số nguyên V. Chương trình tìm xem V có nằm trong gg số nguyên không?
@@ -760,5 +1144,7 @@ const handleSelectChange = (e) => {
     showFunc03();
   } else if (itemSelected == 4) {
     showFunc04();
+  } else if (itemSelected == 5) {
+    showFunc05();
   }
 };

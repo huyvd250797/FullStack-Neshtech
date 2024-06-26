@@ -37,6 +37,11 @@
     flex-direction: column;
   }
 
+  /*TODO ------------------------------------ Bài 3: Calculator average ----------------------------------- */
+  .content-avg-cal {
+    width: 70% !important;
+  }
+
   .input-min,
   .input-max {
     width: 100% !important;
@@ -45,6 +50,17 @@
   .inputReverseArr {
     width: 70% !important;
   }
-}
 
-/*TODO ------------------------------------ Bài 3: Calculator average ----------------------------------- */
+  /*TODO ------------------------------------ Bài 5: Count Positive/Negative Number  ----------------------------------- */
+  .PosNev-container {
+    width: 100% !important;
+  }
+  .group-positive,
+  .group-negative {
+    width: 100% !important;
+  }
+
+  .item-func05 {
+    width: 100%;
+  }
+}

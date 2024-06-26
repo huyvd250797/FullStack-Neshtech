@@ -113,3 +113,58 @@
   font-weight: 400;
   font-size: 1.02rem;
 }
+
+/*TODO ------------------------------------ Bài 5: Count Positive/Negative Number  ----------------------------------- */
+.PosNev-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #b8b8b8;
+  width: 50%;
+  padding: 20px 40px 28px 40px;
+  border-radius: 10px;
+}
+
+.group-positive,
+.group-negative,
+.group-zero {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.group-positive:hover,
+.group-negative:hover,
+.group-zero:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.item-func05-text {
+  font-weight: 700;
+}
+.group-positive {
+  background-color: rgb(64, 131, 255);
+  box-shadow: 1px 3px 8px 0.7px rgb(51, 51, 51, 0.8);
+}
+.group-negative {
+  background-color: rgb(255, 75, 75);
+  box-shadow: 1px 3px 8px 0.7px rgb(51, 51, 51, 0.8);
+}
+
+.group-zero {
+  background-color: #4ce04c;
+  box-shadow: 1px 3px 8px 0.7px rgb(51, 51, 51, 0.8);
+}
+
+.item-func05 {
+  margin: 0;
+  padding: 10px;
+  pointer-events: none;
+}
+
+.count-even-number,
+.count-odd-number {
+}
