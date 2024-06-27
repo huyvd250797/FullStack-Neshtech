@@ -63,4 +63,9 @@
   .item-func05 {
     width: 100%;
   }
+
+  /*TODO ------------------------------------ Bài 6: Find X in array  ----------------------------------- */
+  .searchX {
+    width: 80% !important;
+  }
 }

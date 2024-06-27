@@ -847,7 +847,7 @@ const checkEvenOddNegative = () => {
   document.getElementById("oddNegativeNum").value = sumOdd;
 };
 
-//! Hàm show func04: Bài 4 _ CReverse Array
+//! Hàm show func04: Bài 5 _ Count Positive/Negative Number
 const showFunc05 = () => {
   document.getElementById("func05").innerHTML = `
   <p class="title-func">
@@ -1105,6 +1105,98 @@ const showFunc05 = () => {
 // Nếu V thuộc mảng số nguyên thì in ra "V is in the array"
 // còn lại in ra "V is not in the array".
 
+// hàm search value
+const searchValueArr = () => {
+  // remove class hide-form
+  document.getElementById("resultSearchVal").classList.remove("hide-form");
+
+  // get dữ liệu cần tìm kiếm
+  let getSearchValue = document.getElementById("searchValue").value;
+
+  // get element success (found)
+  let getSucess = document.querySelector(".result-success");
+
+  // get element fail (not found)
+  let getFail = document.querySelector(".result-fail");
+
+  for (let i = 0; i < getListArr.length; i++) {
+    //? Nếu tìm thấy
+    if (getListArr[i] == parseInt(getSearchValue)) {
+      // ẩn trạng thái fail
+      getFail.classList.add("hide-form");
+
+      // hiện trạng thái success
+      getSucess.classList.remove("hide-form");
+
+      // gán giá trị
+      document.getElementById("valueFound").innerHTML = getSearchValue;
+
+      // Gọi hàm show vị trí
+      showPositionSearch(getSearchValue);
+      break;
+    }
+    //? Nếu không tìm thấy
+    else {
+      // ẩn trạng thái success
+      getSucess.classList.add("hide-form");
+
+      // hiện trạng thái fail
+      getFail.classList.remove("hide-form");
+
+      // gán giá trị
+      document.getElementById("valueNotFound").innerHTML = getSearchValue;
+
+      // Gọi hàm show vị trí
+      showPositionSearch(getSearchValue);
+    }
+  }
+};
+
+//* hàm show vị trí tìm kiếm
+const showPositionSearch = (value) => {
+  // khai báo mảng vị trí
+  let getPositionSearchVal = [];
+  for (let i = 0; i < getListArr.length; i++) {
+    // Nếu tìm thấy giá trị trong mảng
+    if (getListArr[i] == parseInt(value)) {
+      // push giá trị thứ i vào mảng mới kèm theo <span> có class found-color
+      getPositionSearchVal.push(
+        `<span class="found-color">${getListArr[i]}</span>`
+      );
+    }
+    // Nếu không tìm thấy push giá trị thứ i vào mảng mà không kèm theo <span>
+    else {
+      getPositionSearchVal.push(getListArr[i]);
+    }
+  }
+
+  // Chạy lại vòng for để thực hiện inner HTML cho hợp lý
+  for (let i = 0; i < getListArr.length; i++) {
+    // Nếu tìm thấy giá trị trong mảng
+    if (getListArr[i] == parseInt(value)) {
+      //? innerHTML mảng có class
+      document.getElementById(
+        "resultSearchFunc06"
+      ).innerHTML = `[${getPositionSearchVal.join(", ")}]`;
+      break;
+    }
+    // Nếu không tìm thấy
+    else {
+      //? innerHTML mảng gốc không có class
+      document.getElementById(
+        "resultSearchFunc06"
+      ).innerHTML = `[${getListArr.join(", ")}]`;
+    }
+  }
+};
+//! Hàm show func04: Bài 6 _ Find X in array
+const showFunc06 = () => {
+  // Show preview your array
+  document.getElementById("reviewArrFunc06").value = `[${getListArr.join(
+    ", "
+  )}]`;
+};
+
 //TODO ------------------------------------ Bài 7: Find X & Add X to array ----------------------------------- */
 //* Bài 7- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử,
 // nhập/tạo phần tử số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không,
@@ -1146,5 +1238,7 @@ const handleSelectChange = (e) => {
     showFunc04();
   } else if (itemSelected == 5) {
     showFunc05();
+  } else if (itemSelected == 6) {
+    showFunc06();
   }
 };
