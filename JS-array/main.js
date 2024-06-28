@@ -222,6 +222,24 @@ const refreshTypeMe = () => {
 /* ------------------------------------ - ----------------------------------- */
 
 //TODO ------------------------------------ 6. Luyện tập mảng ----------------------------------- */
+
+const changeStyleFuncContainer = () => {
+  let getFuncContainer = document.getElementById("selectFnContainer");
+  //? offsetTop: khoảng cách tính từ element đến top = 0 (kèm thêm khoảng margin)
+  // Ví dụ: element A có Top = 100px có margin-top 10px
+  // (element này có khoảng cách 110px (tính cả margin-top) tính từ top = 0)
+  //!!! ==> offsetTop = 110
+  let changeStyle = getFuncContainer.offsetTop;
+
+  // Nếu như pageYOffset == getFuncContainer.offsetTop
+  // ==> getFuncContainer.offsetTop đã được scroll lên trên cùng
+  if (window.pageYOffset >= changeStyle) {
+    getFuncContainer.classList.add("make-sticky", "bg-selectFn-container");
+  } else {
+    getFuncContainer.classList.remove("make-sticky", "bg-selectFn-container");
+  }
+};
+
 // Khai báo mảng gồm N phần tử
 //* --------------------------- Hàm get Arr length --------------------------- */
 const getArrayLength = () => {
@@ -847,7 +865,7 @@ const checkEvenOddNegative = () => {
   document.getElementById("oddNegativeNum").value = sumOdd;
 };
 
-//! Hàm show func04: Bài 5 _ Count Positive/Negative Number
+//! Hàm show func05: Bài 5 _ Count Positive/Negative Number
 const showFunc05 = () => {
   document.getElementById("func05").innerHTML = `
   <p class="title-func">
@@ -1156,6 +1174,7 @@ const searchValueArr = () => {
 const showPositionSearch = (value) => {
   // khai báo mảng vị trí
   let getPositionSearchVal = [];
+
   for (let i = 0; i < getListArr.length; i++) {
     // Nếu tìm thấy giá trị trong mảng
     if (getListArr[i] == parseInt(value)) {
@@ -1177,7 +1196,7 @@ const showPositionSearch = (value) => {
       //? innerHTML mảng có class
       document.getElementById(
         "resultSearchFunc06"
-      ).innerHTML = `[${getPositionSearchVal.join(", ")}]`;
+      ).innerHTML = `[${getPositionSearchVal.join(" , ")}]`;
       break;
     }
     // Nếu không tìm thấy
@@ -1189,8 +1208,92 @@ const showPositionSearch = (value) => {
     }
   }
 };
-//! Hàm show func04: Bài 6 _ Find X in array
+
+//! Hàm show func06: Bài 6 _ Find X in array
 const showFunc06 = () => {
+  document.getElementById("func06").innerHTML = `
+ <p class="title-func">6. Functional: Find X in array</p>
+
+  <div class="searchX w-25">
+    <div class="input-group">
+      <span class="input-group-text" id="basic-addon1">Original</span>
+      <input
+        id="reviewArrFunc06"
+        type="text"
+        class="form-control"
+        placeholder="Original array"
+        aria-label="Original array"
+        aria-describedby="basic-addon1"
+        disabled
+      />
+    </div>
+
+    <!-- show status search -->
+    <div class="result-text mt-1 mb-3 d-flex justify-content-between">
+      <!-- found -->
+      <div class="result-success hide-form">
+        <i class="result-icon-success fa-solid fa-check"></i>
+        <span class="result-text-success">
+          <span id="valueFound"></span> is exists in array!</span
+        >
+      </div>
+
+      <!-- not found -->
+      <div class="result-fail hide-form">
+        <i class="result-icon-fail fa-solid fa-xmark"></i>
+        <span class="result-text-fail">
+          <span id="valueNotFound"></span> is not exists in array!</span
+        >
+      </div>
+
+      <!-- add item -->
+      <span onclick="addItemSearch()" class="btn-add-item hide-form">
+        <span class="add-item-text">Add</span>
+        <i class="add-item-icon fa-solid fa-square-plus"></i>
+      </span>
+
+      <!-- delete item -->
+      <span onclick="deleteItemSearch()" class="btn-delete-item hide-form">
+        <span class="delete-item-text">Delete</span>
+        <i class="delete-item-icon fa-solid fa-trash-can"></i>
+      </span>
+    </div>
+
+    <span class="resultActionAddDel"></span>
+    <!-- Result Search -->
+    <div id="resultSearchVal" class="mb-3 mt-1 hide-form">
+      <div class="resultSearch border border-secondary">
+        <span class="resultSearch-title fw-bold">Result:</span>
+        <span id="resultSearchFunc06" class="resultSearch-text"></span>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="row g-3">
+      <div class="input-group mb-1 col-8">
+        <span class="input-group-text" id="basic-addon1">Search</span>
+        <input
+          id="searchValue"
+          type="number"
+          class="form-control"
+          placeholder="Search"
+          aria-label="Search"
+          aria-describedby="basic-addon1"
+        />
+
+        <!-- btn search -->
+        <button
+          onclick="searchValueArr()"
+          class="btn-search btn btn-primary"
+          type="button"
+          id="btnSearch"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+`;
   // Show preview your array
   document.getElementById("reviewArrFunc06").value = `[${getListArr.join(
     ", "
@@ -1202,12 +1305,83 @@ const showFunc06 = () => {
 // nhập/tạo phần tử số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không,
 // nếu V không thuộc mảng đã cho thêm V vào mảng
 
+// hàm add item
+const addItemSearch = () => {
+  // get dữ liệu cần tìm kiếm
+  let getSearchValue = document.getElementById("searchValue").value;
+
+  // Push item vào mảng gốc
+  getListArr.push(getSearchValue);
+
+  // Gọi hàm show vị trí tìm kiếm
+  showPositionSearch(getSearchValue);
+
+  document.querySelector(".resultActionAddDel").innerHTML = `
+  <i class="result-icon-success fa-solid fa-check"></i>
+  Added ${getSearchValue} into array
+  `;
+
+  document.querySelector(".resultActionAddDel").classList.add("add-item-text");
+
+  document
+    .querySelector(".resultActionAddDel")
+    .classList.remove("delete-item-text");
+};
+
+//! Hàm show func07: Bài 7 _ Find X & Add X to array
+const showFunc07 = () => {
+  document.querySelector(".btn-add-item").classList.remove("hide-form");
+};
+
 //TODO ------------------------------------ Bài 8: Find X & Delete X from array ----------------------------------- */
 //* Bài 8- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử,
 // nhập/tạo phần tử số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không,
 // nếu V thuộc mảng đã cho xoá V khỏi mảng
 // (Bản chất việc xoá ở đây tức là dịch phần tử ở bên phải V sang vị trí của V,
 // và gán 0 cho phần tử cuối cùng của mảng)
+
+// hàm delete item
+const deleteItemSearch = () => {
+  // get dữ liệu cần tìm kiếm
+  let getSearchValue = document.getElementById("searchValue").value;
+  for (let i = 0; i <= getListArr.length; i++) {
+    //? Nếu tìm thấy
+    if (getListArr[i] == parseInt(getSearchValue)) {
+      // nếu tìm thấy phần tử, sẽ xóa phần tử đó
+      //? splice(i,1): Xóa 1 phần tử tại vị trí i
+      getListArr.splice(i, 1);
+
+      document.querySelector(".resultActionAddDel").innerHTML = `
+      <i class="result-icon-success fa-solid fa-check"></i>
+      Deleted ${getSearchValue} from array
+      `;
+
+      document
+        .querySelector(".resultActionAddDel")
+        .classList.add("add-item-text");
+
+      document
+        .querySelector(".resultActionAddDel")
+        .classList.remove("delete-item-text");
+    } else {
+      document.querySelector(".resultActionAddDel").innerHTML = ` 
+      <i class="result-icon-fail fa-solid fa-xmark"></i>
+      Not found ${getSearchValue} in array! Cannot delete
+      `;
+
+      document
+        .querySelector(".resultActionAddDel")
+        .classList.add("delete-item-text");
+      // Gọi hàm show vị trí tìm kiếm
+    }
+    showPositionSearch(getSearchValue);
+  }
+};
+
+//! Hàm show func08: Bài 8 _ Find X & Delete X from array
+const showFunc08 = () => {
+  document.querySelector(".btn-delete-item").classList.remove("hide-form");
+};
 
 //TODO ------------------------------------ Bài 9: Sort array ----------------------------------- */
 //* Bài 9- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử.
@@ -1240,5 +1414,9 @@ const handleSelectChange = (e) => {
     showFunc05();
   } else if (itemSelected == 6) {
     showFunc06();
+  } else if (itemSelected == 7) {
+    showFunc07();
+  } else if (itemSelected == 8) {
+    showFunc08();
   }
 };

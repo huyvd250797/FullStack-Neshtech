@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="./assets/styles/style.css" />
     <link rel="stylesheet" href="./assets/styles/responsive.css" />
   </head>
-  <body>
+
+  <body onscroll="changeStyleFuncContainer()">
     <script src="./main.js"></script>
     <div id="app">
       <!--* 2.2. nhận một số nhập vào và chèn dấu (-) giữa 2  số chẵn. -->
@@ -328,75 +329,7 @@
         <div
           id="func06"
           class="funcFindX-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
-        >
-          <p class="title-func">6. Functional: Find X in array</p>
-
-          <div class="searchX w-25">
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Original</span>
-              <input
-                id="reviewArrFunc06"
-                type="text"
-                class="form-control"
-                placeholder="Original array"
-                aria-label="Original array"
-                aria-describedby="basic-addon1"
-                disabled
-              />
-            </div>
-
-            <!-- Result Search -->
-            <div id="resultSearchVal" class="mb-3 hide-form">
-              <div class="resultSearch">
-                <span class="fw-bold">Result:</span>
-                <span id="resultSearchFunc06"></span>
-              </div>
-            </div>
-
-            <!-- Search -->
-            <div class="row g-3">
-              <div class="input-group mb-1 col-8">
-                <span class="input-group-text" id="basic-addon1">Search</span>
-                <input
-                  id="searchValue"
-                  type="number"
-                  class="form-control"
-                  placeholder="Search"
-                  aria-label="Search"
-                  aria-describedby="basic-addon1"
-                />
-
-                <!-- btn search -->
-                <button
-                  onclick="searchValueArr()"
-                  class="btn-search btn btn-primary"
-                  type="button"
-                  id="btnSearch"
-                >
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-              </div>
-              <div class="result-text m-0">
-                <!-- found -->
-                <div class="result-success hide-form">
-                  <i class="result-icon-success fa-solid fa-check"></i>
-                  <span class="result-text-success">
-                    <span id="valueFound"></span> is exists in array!</span
-                  >
-                </div>
-
-                <!-- not found -->
-                <div class="result-fail hide-form">
-                  <i class="result-icon-fail fa-solid fa-xmark"></i>
-                  <span class="result-text-fail">
-                    <span id="valueNotFound"></span> is not exists in
-                    array!</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        ></div>
 
         <!-- TODO ---------------------- Bài 7: Find X & Add X to array  ---------------------- -->
         <div
@@ -427,6 +360,7 @@
       <!-- END Arr -->
 
       <!--* -------------------------------- Modal -------------------------------- -->
+      <!-- TODO ---------------------------------- MODAL Create Array ---------------------------------- -->
       <div
         class="modal fade"
         id="createArrModal"
@@ -489,6 +423,8 @@
           </div>
         </div>
       </div>
+
+      <!-- TODO ---------------------------------- MODAL new ---------------------------------- -->
     </div>
   </body>
 </html>
