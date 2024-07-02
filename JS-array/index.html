@@ -219,9 +219,24 @@
         <div class="content content-array w-50">
           <div class="form-arr-length">
             <div class="mb-3">
-              <label for="enterArrLength" class="form-label"
+              <label
+                style="user-select: none"
+                for="enterArrLength"
+                class="form-label"
                 >Array Length</label
               >
+              <!-- random array length -->
+              <span
+                onclick="randArrLength()"
+                id="randArrLength"
+                class="rand-arr-length ms-1"
+                type="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Random array length"
+              >
+                <i class="fa-solid fa-arrows-rotate rand-arr-length__icon"></i>
+              </span>
               <input
                 type="number"
                 class="form-control"
@@ -346,8 +361,71 @@
         <!-- TODO ---------------------- Bài 9: Sort array ---------------------- -->
         <div
           id="func09"
-          class="funcReverse-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
-        ></div>
+          class="funcSort-container d-flex flex-column align-items-center w-100 mt-3 mb-3"
+        >
+          <p class="title-func">9: Sort array</p>
+
+          <div class="w-50">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">Original</span>
+              <input
+                id="reviewArrFunc09"
+                type="text"
+                class="form-control"
+                placeholder="Original array"
+                aria-label="Original array"
+                aria-describedby="basic-addon1"
+                disabled
+              />
+            </div>
+
+            <div class="sort-container d-flex justify-content-between mb-2">
+              <!-- sort A-Z -->
+              <div class="form-check">
+                <input
+                  onchange="sortArrayFunc09()"
+                  class="form-check-input sort-option"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="sortA-Z"
+                />
+                <label class="form-check-label sort-label" for="sortA-Z"
+                  >Sort
+                  <i class="sortA-Z__icon fa-solid fa-arrow-down-a-z"></i>
+                </label>
+              </div>
+
+              <!-- sort Z-A -->
+              <div class="form-check">
+                <input
+                  onchange="sortArrayFunc09()"
+                  class="form-check-input sort-option"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="sortZ-A"
+                />
+                <label class="form-check-label sort-label" for="sortZ-A"
+                  >Sort
+                  <i class="sortZ-A__icon fa-solid fa-arrow-down-z-a"></i>
+                </label>
+              </div>
+            </div>
+
+            <!-- result sort -->
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">Result</span>
+              <input
+                id="sortArrFunc09"
+                type="text"
+                class="form-control"
+                placeholder="Result sort array"
+                aria-label="Result sort array"
+                aria-describedby="basic-addon1"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
 
         <!-- TODO ---------------------- Bài 10: Array Concatenation ---------------------- -->
         <div

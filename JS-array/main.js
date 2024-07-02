@@ -240,8 +240,8 @@ const changeStyleFuncContainer = () => {
   }
 };
 
-// Khai báo mảng gồm N phần tử
 //* --------------------------- Hàm get Arr length --------------------------- */
+
 const getArrayLength = () => {
   let getArrLength = document.getElementById("enterArrLength").value;
 
@@ -265,6 +265,13 @@ const getArrayLength = () => {
   }
 };
 
+// Hàm random Array Length
+const randArrLength = () => {
+  // randbetween from 4 -> 12
+  let randNum = Math.floor(Math.random() * 9 + 4);
+  document.getElementById("enterArrLength").value = randNum;
+};
+
 //* --------------------- Hàm create các phần tử của mảng -------------------- */
 const createIndexArr = (index) => {
   let createInputArr = "";
@@ -274,15 +281,39 @@ const createIndexArr = (index) => {
     <div class="col-lg-3 col-sm-12">
       <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm">${i + 1}</span>
-      <input type="number" class="form-control item-array" aria-label="" aria-describedby="inputGroup-sizing-sm">
+      <input type="number" class="form-control item-array item-array-${
+        i + 1
+      }" aria-label="" aria-describedby="inputGroup-sizing-sm">
       </div>
     </div>
     `;
   }
   document.getElementById(
     "resultCreateArrLength"
-  ).innerHTML = `Array length is ${index}`;
+  ).innerHTML = `Array length is ${index}
+  <span 
+        onclick="fillAllArrElement()"
+        id="fillAllArrElement"
+        class="ms-1" 
+        type="button"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Fill all element">
+  <i class="fa-solid fa-turn-down get-list-word"></i>
+  </span>`;
   document.getElementById("indexOfArr").innerHTML = createInputArr;
+};
+
+// Hàm fill all element
+const fillAllArrElement = () => {
+  let itemArr = document.querySelectorAll(".item-array");
+  for (let i = 1; i <= itemArr.length; i++) {
+    // rand from -300 --> 300
+    let randNum = Math.floor(Math.random() * 301 - Math.random() * 301);
+
+    // gán rand value vào value vị trí class tương ứng
+    document.querySelector(`.item-array-${i}`).value = randNum;
+  }
 };
 
 // Khai báo mảng rỗng
@@ -1385,7 +1416,66 @@ const showFunc08 = () => {
 
 //TODO ------------------------------------ Bài 9: Sort array ----------------------------------- */
 //* Bài 9- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử.
-// Chương trình sắp xếp mảng theo thứ tự giảm dần và hiển thị ra mảng đã được sắp xếp.
+// Chương trình sắp xếp mảng theo thứ tự tăng/giảm dần và hiển thị ra mảng đã được sắp xếp.
+
+// Hàm sort tăng dần (A-Z)
+const sortArrayFunc09 = () => {
+  let getAZ = document.getElementById("sortA-Z");
+  let getZA = document.getElementById("sortZ-A");
+  let swap;
+  let sortArrAZ = [];
+  let sortArrZA = [];
+
+  // ! Fixing...
+  for (let i = 0; i < getListArr.length; i++) {
+    for (let j = getListArr.length - 1; j > i; j--) {
+      if (getListArr[j] < getListArr[i]) {
+        console.log("<------ CHECK", i + 1, " BEFORE SWAPPED------>");
+        console.log("i", i);
+        console.log("j", j);
+        console.log("a[i]", getListArr[i]);
+        console.log("a[j]", getListArr[j]);
+        swap = getListArr[j];
+        getListArr[j] = getListArr[i];
+        getListArr[i] = swap;
+        console.log("<------ Run", i + 1, " AFTER SWAPPED------>");
+        console.log("i", i);
+        console.log("j", j);
+        console.log("a[i]", getListArr[i]);
+        console.log("a[j]", getListArr[j]);
+      } else {
+        console.log("<------ Run", i + 1, " NOT SWAP ------>");
+        console.log("i", i);
+        console.log("j", j);
+        console.log("a[i]", getListArr[i]);
+        console.log("a[j]", getListArr[j]);
+      }
+    }
+  }
+  console.log(getListArr);
+
+  /* //? [-50, 72, 33, -116, -7, -89]
+    -    [-116, -50, -7, -89, 33, 72]
+
+  
+
+ 
+*/
+
+  // if (getAZ.checked == true) {
+  // } else if (getZA.checked == true) {
+  // } else {
+  //   console.log("no check");
+  // }
+};
+
+//! Hàm show func09: Bài 9 _ Sort array
+const showFunc09 = () => {
+  // Show preview your array
+  document.getElementById("reviewArrFunc09").value = `[${getListArr.join(
+    ", "
+  )}]`;
+};
 
 //TODO ------------------------------------ Bài 10: Array Concatenation ----------------------------------- */
 //* Bài 9- Viết chương trình khởi tạo/nhập vào 2 mảng số nguyên gồm N phần tử,
@@ -1393,6 +1483,14 @@ const showFunc08 = () => {
 // Mảng c là một mảng được khai báo gồm 20 phần tử số nguyên.
 // Chương trình sẽ lưu các phần tử được nối từ hai mảng b và a vào mảng c.
 // Hiển thị mảng c.
+
+//! Hàm show func10: Bài 10 _ Array Concatenation
+const showFunc10 = () => {
+  // Show preview your array
+  document.getElementById("reviewArrFunc06").value = `[${getListArr.join(
+    ", "
+  )}]`;
+};
 
 //* ------------------------------------ - ----------------------------------- */
 // Hàm get value theo chức năng
@@ -1418,5 +1516,9 @@ const handleSelectChange = (e) => {
     showFunc07();
   } else if (itemSelected == 8) {
     showFunc08();
+  } else if (itemSelected == 9) {
+    showFunc09();
+  } else {
+    showFunc10();
   }
 };

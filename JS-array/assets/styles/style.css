@@ -35,6 +35,21 @@
   font-size: 1.05rem;
 }
 
+/* random arr length */
+.rand-arr-length {
+  cursor: pointer;
+  transition: linear 0.4s;
+  user-select: none;
+}
+.rand-arr-length:hover {
+  opacity: 0.8;
+}
+
+.rand-arr-length:active {
+  transform: scale(0.8);
+  transform: rotate(180deg);
+}
+
 .arr-modal-header {
   background-color: #143463;
 }
@@ -56,6 +71,8 @@
 .input-compare {
   text-align: center;
 }
+
+/* TODO ------------------------------- SELECT FROM ------------------------------ */
 
 .label-formSelect {
   font-weight: 600;
@@ -257,4 +274,28 @@
   font-size: 0.85rem;
   font-weight: 560 !important;
   padding: 0 2px;
+}
+
+/*TODO ------------------------------------ Bài 9: Sort array  ----------------------------------- */
+.sort-option:checked {
+  background-color: #666666 !important;
+  border: #666666 !important;
+  cursor: pointer;
+  /* font-size: 1rem; */
+}
+
+.sortA-Z__icon,
+.sortZ-A__icon {
+  font-size: 1.2rem;
+  color: #666666;
+  cursor: pointer;
+}
+
+.sort-label {
+  color: #666666;
+  cursor: pointer;
+}
+
+.sort-container {
+  width: 35%;
 }

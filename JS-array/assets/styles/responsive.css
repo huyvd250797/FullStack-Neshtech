@@ -68,4 +68,10 @@
   .searchX {
     width: 80% !important;
   }
+
+  /*TODO ------------------------------------ Bài 9: Sort array   ----------------------------------- */
+
+  .sort-container {
+    width: 100%;
+  }
 }
