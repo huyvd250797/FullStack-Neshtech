@@ -48,12 +48,13 @@
   }
   /*TODO ------------------------------------ Bài 4: Reverse Array  ----------------------------------- */
   .inputReverseArr {
-    width: 70% !important;
+    width: 100% !important;
   }
 
   /*TODO ------------------------------------ Bài 5: Count Positive/Negative Number  ----------------------------------- */
   .PosNev-container {
     width: 100% !important;
+    padding: 15px 20px 28px 15px;
   }
   .group-positive,
   .group-negative {
@@ -66,12 +67,16 @@
 
   /*TODO ------------------------------------ Bài 6: Find X in array  ----------------------------------- */
   .searchX {
-    width: 80% !important;
+    width: 100% !important;
   }
 
   /*TODO ------------------------------------ Bài 9: Sort array   ----------------------------------- */
 
   .sort-container {
-    width: 100%;
+    width: 50%;
+  }
+
+  .container-func09 {
+    width: 100% !important;
   }
 }

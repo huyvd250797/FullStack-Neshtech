@@ -319,6 +319,9 @@ const fillAllArrElement = () => {
 // Khai báo mảng rỗng
 let getListArr = [];
 
+// Khai báo mảng gốc
+let originalArr = [];
+
 //* --------------------------- * START: Hàm create array * --------------------------- */
 const createArray = () => {
   // Lấy tất cả element có class item-array thành nodelist
@@ -342,6 +345,8 @@ const createArray = () => {
       document.querySelector("#arr-null").classList.remove("hide-form");
     }
   }
+
+  originalArr = getListArr;
 
   document.getElementById("create-arr").disabled = true;
 };
@@ -486,7 +491,7 @@ const showFunc01 = () => {
   // Show preview your array
   document.getElementById(
     "reviewArrFunc01"
-  ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
+  ).innerHTML = `<span class="your-arr">[${originalArr.join(", ")}]</span>`;
 };
 
 //TODO ------------------------------------ Bài 2: Find Min/Max value ----------------------------------- */
@@ -621,7 +626,7 @@ const showFunc02 = () => {
   // Show preview your array
   document.getElementById(
     "reviewArrFunc02"
-  ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
+  ).innerHTML = `<span class="your-arr">[${originalArr.join(", ")}]</span>`;
 };
 
 //TODO ------------------------------------ Bài 3: Calculator average ----------------------------------- */
@@ -692,7 +697,7 @@ const showFunc03 = () => {
   // Show preview your array
   document.getElementById(
     "reviewArrFunc03"
-  ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
+  ).innerHTML = `<span class="your-arr">[${originalArr.join(", ")}]</span>`;
 };
 
 //TODO ------------------------------------ Bài 4: Reverse Array ----------------------------------- */
@@ -723,7 +728,7 @@ const showFunc04 = () => {
   document.getElementById("func04").innerHTML = `
   <p class="title-func">4. Functional: Reverse Array</p>
 
-  <div class="inputReverseArr w-25">
+  <div class="inputReverseArr w-75">
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1">Original</span>
       <input
@@ -755,7 +760,7 @@ const showFunc04 = () => {
   `;
   // Show preview your array
   // khác với các bài trên, preview thẳng vào input
-  document.getElementById("reviewArrFunc04").value = getListArr.join(", ");
+  document.getElementById("reviewArrFunc04").value = originalArr.join(", ");
 
   // add class
   document.getElementById("reviewArrFunc04").classList.add("review-arr-func04");
@@ -1146,7 +1151,7 @@ const showFunc05 = () => {
   // Show preview your array
   document.getElementById(
     "reviewArrFunc05"
-  ).innerHTML = `<span class="your-arr">[${getListArr.join(", ")}]</span>`;
+  ).innerHTML = `<span class="your-arr">[${originalArr.join(", ")}]</span>`;
 };
 //TODO ------------------------------------ Bài 6: Find X in array ----------------------------------- */
 //* Bài 6- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử,
@@ -1326,7 +1331,7 @@ const showFunc06 = () => {
   </div>
 `;
   // Show preview your array
-  document.getElementById("reviewArrFunc06").value = `[${getListArr.join(
+  document.getElementById("reviewArrFunc06").value = `[${originalArr.join(
     ", "
   )}]`;
 };
@@ -1418,61 +1423,154 @@ const showFunc08 = () => {
 //* Bài 9- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm N phần tử.
 // Chương trình sắp xếp mảng theo thứ tự tăng/giảm dần và hiển thị ra mảng đã được sắp xếp.
 
-// Hàm sort tăng dần (A-Z)
+// Hàm sort tăng/giảm dần (A-Z)
 const sortArrayFunc09 = () => {
   let getAZ = document.getElementById("sortA-Z");
   let getZA = document.getElementById("sortZ-A");
   let swap;
   let sortArrAZ = [];
-  let sortArrZA = [];
 
-  // ! Fixing...
   for (let i = 0; i < getListArr.length; i++) {
     for (let j = getListArr.length - 1; j > i; j--) {
-      if (getListArr[j] < getListArr[i]) {
-        console.log("<------ CHECK", i + 1, " BEFORE SWAPPED------>");
-        console.log("i", i);
-        console.log("j", j);
-        console.log("a[i]", getListArr[i]);
-        console.log("a[j]", getListArr[j]);
+      // Nếu phần tử thứ j nhỏ hơn phần tử thứ j-1
+      //? ví dụ: a[j] = 5; a[j-1] = 7 <=> [...,7,5] --> 7 đến 5 ko tăng dần
+      // console.log(
+      //   "\n************************************************************************************************"
+      // );
+      // console.log("*** Check i =", i, " ***");
+      // console.log(
+      //   "*** ---> Check j =",
+      //   j,
+      //   "=> arr5[j] < arr5[j-1] (",
+      //   getListArr[j],
+      //   "<",
+      //   getListArr[j - 1],
+      //   ") ***"
+      // );
+      // console.log(
+      //   "************************************************************************************************\n"
+      // );
+
+      //? Nếu phần tử thứ j: a[j] (cuối cùng) < vị trí thứ j-1: a[j-1] (gần cuối)\
+      // a[j] < a[j-1] ==> phần tử cuối < phần tử gần cuối ==> not tăng dần
+      // Đổi chỗ 2 phần tử này
+      if (parseInt(getListArr[j]) < parseInt(getListArr[j - 1])) {
+        // gán giá trị phần tử cuối cho swap
         swap = getListArr[j];
-        getListArr[j] = getListArr[i];
-        getListArr[i] = swap;
-        console.log("<------ Run", i + 1, " AFTER SWAPPED------>");
-        console.log("i", i);
-        console.log("j", j);
-        console.log("a[i]", getListArr[i]);
-        console.log("a[j]", getListArr[j]);
+
+        // gán giá trị phần tử cuối thành giá trị phần tử gần cuối
+        getListArr[j] = getListArr[j - 1];
+
+        // Phần tử gần cuối gán giá trị swap
+        getListArr[j - 1] = swap;
+
+        // //? ------------------------------ STEP BY STEP ------------------------------ */
+        // console.log("=> TRUE --> thực hiện:");
+        // console.log("-------- < Run > --------");
+        // console.log("Array ban đầu:", originalArr);
+        // console.log("i:", i);
+        // console.log("j:", j);
+        // console.log("getListArr[i]:", getListArr[i]);
+        // console.log("swap:", swap);
+        // console.log("getListArr[j]:", getListArr[j]);
+        // console.log("getListArr[j-1]:", getListArr[j - 1]);
+        // console.log("Array đã xử lý:", getListArr);
+        // console.log("-------- / End Run / --------\n");
       } else {
-        console.log("<------ Run", i + 1, " NOT SWAP ------>");
-        console.log("i", i);
-        console.log("j", j);
-        console.log("a[i]", getListArr[i]);
-        console.log("a[j]", getListArr[j]);
+        // console.log("=> FALSE --> giảm j =", j - 1, "và chạy tiếp vòng lặp\n");
       }
     }
+    // push phần tử thứ i vào mảng tăng dần để sử dụng
+    sortArrAZ.push(getListArr[i]);
   }
-  console.log(getListArr);
 
-  /* //? [-50, 72, 33, -116, -7, -89]
-    -    [-116, -50, -7, -89, 33, 72]
-
-  
-
- 
-*/
-
-  // if (getAZ.checked == true) {
-  // } else if (getZA.checked == true) {
-  // } else {
-  //   console.log("no check");
-  // }
+  // Nếu sort A-Z checked thì in array sortArrAZ
+  if (getAZ.checked == true) {
+    //! &nbsp; --> create spacing before <span>
+    document.getElementById("resulrSortArrFunc09").value = `[${sortArrAZ.join(
+      ", "
+    )}]`;
+  }
+  // ngược lại đảo ngược mảng sortArrAZ --> sẽ thành sort Z-A
+  else {
+    // gọi hàm đảo ngược mảng và truyển mảng sortArrAZ
+    let sortArrZA = handleEeverseArray(sortArrAZ);
+    //! &nbsp; --> create spacing before <span>
+    document.getElementById("resulrSortArrFunc09").value = `[${sortArrZA.join(
+      ", "
+    )}]`;
+  }
 };
 
 //! Hàm show func09: Bài 9 _ Sort array
 const showFunc09 = () => {
+  document.getElementById("func09").innerHTML = `
+  <p class="title-func">9: Sort array</p>
+
+  <div class="container-func09 w-50">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Original</span>
+      <input
+        id="reviewArrFunc09"
+        type="text"
+        class="form-control"
+        placeholder="Original array"
+        aria-label="Original array"
+        aria-describedby="basic-addon1"
+        disabled
+      />
+    </div>
+
+    <div class="sort-container d-flex justify-content-between mb-2">
+      <!-- sort A-Z -->
+      <div class="form-check">
+        <input
+          onchange="sortArrayFunc09()"
+          class="form-check-input sort-option"
+          type="radio"
+          name="flexRadioDefault"
+          id="sortA-Z"
+        />
+        <label class="form-check-label sort-label" for="sortA-Z"
+          >Sort
+          <i class="sortA-Z__icon fa-solid fa-arrow-down-a-z"></i>
+        </label>
+      </div>
+
+      <!-- sort Z-A -->
+      <div class="form-check">
+        <input
+          onchange="sortArrayFunc09()"
+          class="form-check-input sort-option"
+          type="radio"
+          name="flexRadioDefault"
+          id="sortZ-A"
+        />
+        <label class="form-check-label sort-label" for="sortZ-A"
+          >Sort
+          <i class="sortZ-A__icon fa-solid fa-arrow-down-z-a"></i>
+        </label>
+      </div>
+    </div>
+
+    <!-- result sort -->
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1"
+        >Result
+      <input
+        id="resulrSortArrFunc09"
+        type="text"
+        class="form-control"
+        placeholder="Result sort array"
+        aria-label="Result sort array"
+        aria-describedby="basic-addon1"
+        disabled
+      />
+    </div>
+  </div>
+  `;
   // Show preview your array
-  document.getElementById("reviewArrFunc09").value = `[${getListArr.join(
+  document.getElementById("reviewArrFunc09").value = `[${originalArr.join(
     ", "
   )}]`;
 };
@@ -1487,7 +1585,7 @@ const showFunc09 = () => {
 //! Hàm show func10: Bài 10 _ Array Concatenation
 const showFunc10 = () => {
   // Show preview your array
-  document.getElementById("reviewArrFunc06").value = `[${getListArr.join(
+  document.getElementById("reviewArrFunc06").value = `[${originalArr.join(
     ", "
   )}]`;
 };
@@ -1521,4 +1619,24 @@ const handleSelectChange = (e) => {
   } else {
     showFunc10();
   }
+};
+
+/* ------------------------------------ - ----------------------------------- */
+
+//? -------------------------------------------------------------------------- */
+//?                               Common function                              */
+//? -------------------------------------------------------------------------- */
+// Hàm xử lý đảo ngược mảng bất kỳ được truyền vào với biến số là array
+const handleEeverseArray = (array) => {
+  // Khai báo mảng mới là mảng đảo ngược với mảng ban đầu
+  let reversedArr = [];
+
+  // Chạy i bắt đầu từ length -1 của mảng truyền vào
+  // Chạy đến khi nào i = 0
+  for (let i = array.length - 1; i >= 0; i--) {
+    // push các phần tử vào mảng đảo ngược
+    reversedArr.push(array[i]);
+  }
+  // return giá trị mảng đảo ngược của mảng được truyền vào
+  return reversedArr;
 };
