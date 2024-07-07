@@ -1,0 +1,22 @@
+/* PC */
+@media (min-width: 1024px) {
+}
+
+/* TABLET & PC */
+@media (min-width: 740px) {
+}
+
+/* TABLET */
+@media (min-width: 740px) and (max-width: 1023px) {
+}
+
+/* MOBILE & TABLET */
+@media (max-width: 1023px) {
+}
+
+/* MOBILE */
+@media (max-width: 739px) {
+  #formDepositInterest {
+    width: 95% !important;
+  }
+}

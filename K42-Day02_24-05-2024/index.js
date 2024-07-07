@@ -514,6 +514,16 @@ const calDepositInterestDaily = () => {
   </div>
   `;
   }
+  document.getElementById("totalInterest").innerHTML = `
+  <div
+    class="title-interest-container d-flex justify-content-between p-3 border-secondary-subtle bg-secondary-subtle bg-opacity-10"
+  >
+    <div class="fw-bold">Total Interest
+    </div>
+    <div class="fw-bold">${totalAmountInterest.toLocaleString("en-US", {})} VND 
+    </div>
+  </div>
+  `;
   document.getElementById("container-modal-content").innerHTML =
     createDailyReward;
 

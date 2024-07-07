@@ -300,3 +300,25 @@
 .sort-container {
   width: 35%;
 }
+
+/*TODO ------------------------------------ Bài 10: Array Concatenation ----------------------------------- */
+
+.add-new-randArr {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.add-new-randArr:hover {
+  background-color: rgba(236, 236, 236, 0.8);
+}
+
+.add-new-randArr-disabled {
+  user-select: none;
+  pointer-events: none;
+  background-color: #d3d3d3;
+  opacity: 0.6;
+}
+
+.check-all-randArr {
+  margin-left: 13px;
+}

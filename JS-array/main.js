@@ -1584,10 +1584,192 @@ const showFunc09 = () => {
 // Chương trình sẽ lưu các phần tử được nối từ hai mảng b và a vào mảng c.
 // Hiển thị mảng c.
 
+// Khai báo biến số lần click addmore
+let countClickAddMore = 1;
+
+//* */ ---------------------------- Hàm add more item --------------------------- */
+const addMoreItem = () => {
+  // Tăng biến đếm click addmore
+  countClickAddMore++;
+  // get số lượng random array được tạo ra
+  let getRandArr = document.querySelectorAll(".container-random-arr");
+
+  // Nếu số lượng rand arr được tạo ra < 3 thì tạo thêm
+  if (getRandArr.length < 3) {
+    // += --> Khi gọi func này sẽ thực hiện thêm `element` mà ko ghi đè lên element cũ
+    let createRandArr = (document.getElementById(
+      "group-all-randArr"
+    ).innerHTML += `
+    <div class="container-random-arr">
+      <div class="input-group mb-3">
+        <div class="input-group-text">
+          <input
+            class="check-this-array form-check-input mt-0"
+            type="checkbox"
+            value=""
+            aria-label="Checkbox for following text input"
+          />
+        </div>
+        <input
+          type="text"
+          class="new-rand-arrVal form-control"
+          aria-label="Text input with checkbox"
+          placeholder="New Random Array ${countClickAddMore}"
+          readonly
+        />
+      </div>
+    </div>
+    `);
+  }
+  // Nếu số lượng rand arr được tạo ra >= 3 thì không tạo thêm
+  else {
+    alert("Maximun 3 new array");
+    document
+      .getElementById("add-new-randArr")
+      .classList.add("add-new-randArr-disabled");
+  }
+};
+
+//! hàm get all value new random array
+const getRandom = () => {
+  // new array length random from 4 -> 12
+  let randomLengthArr = Math.floor(Math.random() * 9 + 4);
+
+  // Khai báo mảng rỗng chứa các giá trị ngẫu nhiên
+  let createNewArr = [];
+
+  for (let i = 0; i < randomLengthArr; i++) {
+    // Khai báo biến randomValue chứa giá trị ngẫu nhiên từ -300 -> 300
+    let randomValue = Math.floor(Math.random() * 301 - Math.random() * 301);
+
+    // push giá trị ngẫu nhiên đó vào mảng
+    createNewArr.push(randomValue);
+  }
+
+  return createNewArr;
+};
+
+//* hàm Check All
+const checkAllArr = () => {
+  let getCheckAll = document.getElementById("checkAllNewArr");
+
+  // get danh sách tất cả element có class .check-this-array và đưa vào NodeList
+  let listNewRandArr = document.querySelectorAll(".check-this-array");
+
+  for (let i = 0; i < listNewRandArr.length; i++) {
+    // Nếu như CheckAll = true
+    getCheckAll.checked == true
+      ? // tất cả element checked
+        (listNewRandArr[i].checked = true)
+      : // tất cả element unchecke
+        (listNewRandArr[i].checked = false);
+  }
+};
+
+//* hàm Fill All data new rand arr
+const fillAllArr = () => {
+  let listNewRandArr = document.querySelectorAll(".new-rand-arrVal");
+  for (let i = 0; i < listNewRandArr.length; i++) {
+    listNewRandArr[i].value = `[${getRandom().join(", ")}]`;
+  }
+};
+
 //! Hàm show func10: Bài 10 _ Array Concatenation
 const showFunc10 = () => {
+  document.getElementById("func10").innerHTML = `
+ <p class="title-func">10: Array Concatenation</p>
+  <div class="container-func10 w-75">
+    <!-- original array -->
+    <div id="containerOriginalArr" class="container-original-arr">
+      <label class="form-label">Original Array</label>
+      <div class="input-group mb-4">
+        <div class="input-group-text">
+          <input
+            class="form-check-input mt-0"
+            type="checkbox"
+            value=""
+            aria-label="Checkbox for following text input"
+          />
+        </div>
+        <input
+          id="reviewArrFunc10"
+          type="text"
+          class="form-control"
+          aria-label="Text input with checkbox"
+          placeholder="Original Array"
+          readonly
+        />
+      </div>
+    </div>
+
+    <!-- random new array -->
+    <div id="group-all-randArr">
+      <div class="container-random-arr">
+        <!-- Check All -->
+        <input
+          onclick="checkAllArr()"
+          id="checkAllNewArr"
+          class="check-all-randArr form-check-input"
+          type="checkbox"
+          value=""
+          data-bs-toggle="tooltip"
+          title="Check All New Array below"
+        />
+        <!-- label random array -->
+        <label class="form-label ms-2 mb-3" for="checkAllNewArr"
+          >New random Array</label
+        >
+        <i
+          onclick="fillAllArr()"
+          class="fa-solid fa-fill-drip ms-1"
+          type="button"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Random new array"
+        ></i>
+
+        <!-- form input -->
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <input
+              class="check-this-array form-check-input mt-0"
+              type="checkbox"
+              value=""
+              aria-label="Checkbox for following text input"
+            />
+          </div>
+          <input
+            type="text"
+            class="new-rand-arrVal form-control"
+            aria-label="Text input with checkbox"
+            placeholder="New Random Array 1"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- add more -->
+    <div
+      onclick="addMoreItem()"
+      id="add-new-randArr"
+      class="add-new-randArr text-success fw-medium border-bottom border-dark-subtle"
+      type="button"
+    >
+      <i class="fa-solid fa-circle-plus"></i>
+      Add more
+    </div>
+
+    <!-- btn concat -->
+    <button class="btn btn-outline-dark mt-3">
+      Concatenation
+      <i class="fa-solid fa-link"></i>
+    </button>
+  </div>
+ `;
+
   // Show preview your array
-  document.getElementById("reviewArrFunc06").value = `[${originalArr.join(
+  document.getElementById("reviewArrFunc10").value = `[${originalArr.join(
     ", "
   )}]`;
 };
