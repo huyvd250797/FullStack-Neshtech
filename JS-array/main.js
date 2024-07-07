@@ -1555,8 +1555,7 @@ const showFunc09 = () => {
 
     <!-- result sort -->
     <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1"
-        >Result
+      <span class="input-group-text" id="basic-addon1">Result</span>
       <input
         id="resulrSortArrFunc09"
         type="text"
@@ -1566,7 +1565,10 @@ const showFunc09 = () => {
         aria-describedby="basic-addon1"
         disabled
       />
-    </div>
+    </span>
+
+
+
   </div>
   `;
   // Show preview your array

@@ -385,12 +385,15 @@ document.getElementById("cal-taxes").addEventListener("click", function (e) {
 // ------------------------------------ - ----------------------------------- */
 
 //* 12. Viết chương trình tính lãi ngân hàng (lãi mẹ đẻ lãi con) khi biết số tiền ban đầu,
-// số tháng cho vay và lãi xuất hàng tháng.
+// số tháng cho vay và lãi suất hàng tháng.
+
+//! Khai báo biến global kỳ hạn gửi
+let depositTerm;
 
 // Hàm get Deposit Term, onchange khi thay đổi sẽ lấy giá trị thay đổi
 const getDepositTerm = () => {
   // get value select
-  let depositTerm = document.getElementById("select-term").value;
+  depositTerm = document.getElementById("select-term").value;
   // Khai báo biến lãi suất
   let depositInterest = 0;
   //? Nếu lãi value deposti term = 1 hoặc = 2, thì lãi suất là 1.6%
@@ -406,38 +409,150 @@ const getDepositTerm = () => {
     depositInterest = 4.7;
   }
 
-  // gán vào value DIR (%)
+  // gán vào value APY (%)
   document.getElementById("deposit-interest-rate").value = depositInterest;
 };
 
 // hàm check Unable edit deposit-interest-rate
 const editDepositInterest = () => {
-  let checkbox = document.getElementById("unableEdit-dir");
-  let unableDIR = document.getElementById("deposit-interest-rate");
+  let checkbox = document.getElementById("unableEdit-apy");
+  let unableAPY = document.getElementById("deposit-interest-rate");
 
   // khi thay đổi check or no check, lắng nghe sự kiện thay đổi
   checkbox.addEventListener("change", (e) => {
     //? Nếu checked thì disabled = false
     if (e.currentTarget.checked) {
-      // unableDIR.removeAttribute("disabled");
-      unableDIR.disabled = false;
+      // unableAPY.removeAttribute("disabled");
+      unableAPY.disabled = false;
     }
     //? Nếu no checked thì disabled = true
     else {
-      unableDIR.disabled = true;
+      unableAPY.disabled = true;
     }
   });
 };
 
-// Hàm tính lãi suất và thực nhận sau kỳ hạn
-const calDepositInterest = () => {
+// */ -------------------------------------------------------------------------- */
+// */                              Hàm tính lãi suất                             */
+// */ -------------------------------------------------------------------------- */
+const calInterestRate = () => {
+  let atMaturityReward = document.getElementById("atMaturity");
+  let dailyReward = document.getElementById("rewardDaily");
+
+  // Nếu như chọn hình thức trả lãi cuối kỳ (atMaturityReward checked)
+  if (atMaturityReward.checked == true) {
+    // Gọi hàm calDepositInterestMaturity
+    calDepositInterestMaturity();
+  } else {
+    // Ngược lại nếu chọn hình thức daily
+    // Gọi hàm calDepositInterestDaily
+    calDepositInterestDaily();
+  }
+};
+
+// Hàm tính lãi suất và thực nhận mỗi ngày (trả lãi hằng ngày & lãi nhập gốc)
+//* Daily
+const calDepositInterestDaily = () => {
   // get giá trị depositTerm
   let depositTerm = document.getElementById("select-term").value;
 
   // get giá trị amount
-  let depositAmount = document.getElementById("deposit-amount").value;
+  // let depositAmount = document.getElementById("deposit-amount").value;
+  depositAmount = focusDepositAmount();
 
-  // get giá trị DIR
+  // get giá trị APY
+  let getDepositInterest = document.getElementById(
+    "deposit-interest-rate"
+  ).value;
+
+  // Khai báo biến lãi suất trong kỳ hạn
+  let amountInterest = 0;
+
+  // Khai báo biến tổng nhận trong kỳ hạn
+  let totalAmount;
+
+  // Khai báo biến tổng lãi hằng ngày nhận trong kỳ hạn
+  let totalAmountInterest = 0;
+
+  // Khai báo biến lịch sử nhận lãi hằng ngày
+  let createDailyReward = "";
+
+  //*? -------------------------------------------------------------------------- */
+  //*?                           Công thức tính                                   */
+
+  // vòng lặp chạy trong kỳ hạn
+  for (let i = 1; i <= depositTerm; i++) {
+    // Lãi suất hằng ngày
+    amountInterest = (((depositAmount * getDepositInterest) / 100) * 1) / 365;
+
+    // Tổng nhận cộng dồn hằng ngày
+    totalAmount = parseFloat(depositAmount) + parseFloat(amountInterest);
+
+    // Tổng lãi suất cộng dồn hằng ngày
+    totalAmountInterest += amountInterest;
+
+    // Tổng vốn cộng dồn hằng ngày
+    depositAmount = parseFloat(depositAmount) + parseFloat(amountInterest);
+    createDailyReward += `
+  <div
+    class="daily-interest d-flex justify-content-between p-3 border-bottom border-secondary-subtle"
+  >
+    <div class="date">Day ${i}
+    <div class="cumulative-interest-text">Cumulative Interest</div>
+    </div>
+    
+    <div class="amount-interest">+${amountInterest.toLocaleString(
+      "en-US",
+      {}
+    )} VND
+    <div class="cumulative-interest-value">${totalAmountInterest.toLocaleString(
+      "en-US",
+      {}
+    )} VND </div>
+    </div>
+    
+  </div>
+  `;
+  }
+  document.getElementById("container-modal-content").innerHTML =
+    createDailyReward;
+
+  //*? -------------------------------------------------------------------------- */
+
+  //! toLocaleString(): ngăn cách hàng ngàn, chục, trăm, đơn vị bằng dấu ,
+  let totalAmountVND = totalAmount.toLocaleString();
+  let amountInterestVND = totalAmountInterest.toLocaleString();
+
+  document.getElementById("total-amount").value = totalAmountVND;
+
+  document.getElementById("amount-interest").innerHTML = `
+  Amount Interest: ${amountInterestVND} VND - 
+    <!-- Button trigger modal -->
+    <span
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#videwDeailInterestModal"
+    data-bs-toggle="tooltip"
+    data-bs-placement="top"
+    title="View detail"
+    >
+      <i class="fa-regular fa-calendar-days"></i>
+    </span>`;
+
+  document.getElementById("deposit-amount").value = blurDepositAmount();
+};
+
+// Hàm tính lãi suất và thực nhận sau kỳ hạn (trả lãi cuối kỳ)
+//* At Maturity
+const calDepositInterestMaturity = () => {
+  // get giá trị depositTerm
+  let depositTerm = document.getElementById("select-term").value;
+
+  // get giá trị amount
+  // let depositAmount = document.getElementById("deposit-amount").value;
+  depositAmount = focusDepositAmount();
+
+  // get giá trị APY
   let getDepositInterest = document.getElementById(
     "deposit-interest-rate"
   ).value;
@@ -448,6 +563,8 @@ const calDepositInterest = () => {
   // Khai báo biến tổng nhận trong kỳ hạn
   let totalAmount;
 
+  //*? -------------------------------------------------------------------------- */
+  //*?                           Công thức tính                                   */
   // Tính lãi suất
   amountInterest =
     (((depositAmount * getDepositInterest) / 100) * depositTerm) / 365;
@@ -455,10 +572,11 @@ const calDepositInterest = () => {
   // Tính tổng nhận
   totalAmount = parseFloat(depositAmount) + parseFloat(amountInterest);
 
+  //*? -------------------------------------------------------------------------- */
+
   //! toLocaleString(): ngăn cách hàng ngàn, chục, trăm, đơn vị bằng dấu ,
   let totalAmountVND = totalAmount.toLocaleString();
   let amountInterestVND = amountInterest.toLocaleString();
-  let depositAmountVND = parseInt(depositAmount).toLocaleString();
 
   document.getElementById("total-amount").value = totalAmountVND;
 
@@ -466,7 +584,36 @@ const calDepositInterest = () => {
     "amount-interest"
   ).innerHTML = `Amount Interest: ${amountInterestVND} VND`;
 
-  document.getElementById("deposit-amount").value = depositAmountVND;
+  document.getElementById("deposit-amount").value = blurDepositAmount();
+};
+
+// Khai báo biến chứa value Int depositAmount;
+let depositAmount = 0;
+// Hàm format input deposit amount
+
+//! Hàm focus input
+const focusDepositAmount = () => {
+  depositAmount = document.getElementById("deposit-amount").value;
+
+  //! depositAmount.replace(/\D/g, "") --> convert toLocaleString ==> number
+  // VD: 10,000 --> 10000
+  let convertToNum = depositAmount.replace(/\D/g, "");
+  document.getElementById("deposit-amount").value = convertToNum;
+  return convertToNum;
+};
+
+//! Hàm blur input
+const blurDepositAmount = () => {
+  let getValueDeposit = document.getElementById("deposit-amount").value;
+  getValueDeposit.replace(/,/g, "");
+  let getFormat = parseInt(getValueDeposit).toLocaleString("en-US", {});
+
+  if (getValueDeposit.length == 0) {
+    document.getElementById("deposit-amount").value = "";
+  } else {
+    document.getElementById("deposit-amount").value = getFormat;
+  }
+  return getFormat;
 };
 
 function refresh() {

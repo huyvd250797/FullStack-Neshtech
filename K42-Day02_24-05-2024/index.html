@@ -10,6 +10,10 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="./assets/fonts/fontawesome-free-6.5.2-web/css/all.min.css"
+    />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -221,9 +225,33 @@
 
     <!-- * 12. Viết chương trình tính lãi suất ngân hàng. -->
     <form id="formDepositInterest" class="container-fluid w-50 mt-5">
-      <p style="font-weight: 700">
-        12. Viết chương trình tính lãi suất ngân hàng.
-      </p>
+      <p style="font-weight: 700">12. Tính lãi suất.</p>
+      <div style="font-weight: 600">Type:</div>
+      <div class="form-check form-check-inline mb-3 mt-2">
+        <input
+          class="form-check-input radio-checked"
+          type="radio"
+          name="inlineRadioOptions"
+          id="atMaturity"
+          value="atMaturity"
+          checked
+        />
+        <label class="form-check-label label-input-reward" for="atMaturity"
+          >At Maturity</label
+        >
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input radio-checked"
+          type="radio"
+          name="inlineRadioOptions"
+          id="rewardDaily"
+          value="daily"
+        />
+        <label class="form-check-label label-input-reward" for="rewardDaily"
+          >Daily</label
+        >
+      </div>
 
       <!-- select term -->
       <div class="mb-3">
@@ -234,21 +262,23 @@
           onchange="getDepositTerm()"
         >
           <option value="0" selected>Deposit term</option>
-          <option value="30">1 Month</option>
-          <option value="60">2 Month</option>
-          <option value="90">3 Month</option>
-          <option value="180">6 Month</option>
-          <option value="270">9 Month</option>
-          <option value="365">12 Month</option>
-          <option value="540">18 Month</option>
-          <option value="730">24 Month</option>
-          <option value="1095">36 Month</option>
+          <option value="30">1 Month (30 days)</option>
+          <option value="60">2 Month (60 days)</option>
+          <option value="90">3 Month (90 days)</option>
+          <option value="180">6 Month (180 days)</option>
+          <option value="270">9 Month (270 days)</option>
+          <option value="365">12 Month (365 days)</option>
+          <option value="540">18 Month (540 days)</option>
+          <option value="730">24 Month (730 days)</option>
+          <option value="1095">36 Month (1095 days)</option>
         </select>
       </div>
 
       <!-- enter deposit amount -->
       <div class="input-group">
         <input
+          onfocus="focusDepositAmount()"
+          onblur="blurDepositAmount()"
           type="text"
           class="form-control"
           id="deposit-amount"
@@ -263,28 +293,28 @@
               type="number"
               class="form-control"
               id="deposit-interest-rate"
-              placeholder="Deposit interest rate"
+              placeholder="Annual Percentage Yield (%)"
               disabled
             />
-            <span class="input-group-text">%/year</span>
+            <span class="input-group-text">APY (%/year)</span>
           </div>
         </div>
 
-        <!-- checked Unable Edit DIR -->
+        <!-- checked Unable Edit APY -->
         <div class="col-lg-6 col-sm-12">
           <input
             style="border: 1px solid #585858"
             class="form-check-input"
             type="checkbox"
-            id="unableEdit-dir"
+            id="unableEdit-apy"
             onclick="editDepositInterest()"
           />
           <label
             style="font-style: italic; color: #585858; user-select: none"
             class="form-check-label"
-            for="unableEdit-dir"
+            for="unableEdit-apy"
           >
-            Edit Deposit interest rate
+            Edit Annual Percentage Yield
           </label>
         </div>
       </div>
@@ -304,7 +334,7 @@
       <p id="amount-interest"></p>
 
       <button
-        onclick="calDepositInterest()"
+        onclick="calInterestRate()"
         id="cal-interest"
         type="submit"
         class="btn btn-success"
@@ -314,6 +344,52 @@
 
       <button onclick="refresh()" class="btn btn-warning">Refresh</button>
     </form>
+
+    <!--* START MODAL Tính lãi suất -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="videwDeailInterestModal"
+      tabindex="-1"
+      aria-labelledby="videwDeailInterestModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="videwDeailInterestModalLabel">
+              Daily Reward
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div
+              class="title-interest-container d-flex justify-content-between p-3 border-secondary-subtle bg-secondary-subtle bg-opacity-10"
+            >
+              <div class="title-day fw-bold">Day</div>
+              <div class="title-interest fw-bold">Interest</div>
+            </div>
+            <div id="container-modal-content"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--* END: MODAL Tính lãi suất -->
 
     <!-- * --------------------------------------------------------------------------
                                     *LOOP                                   

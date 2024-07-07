@@ -85,6 +85,56 @@ BMI = Weight / (Height²)*/
   font-weight: 600;
 }
 
+/** 12. Tính lãi suất */
+.label-input-reward {
+  cursor: pointer;
+  user-select: none;
+}
+
+#atMaturity {
+  cursor: pointer;
+}
+
+#rewardDaily {
+  cursor: pointer;
+}
+
+.modal-body {
+  position: relative;
+}
+.title-interest-container {
+}
+
+.radio-checked:checked {
+  background-color: #676767;
+  border-color: #676767;
+}
+
+/* .daily-interest:first-child {
+  margin-top: 40px;
+} */
+
+.daily-interest:last-child {
+  border: none !important;
+}
+
+.amount-interest {
+  color: rgb(7, 196, 0);
+  font-weight: 700;
+}
+
+.cumulative-interest-text,
+.cumulative-interest-value {
+  color: #636363;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+.cumulative-interest-value {
+  display: flex;
+  justify-content: end;
+}
+
 /** 4. Viết một ứng dụng cho phép tính được số ngày trong một tháng. 
 VD: Tháng 1 có 31 ngày, tháng 2 có 28 hoặc 29 ngày  */
 
