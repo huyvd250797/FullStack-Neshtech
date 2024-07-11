@@ -540,6 +540,131 @@
       </div>
 
       <!-- TODO ---------------------------------- MODAL new ---------------------------------- -->
+
+      <!-- TODO ----------------------------------------------------------------------- -->
+      <!-- TODO                          7. Luyện tập mảng 02.                          -->
+      <!-- TODO ----------------------------------------------------------------------- -->
+
+      <!-- TODO ---------------------------------- 7.4. Viết một chương trình để đếm số từ trong một chuỗi ---------------------------------- -->
+      <div
+        id="arrPractice"
+        class="container container-fluid part d-flex flex-column align-items-center"
+      >
+        <div class="title d-flex flex-column">
+          <h4>7.4. Đếm số ký tự trong chuỗi</h4>
+          <p style="font-style: italic; font-size: 0.9rem">
+            Đếm số ký tự trong chuỗi đã nhập
+          </p>
+        </div>
+        <div class="mb-3 w-50">
+          <label for="inputLetter" class="form-label">Enter somes text</label>
+          <textarea
+            class="form-control"
+            id="inputLetter"
+            rows="3"
+            placeholder="Write somes text here..."
+          ></textarea>
+          <button
+            onclick="countLetter()"
+            type="button"
+            class="btn btn-danger mt-2 mb-3"
+          >
+            Count
+          </button>
+          <div id="resultCountLetter"></div>
+        </div>
+      </div>
+
+      <!-- TODO ---------------------------------- 7.5. Viết một chương trình nhập vào 2 chuỗi, ---------------------------------- -->
+      <!-- sau đó kiểm tra xem hai chuỗi có giống nhau hay không. -->
+      <div
+        id="arrPractice"
+        class="container container-fluid part d-flex flex-column align-items-center"
+      >
+        <div class="title d-flex flex-column">
+          <h4>7.5. Kiểm tra chuỗi trùng lặp</h4>
+          <p style="font-style: italic; font-size: 0.9rem">
+            Kiểm tra xem hai chuỗi có giống nhau hay không
+          </p>
+        </div>
+
+        <!-- compare area -->
+        <div
+          class="container-compare-string d-flex justify-content-evenly align-items-center w-100"
+        >
+          <!-- compare 01 -->
+          <div class="comapare1 flex-fill">
+            <div class="mb-3">
+              <label for="radioCheckCompare01" class="form-label fw-bold">
+                <!-- radio check -->
+                <input
+                  class="form-check-input me-2"
+                  type="radio"
+                  name="radio-check-compare"
+                  id="radioCheckCompare01"
+                  checked
+                />
+
+                Enter somes text 01</label
+              >
+              <textarea
+                class="form-control"
+                id="inputCompare01"
+                rows="10"
+                placeholder="Write somes text here..."
+              >
+Bitcoin là gì?</textarea
+              >
+            </div>
+          </div>
+
+          <!-- Btn comapre -->
+          <div class="btn-compare">
+            <button
+              onclick="compareStringArea()"
+              type="button"
+              class="btn btn-success m-5"
+            >
+              Compare
+            </button>
+          </div>
+
+          <!-- compare 02 -->
+          <div class="comapare2 flex-fill">
+            <div class="mb-3">
+              <label for="radioCheckCompare02" class="form-label fw-bold">
+                <!-- radio check -->
+                <input
+                  class="form-check-input me-2"
+                  type="radio"
+                  name="radio-check-compare"
+                  id="radioCheckCompare02"
+                />Enter somes text 02</label
+              >
+              <textarea
+                class="form-control"
+                id="inputCompare02"
+                rows="10"
+                placeholder="Write somes text here..."
+              >
+Bitacoin là cái gì?</textarea
+              >
+            </div>
+          </div>
+
+          <!-- Btn comapre mobile -->
+          <div class="btn-compare-mobile">
+            <button
+              onclick="compareStringArea()"
+              type="button"
+              class="btn btn-success"
+            >
+              Compare
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- ---------------------------------- - ---------------------------------- -->
     </div>
   </body>
 </html>

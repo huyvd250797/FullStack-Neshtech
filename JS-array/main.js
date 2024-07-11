@@ -1885,3 +1885,78 @@ const handleEeverseArray = (array) => {
   // return giá trị mảng đảo ngược của mảng được truyền vào
   return reversedArr;
 };
+
+//TODO ------------------------------------ 7. Luyện tập mảng 02 ----------------------------------- */
+
+//* 7.4. Viết một chương trình để đếm số từ trong một chuỗi
+// Hàm đếm số ký tự đã nhập
+const countLetter = () => {
+  let inputLetter = document.getElementById("inputLetter").value;
+  console.log(inputLetter.length);
+
+  // Khai báo biến đêm ký tự space
+  let countSpacing = 0;
+
+  for (let i = 0; i < inputLetter.length; i++) {
+    // Nếu gặp ký tự space thì tăng biến đếm
+    if (inputLetter[i] == 0) {
+      countSpacing += 1;
+    }
+  }
+
+  document.getElementById(
+    "resultCountLetter"
+  ).innerHTML = `<b>Result:</b> Have total <span class="color-count-letter">${
+    inputLetter.length
+  }</span> letter in textbox <br>
+  Have 
+  <span class="color-count-letter">${
+    parseInt(inputLetter.length) - parseInt(countSpacing)
+  }</span> letter
+  And 
+  <span class="color-count-letter">${countSpacing}</span> spacing
+  `;
+};
+
+//* 7.5. Viết một chương trình nhập vào 2 chuỗi, sau đó kiểm tra xem hai chuỗi có giống nhau hay không.
+
+// Hàm compare String
+const compareStringArea = () => {
+  let getInputCompare01 = document.getElementById("inputCompare01").value;
+  let getInputCompare02 = document.getElementById("inputCompare02").value;
+
+  let getCheckCompare01 = document.getElementById("radioCheckCompare01");
+  let getCheckCompare02 = document.getElementById("radioCheckCompare02");
+
+  // Khai báo biến chiều dài của string được check
+  let getLengthCompare;
+
+  //TODO Khai báo mảng chứa những nỗi dung không khớp nhau compare 01
+  let notEqualArrCompare01 = [];
+
+  //TODO Khai báo mảng chứa những nỗi dung không khớp nhau compare 02
+  let notEqualArrCompare02 = [];
+
+  //? Nếu radio check compare01 được check
+  getCheckCompare01.checked == true
+    ? // sẽ lấy compare01 là độ dài mảng
+      (getLengthCompare = getInputCompare01)
+    : // ngược lại lấy compare02 là độ dài mảng
+      (getLengthCompare = getInputCompare02);
+  console.log(getLengthCompare);
+
+  for (let i = 0; i < getLengthCompare.length; i++) {
+    console.log("comapare01:", getInputCompare01[i]);
+    console.log("comapare02:", getInputCompare02[i]);
+    if (getInputCompare01[i] != getInputCompare02[i]) {
+      notEqualArrCompare01.push(getInputCompare01[i]);
+      notEqualArrCompare02.push(getInputCompare02[i]);
+      console.log("______________________________");
+    } else {
+      console.log(true);
+      console.log("______________________________");
+    }
+  }
+  console.log("Giá trị không bằng nhau Compare01", notEqualArrCompare01);
+  console.log("Giá trị không bằng nhau Compare02", notEqualArrCompare02);
+};
