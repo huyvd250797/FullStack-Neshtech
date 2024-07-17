@@ -14,7 +14,7 @@ const HomPage = () => {
             <img
               className="about--img"
               src="https://media.istockphoto.com/id/1173957135/vector/motivation-quote-with-falling-t-letter-to-read-i-can-instead-i-cant-glowing-neon.jpg?s=612x612&w=0&k=20&c=2mma0mNv4vSi-QVzAlmycNNO-rNi-lBCcYICdAD9FEo="
-              alt="Fake Image"
+              alt="Fake Img"
             ></img>
           </div>
           <div className="about__text">Some text about me</div>
@@ -28,7 +28,7 @@ const HomPage = () => {
             <img
               className="title-heading--img"
               src="https://media.istockphoto.com/id/1173957135/vector/motivation-quote-with-falling-t-letter-to-read-i-can-instead-i-cant-glowing-neon.jpg?s=612x612&w=0&k=20&c=2mma0mNv4vSi-QVzAlmycNNO-rNi-lBCcYICdAD9FEo="
-              alt="Fake Image"
+              alt="Fake Img"
             ></img>
           </div>
           <div className="title-heading__text">Some text about me</div>

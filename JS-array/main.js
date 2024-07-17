@@ -1937,6 +1937,12 @@ const compareStringArea = () => {
   //TODO Khai báo mảng chứa những nỗi dung không khớp nhau compare 02
   let notEqualArrCompare02 = [];
 
+  // khai báo biến chứa cụm từ
+  let getWord01 = "";
+
+  // khai báo biến chứa cụm từ
+  let getWord02 = "";
+
   //? Nếu radio check compare01 được check
   getCheckCompare01.checked == true
     ? // sẽ lấy compare01 là độ dài mảng
@@ -1948,15 +1954,46 @@ const compareStringArea = () => {
   for (let i = 0; i < getLengthCompare.length; i++) {
     console.log("comapare01:", getInputCompare01[i]);
     console.log("comapare02:", getInputCompare02[i]);
-    if (getInputCompare01[i] != getInputCompare02[i]) {
-      notEqualArrCompare01.push(getInputCompare01[i]);
-      notEqualArrCompare02.push(getInputCompare02[i]);
-      console.log("______________________________");
-    } else {
-      console.log(true);
-      console.log("______________________________");
+
+    // if (getInputCompare01[i] != "") {
+    //   getWord01 += getInputCompare01[i];
+    //   console.log("Get Word01 -------:", getWord01);
+    // }
+
+    // if (getInputCompare02[i] != "") {
+    //   getWord02 += getInputCompare02[i];
+    //   console.log("Get Word02 -------:", getWord02);
+    // }
+
+    if (getInputCompare01[i] == "") {
+      notEqualArrCompare01.push(getWord01);
+      getWord01 = "";
+      console.log("Array01: _________", notEqualArrCompare01);
     }
+
+    if (getInputCompare02[i] == "") {
+      notEqualArrCompare01.push(getWord02);
+      getWord02 = "";
+      console.log("Array02: _________", notEqualArrCompare02);
+    }
+
+    // // Nếu ký tự thứ i của Compare01 khác Compare 02
+    // if (getInputCompare01[i] != getInputCompare02[i]) {
+    //   notEqualArrCompare01.push(getInputCompare01[i]);
+    //   notEqualArrCompare02.push(getInputCompare02[i]);
+    //   console.log("______________________________");
+    // } else {
+    //   //
+    //   console.log(true);
+    //   console.log("______________________________");
+    // }
   }
   console.log("Giá trị không bằng nhau Compare01", notEqualArrCompare01);
   console.log("Giá trị không bằng nhau Compare02", notEqualArrCompare02);
 };
+
+// Hàm compareString 01
+const compareString01 = () => {};
+
+// Hàm compareString 02
+const compareString02 = () => {};

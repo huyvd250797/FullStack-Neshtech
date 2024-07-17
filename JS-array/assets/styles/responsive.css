@@ -103,9 +103,5 @@
     display: none;
   }
 
-  #radioCheckCompare01:checked {
-    background-color: black !important;
-  }
-  #radioCheckCompare02:checked {
-  }
+
 }
