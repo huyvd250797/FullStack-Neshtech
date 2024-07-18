@@ -1886,6 +1886,22 @@ const handleEeverseArray = (array) => {
   return reversedArr;
 };
 
+//*!!! ------------------- START: Remove duplicate Array use FILTER() ------------------ */
+const removeDuplicateArray = (array) => {
+  // Khai báo mảng rỗng
+  var unique = [];
+
+  array.forEach((item, index) => {
+    // nếu vị trí đầu tiên của item === vị trí của index chạy tăng dần từ 0
+    if (array.indexOf(item) === index) {
+      unique.push(item);
+    }
+  });
+  return unique;
+};
+
+//*!!! ------------------- END: Remove duplicate Array use FILTER() ------------------ */
+
 //TODO ------------------------------------ 7. Luyện tập mảng 02 ----------------------------------- */
 
 //* 7.4. Viết một chương trình để đếm số từ trong một chuỗi
@@ -1922,78 +1938,100 @@ const countLetter = () => {
 
 // Hàm compare String
 const compareStringArea = () => {
-  let getInputCompare01 = document.getElementById("inputCompare01").value;
-  let getInputCompare02 = document.getElementById("inputCompare02").value;
+  // Khai báo biến chứa dữ liệu compareArr01()
+  let compare01 = compareArr01();
 
-  let getCheckCompare01 = document.getElementById("radioCheckCompare01");
-  let getCheckCompare02 = document.getElementById("radioCheckCompare02");
+  // Khai báo biến chứa dữ liệu compareArr02()
+  let compare02 = compareArr02();
 
-  // Khai báo biến chiều dài của string được check
-  let getLengthCompare;
+  // Khai báo mảng chứa các phần tử bao gồm class color compare
+  let getWordList01 = [];
 
-  //TODO Khai báo mảng chứa những nỗi dung không khớp nhau compare 01
-  let notEqualArrCompare01 = [];
+  // Khai báo mảng chứa các phần tử bao gồm class color compare
+  let getWordList02 = [];
 
-  //TODO Khai báo mảng chứa những nỗi dung không khớp nhau compare 02
-  let notEqualArrCompare02 = [];
+  // Khai báo mảng IndexI chứa các vị trí phần tử có giá trị = giá trị IndexJ
+  let getIndexI = [];
 
-  // khai báo biến chứa cụm từ
-  let getWord01 = "";
+  // Khai báo mảng IndexJ chứa các vị trí phần tử có giá trị = giá trị IndexI
+  let getIndexJ = [];
 
-  // khai báo biến chứa cụm từ
-  let getWord02 = "";
+  for (let i = 0; i < compare01.length; i++) {
+    for (let j = 0; j < compare02.length; j++) {
+      // Nếu như từ compare01 != từ compare02
+      if (compare01[i] != compare02[j]) {
+        // Thêm class color
+        getWordList01.push(
+          `<span class="compare-color">${compare01[i]}</span>`
+        );
+        getWordList02.push(
+          `<span class="compare-color">${compare02[j]}</span>`
+        );
+      }
+      // Nếu 2 từ giống nhau thì sẽ push kèm vị trí
+      else {
+        getWordList01.push(
+          `<span class="compare-color">${compare01[i]}</span>`
+        );
+        getIndexI.push(i);
 
-  //? Nếu radio check compare01 được check
-  getCheckCompare01.checked == true
-    ? // sẽ lấy compare01 là độ dài mảng
-      (getLengthCompare = getInputCompare01)
-    : // ngược lại lấy compare02 là độ dài mảng
-      (getLengthCompare = getInputCompare02);
-  console.log(getLengthCompare);
-
-  for (let i = 0; i < getLengthCompare.length; i++) {
-    console.log("comapare01:", getInputCompare01[i]);
-    console.log("comapare02:", getInputCompare02[i]);
-
-    // if (getInputCompare01[i] != "") {
-    //   getWord01 += getInputCompare01[i];
-    //   console.log("Get Word01 -------:", getWord01);
-    // }
-
-    // if (getInputCompare02[i] != "") {
-    //   getWord02 += getInputCompare02[i];
-    //   console.log("Get Word02 -------:", getWord02);
-    // }
-
-    if (getInputCompare01[i] == "") {
-      notEqualArrCompare01.push(getWord01);
-      getWord01 = "";
-      console.log("Array01: _________", notEqualArrCompare01);
+        getWordList02.push(
+          `<span class="compare-color">${compare02[j]}</span>`
+        );
+        getIndexJ.push(j);
+      }
     }
-
-    if (getInputCompare02[i] == "") {
-      notEqualArrCompare01.push(getWord02);
-      getWord02 = "";
-      console.log("Array02: _________", notEqualArrCompare02);
-    }
-
-    // // Nếu ký tự thứ i của Compare01 khác Compare 02
-    // if (getInputCompare01[i] != getInputCompare02[i]) {
-    //   notEqualArrCompare01.push(getInputCompare01[i]);
-    //   notEqualArrCompare02.push(getInputCompare02[i]);
-    //   console.log("______________________________");
-    // } else {
-    //   //
-    //   console.log(true);
-    //   console.log("______________________________");
-    // }
   }
-  console.log("Giá trị không bằng nhau Compare01", notEqualArrCompare01);
-  console.log("Giá trị không bằng nhau Compare02", notEqualArrCompare02);
+
+  // Rmove duplicate WordList
+  let removeDup01 = removeDuplicateArray(getWordList01);
+  let removeDup02 = removeDuplicateArray(getWordList02);
+
+  for (let i = 0; i < getIndexI.length; i++) {
+    console.log("arr01", removeDup01[getIndexI[i]]);
+
+    // remove class color
+    // removeDup01[getIndexI[i]].classList.remove("compare-color");
+  }
+
+  for (let j = 0; j < getIndexJ.length; j++) {
+    console.log("arr02", removeDup02[getIndexJ[j]]);
+
+    // remove class color
+    // removeDup02[getIndexJ[j]].classList.remove("compare-color");
+  }
+
+  document.getElementById("resultCompare01").innerHTML = removeDup01.join(", ");
+  document.getElementById("resultCompare02").innerHTML = removeDup02.join(", ");
 };
 
-// Hàm compareString 01
-const compareString01 = () => {};
+//* --------------------------- Hàm arr compare 01 --------------------------- */
+const compareArr01 = () => {
+  let getInputCompare01 = document.getElementById("inputCompare01").value;
 
-// Hàm compareString 02
-const compareString02 = () => {};
+  //TODO Khai báo mảng chứa compare01
+  let ArrCompare01 = [];
+
+  //? split(): String to Array
+  ArrCompare01 = getInputCompare01.split(" ");
+  return ArrCompare01;
+};
+
+//* --------------------------- Hàm arr compare 02 --------------------------- */
+const compareArr02 = () => {
+  let getInputCompare02 = document.getElementById("inputCompare02").value;
+
+  //TODO Khai báo mảng chứa compare02
+  let ArrCompare02 = [];
+
+  //? split(): String to Array
+  ArrCompare02 = getInputCompare02.split(" ");
+
+  return ArrCompare02;
+};
+
+// Hàm compare color
+const colorCompare = (compare01, compare02) => {
+  console.log("COMPARE ARR 01: ", compare01);
+  console.log("COMPARE ARR 02: ", compare02);
+};

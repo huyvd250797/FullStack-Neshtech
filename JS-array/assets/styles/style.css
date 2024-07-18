@@ -772,3 +772,7 @@
   background-color: #4f4e55;
   border: #4f4e55;
 }
+
+.compare-color {
+  background-color: rgb(255, 204, 109, 0.6);
+}
