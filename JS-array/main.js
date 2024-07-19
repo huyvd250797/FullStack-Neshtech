@@ -1962,21 +1962,21 @@ const compareStringArea = () => {
       if (compare01[i] != compare02[j]) {
         // Thêm class color
         getWordList01.push(
-          `<span class="compare-color">${compare01[i]}</span>`
+          `<span class="compare01 compare-color">${compare01[i]}</span>`
         );
         getWordList02.push(
-          `<span class="compare-color">${compare02[j]}</span>`
+          `<span class="compare02 compare-color">${compare02[j]}</span>`
         );
       }
       // Nếu 2 từ giống nhau thì sẽ push kèm vị trí
       else {
         getWordList01.push(
-          `<span class="compare-color">${compare01[i]}</span>`
+          `<span class="compare01 compare-color">${compare01[i]}</span>`
         );
         getIndexI.push(i);
 
         getWordList02.push(
-          `<span class="compare-color">${compare02[j]}</span>`
+          `<span class="compare02 compare-color">${compare02[j]}</span>`
         );
         getIndexJ.push(j);
       }
@@ -1987,22 +1987,23 @@ const compareStringArea = () => {
   let removeDup01 = removeDuplicateArray(getWordList01);
   let removeDup02 = removeDuplicateArray(getWordList02);
 
+  let getArrCompare01 = document.querySelectorAll(".compare01");
+  console.log("NodeList - compare01:", getArrCompare01);
+
   for (let i = 0; i < getIndexI.length; i++) {
-    console.log("arr01", removeDup01[getIndexI[i]]);
-
-    // remove class color
-    // removeDup01[getIndexI[i]].classList.remove("compare-color");
+    // removeDup01[getIndexI[i]];
+    console.log("------- Run time:", i + 1);
+    console.log(removeDup01[getIndexI[i]]);
+    console.log(removeDup01[i]);
   }
 
-  for (let j = 0; j < getIndexJ.length; j++) {
-    console.log("arr02", removeDup02[getIndexJ[j]]);
+  // for (let j = 0; j < getIndexJ.length; j++) {
+  //   console.log("arr02", removeDup02[getIndexJ[j]]);
+  //   console.log(getIndexJ[j]);
+  // }
 
-    // remove class color
-    // removeDup02[getIndexJ[j]].classList.remove("compare-color");
-  }
-
-  document.getElementById("resultCompare01").innerHTML = removeDup01.join(", ");
-  document.getElementById("resultCompare02").innerHTML = removeDup02.join(", ");
+  document.getElementById("resultCompare01").innerHTML = removeDup01.join(" ");
+  document.getElementById("resultCompare02").innerHTML = removeDup02.join(" ");
 };
 
 //* --------------------------- Hàm arr compare 01 --------------------------- */
