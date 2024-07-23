@@ -1886,7 +1886,7 @@ const handleEeverseArray = (array) => {
   return reversedArr;
 };
 
-//*!!! ------------------- START: Remove duplicate Array use FILTER() ------------------ */
+//*!!! ------------------- START: Remove duplicate Array ------------------ */
 const removeDuplicateArray = (array) => {
   // Khai báo mảng rỗng
   var unique = [];
@@ -1900,7 +1900,29 @@ const removeDuplicateArray = (array) => {
   return unique;
 };
 
-//*!!! ------------------- END: Remove duplicate Array use FILTER() ------------------ */
+//*!!! ------------------- END: Remove duplicate Array ------------------ */
+
+//*?s ------------------- START: Check array are equal ------------------ */
+const areEqual = (arr1, arr2) => {
+  let lenArr1 = arr1.length;
+  let lenArr2 = arr2.length;
+
+  // If lengths of array are not equal means
+  // array are not equal
+  if (lenArr1 != lenArr2) return false;
+
+  // Sort both arrays
+  arr1.sort();
+  arr2.sort();
+
+  // Linearly compare elements
+  for (let i = 0; i < lenArr1; i++) if (arr1[i] != arr2[i]) return false;
+
+  // If all elements were same.
+  return true;
+};
+
+//*?s ------------------- END: Check array are equal ------------------ */
 
 //TODO ------------------------------------ 7. Luyện tập mảng 02 ----------------------------------- */
 
@@ -1950,15 +1972,13 @@ const compareStringArea = () => {
   // Khai báo mảng chứa các phần tử bao gồm class color compare
   let getWordList02 = [];
 
-  // Khai báo mảng IndexI chứa các vị trí phần tử có giá trị = giá trị IndexJ
-  let getIndexI = [];
-
-  // Khai báo mảng IndexJ chứa các vị trí phần tử có giá trị = giá trị IndexI
-  let getIndexJ = [];
+  //!!! Set thành mảng rỗng để xóa các giá trị đã lưu trước đó
+  getIndexI = [];
+  getIndexJ = [];
 
   for (let i = 0; i < compare01.length; i++) {
     for (let j = 0; j < compare02.length; j++) {
-      // Nếu như từ compare01 != từ compare02
+      // Nếu như cụm từ compare01 != cụm từ compare02
       if (compare01[i] != compare02[j]) {
         // Thêm class color
         getWordList01.push(
@@ -1968,7 +1988,7 @@ const compareStringArea = () => {
           `<span class="compare02 compare-color">${compare02[j]}</span>`
         );
       }
-      // Nếu 2 từ giống nhau thì sẽ push kèm vị trí
+      // Nếu 2 từ giống nhau thì thêm class kèm sẽ push kèm vị trí
       else {
         getWordList01.push(
           `<span class="compare01 compare-color">${compare01[i]}</span>`
@@ -1987,23 +2007,69 @@ const compareStringArea = () => {
   let removeDup01 = removeDuplicateArray(getWordList01);
   let removeDup02 = removeDuplicateArray(getWordList02);
 
-  let getArrCompare01 = document.querySelectorAll(".compare01");
-  console.log("NodeList - compare01:", getArrCompare01);
+  // Lấy phần từ giống nhau ở compare01
+  let getArrCompare01 = document.getElementsByClassName("compare01");
+  // console.log("NodeList - compare01:", getArrCompare01);
 
-  for (let i = 0; i < getIndexI.length; i++) {
-    // removeDup01[getIndexI[i]];
-    console.log("------- Run time:", i + 1);
-    console.log(removeDup01[getIndexI[i]]);
-    console.log(removeDup01[i]);
-  }
+  // Lấy phần từ giống nhau ở compare02
+  let getArrCompare02 = document.getElementsByClassName("compare02");
+  // console.log("NodeList - compare02:", getArrCompare02);
 
-  // for (let j = 0; j < getIndexJ.length; j++) {
-  //   console.log("arr02", removeDup02[getIndexJ[j]]);
-  //   console.log(getIndexJ[j]);
-  // }
-
+  // In ra chuỗi ký tự ban đầu
   document.getElementById("resultCompare01").innerHTML = removeDup01.join(" ");
   document.getElementById("resultCompare02").innerHTML = removeDup02.join(" ");
+
+  return { getArrCompare01, getArrCompare02 };
+};
+
+// Khai báo mảng IndexI chứa các vị trí phần tử có giá trị = giá trị IndexJ
+let getIndexI = [];
+
+// Khai báo mảng IndexJ chứa các vị trí phần tử có giá trị = giá trị IndexI
+let getIndexJ = [];
+
+//* -------------------------- Hàm xác nhận compare -------------------------- */
+const comfirmCompare = () => {
+  compareStringArea();
+  // Khai báo biến chứa giá trị 2 mảng compare
+  //? (compareStringArea() là Object do return bên trên)
+  let getArrCompare = compareStringArea();
+  console.log(getIndexI);
+  console.log(getIndexJ);
+
+  // Khai báo biến lấy giá trị của Object trên
+  //? --> (lấy được 2 mảng)
+  let getArrCompareVal = Object.values(getArrCompare);
+  console.log(getArrCompareVal[0]);
+  console.log(getArrCompareVal[1]);
+
+  // Remove Duplicate value in arr
+  getIndexI = removeDuplicateArray(getIndexI);
+  getIndexJ = removeDuplicateArray(getIndexJ);
+
+  console.log(getIndexI);
+  console.log(getIndexJ);
+
+  // ? Kiểm tra, nếu 2 mảng bằng nhau --> 2 string giống nhau
+  if (areEqual(getIndexI, getIndexJ)) {
+    alert("Both String is the same");
+  }
+  // ngược lại --> check trùng
+  else {
+    // Lấy độ dài của mảng IndexI để lấy được vị trí giá trị giống nhau của Compare01
+    for (let i = 0; i < getIndexI.length; i++) {
+      //? getArrCompareVal[0]: lấy giá trị đầu tiên của Object --> lấy được Arr Compare01
+      getArrCompareVal[0][getIndexI[i]].classList.remove("compare-color");
+      console.log(getArrCompareVal[0][getIndexI[i]]);
+    }
+
+    // Lấy độ dài của mảng IndexJ để lấy được vị trí giá trị giống nhau của Compare02
+    for (let j = 0; j < getIndexJ.length; j++) {
+      //? getArrCompareVal[1]: lấy giá trị thứ 2 của Object --> lấy được Arr Compare02
+      getArrCompareVal[1][getIndexJ[j]].classList.remove("compare-color");
+      console.log(getArrCompareVal[1][getIndexJ[j]]);
+    }
+  }
 };
 
 //* --------------------------- Hàm arr compare 01 --------------------------- */
