@@ -1,0 +1,66 @@
+body {
+  padding-top: 20px;
+}
+
+/** Tittle */
+.title {
+}
+
+/** Display product Area */
+.addNew-area__title,
+.display-product__title {
+  font-weight: 600;
+}
+
+/* List product */
+
+tr:hover td {
+  background-color: rgb(229, 218, 255);
+}
+
+tr:active td {
+  background-color: rgb(189, 160, 255);
+}
+
+.product-item__name:hover {
+  cursor: pointer;
+}
+
+.product-item__link {
+  text-decoration: none;
+  color: black;
+  display: block;
+  line-height: 1.4rem;
+}
+
+.product-item__link:hover {
+}
+
+.product-item__icon-edit {
+  color: rgb(68, 96, 255);
+  font-size: 0.9rem;
+}
+
+.product-item__icon-trash {
+  color: rgb(255, 59, 59);
+  font-size: 0.9rem;
+}
+
+.product-item__icon-edit:hover,
+.product-item__icon-trash:hover {
+  cursor: pointer;
+}
+
+/** ---------------------------------- MODAL --------------------------------- */
+
+.addNew-modal {
+  padding: 0;
+}
+
+.addNew-label {
+  font-weight: 600;
+  margin: 10px 0 5px;
+}
+.validation-field {
+  color: red;
+}
