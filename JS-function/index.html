@@ -37,33 +37,32 @@
 
     <div class="app">
       <div
-        class="product-manager d-flex justify-content-center flex-column align-items-center"
+        class="expense-manager d-flex justify-content-center flex-column align-items-center"
       >
         <div class="title">
-          <h4>Ứng dụng quản lý sản phẩm</h4>
+          <h4>Personal Financial Management (PFM)</h4>
         </div>
 
         <div class="app-shop-demo container container-fluid w-100">
           <!-- Add new area -->
           <div class="addNew-area mb-5">
-            <div class="addNew-area__title mt-3 mb-3">Add New Product</div>
+            <div class="addNew-area__title mt-3 mb-3"></div>
             <div class="addNew-area__info-add">
               <div class="row g-3">
                 <!-- btn add new -->
                 <div class="col-lg-4 col-sm-6">
                   <button
-                    onclick="createNewProduct()"
-                    id="createNewProduct"
+                    id="createNewExpense"
                     type="button"
                     class="btn btn-success mb-3"
                     data-bs-toggle="modal"
-                    data-bs-target="#addNewProductModal"
+                    data-bs-target="#addNewExpenseModal"
                   >
                     <i class="fa-solid fa-plus me-1"></i>
-                    Add
+                    Add new
                   </button>
                 </div>
-                <!-- text box product -->
+                <!-- text box expense -->
                 <div class="col-lg-4 col-sm-6"></div>
 
                 <!-- group input search -->
@@ -72,8 +71,8 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Search product"
-                      aria-label="Search product"
+                      placeholder="Search"
+                      aria-label="Search"
                       aria-describedby="button-addon2"
                     />
                     <button
@@ -89,77 +88,94 @@
             </div>
           </div>
 
-          <!-- display product Area -->
-          <div class="display-product">
-            <div class="display-product__title mb-3">Display All product</div>
-            <div class="display-product__list-item">
+          <!-- display expense Area -->
+          <div class="display-expense">
+            <div class="display-expense__title mb-3">
+              <h4>Expense list</h4>
+            </div>
+            <div class="display-expense__list-item">
               <!-- list item -->
-              <table class="table table-striped">
-                <thead>
+              <table id="table-container" class="table table-striped">
+                <thead class="table-secondary">
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Product name</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Type</th>
-                    <th scope="col">Brand</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">Type-Spending</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Group item</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Budget</th>
+                    <th scope="col">Note</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td scope="row">1</td>
-                    <td class="product-item__name">
-                      <a class="product-item__link" href="">
-                        iPhone 15 Pro Max
-                      </a>
-                    </td>
-                    <td>Smartphone</td>
-                    <td>Apple</td>
-                    <td>29.900.000 đ</td>
+                <tbody id="table-body">
+                  <tr class="expense-item item-1">
+                    <td>2024</td>
+                    <td>7. July</td>
+                    <td>01/07/2024</td>
+                    <td>Speding</td>
+                    <td>Must Have</td>
+                    <td>80.000 đ</td>
+                    <td>Food</td>
+                    <td>3 main meal</td>
+                    <td>2.000.000 đ</td>
+                    <td></td>
                     <td>
-                      <span class="product-item__icon-edit"
+                      <span class="expense-item__icon-edit"
                         ><i class="fa-solid fa-pen-to-square"></i
                       ></span>
                     </td>
                     <td>
-                      <span class="product-item__icon-trash"
+                      <span class="expense-item__icon-trash"
                         ><i class="fa-solid fa-trash-can"></i
                       ></span>
                     </td>
                   </tr>
-                  <tr>
-                    <td scope="row">2</td>
-                    <td class="product-item__name">
-                      <a class="product-item__link" href=""> Galaxy Z Fold6 </a>
-                    </td>
-                    <td>Smartphone</td>
-                    <td>Samsung</td>
-                    <td>28.900.000 đ</td>
+
+                  <tr class="expense-item item-2">
+                    <td>2024</td>
+                    <td>7. July</td>
+                    <td>02/07/2024</td>
+                    <td>Income</td>
+                    <td></td>
+                    <td>20.000.000 đ</td>
+                    <td>Salary</td>
+                    <td>6. June</td>
+                    <td>22.000.000 đ</td>
+                    <td>Company X</td>
                     <td>
-                      <span class="product-item__icon-edit"
+                      <span class="expense-item__icon-edit"
                         ><i class="fa-solid fa-pen-to-square"></i
                       ></span>
                     </td>
                     <td>
-                      <span class="product-item__icon-trash"
+                      <span class="expense-item__icon-trash"
                         ><i class="fa-solid fa-trash-can"></i
                       ></span>
                     </td>
                   </tr>
-                  <tr>
-                    <td scope="row">3</td>
-                    <td class="product-item__name">
-                      <a class="product-item__link" href="">Nitro 5</a>
-                    </td>
-                    <td>Laptop</td>
-                    <td>Acer</td>
-                    <td>22.900.000 đ</td>
+                  <tr class="expense-item item-3">
+                    <td>2024</td>
+                    <td>7. July</td>
+                    <td>02/07/2024</td>
+                    <td>Spending</td>
+                    <td>Nice to Have</td>
+                    <td>5.000.000 đ</td>
+                    <td>Saving</td>
+                    <td>Deposit Emergency Fund</td>
+                    <td>17.000.000 đ</td>
+                    <td></td>
                     <td>
-                      <span class="product-item__icon-edit"
+                      <span class="expense-item__icon-edit"
                         ><i class="fa-solid fa-pen-to-square"></i
                       ></span>
                     </td>
                     <td>
-                      <span class="product-item__icon-trash"
+                      <span class="expense-item__icon-trash"
                         ><i class="fa-solid fa-trash-can"></i
                       ></span>
                     </td>
@@ -170,246 +186,209 @@
           </div>
         </div>
       </div>
+      <!-- End App-->
+    </div>
 
-      <!--* ----------------------------------------------------------------------- -->
-      <!--*                                  MODAL                                  -->
-      <!--* ----------------------------------------------------------------------- -->
+    <!--* ----------------------------------------------------------------------- -->
+    <!--*                                  MODAL                                  -->
+    <!--* ----------------------------------------------------------------------- -->
 
-      <!-- Modal -->
-      <div
-        class="modal fade addNew-modal"
-        id="addNewProductModal"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="addNewProductModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="addNewProductModalLabel">
-                Add new product
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
+    <!-- Modal -->
+    <div
+      class="modal fade addNew-modal"
+      id="addNewExpenseModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="addNewExpenseModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addNewExpenseModalLabel">
+              Add new expense
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
 
-            <!-- Modal body -->
-            <div class="modal-body">
-              <div class="container">
-                <div class="row">
-                  <!-- product name -->
-                  <div class="col-7">
-                    <div class="mb-3">
-                      <label
-                        class="addNew-label"
-                        for="addNewProductName"
-                        class="form-label"
-                        >Product name
-                        <span class="validation-field">*</span>
-                      </label>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <!-- expense date -->
+                <div class="col-4">
+                  <div class="mb-3">
+                    <label
+                      class="addNew-label"
+                      for="addNewExpenseDate"
+                      class="form-label"
+                      >Date
+                      <span class="validation-field">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="addNewExpenseDate"
+                      placeholder="Choose date"
+                    />
+                  </div>
+                </div>
+
+                <!-- type -->
+                <div class="col-4">
+                  <div class="mb-3">
+                    <label
+                      class="addNew-label"
+                      for="addNewType"
+                      class="form-label"
+                      >Type <span class="validation-field">*</span>
+                    </label>
+                    <select
+                      onchange="openAddNew()"
+                      id="addNewType"
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option value="" selected>Choose type</option>
+                      <option value="1">Spending</option>
+                      <option value="2">Income</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- type spending -->
+                <div class="col-4">
+                  <div class="mb-3">
+                    <label
+                      class="addNew-label"
+                      for="addNewTypeSpending"
+                      class="form-label"
+                      >Type-Spending <span class="validation-field">*</span>
+                    </label>
+                    <select
+                      id="addNewTypeSpending"
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option value="" selected>Choose type spending</option>
+                      <option value="1">Must Have</option>
+                      <option value="2">Nice to Have</option>
+                      <option value="3">Wasted</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- group item -->
+                <div class="col-7">
+                  <div class="mb-3">
+                    <label
+                      class="addNew-label"
+                      for="addNewGroupItem"
+                      class="form-label"
+                      >Group item <span class="validation-field">*</span>
+                    </label>
+                    <select
+                      id="addNewGroupItem"
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option value="" selected>Choose group item</option>
+                      <option value="1">Food</option>
+                      <option value="2">Salary</option>
+                      <option value="3">Saving</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- amount -->
+                <div class="col-5">
+                  <div class="mb-3">
+                    <label
+                      class="addNew-label"
+                      for="addNewAmount"
+                      class="form-label"
+                      >Amount
+                      <span class="validation-field">*</span>
+                    </label>
+                    <div class="input-group mb-3">
                       <input
-                        type="text"
+                        id="addNewAmount"
+                        type="number"
                         class="form-control"
-                        id="addNewProductName"
-                        placeholder="Enter Product name"
+                        placeholder="Enter Expense Amount"
+                        aria-label="Enter Expense Amount"
+                        aria-describedby="basic-addon2"
+                        value="0"
                       />
-                    </div>
-                  </div>
-
-                  <!-- type -->
-                  <div class="col-5">
-                    <div class="mb-3">
-                      <label
-                        class="addNew-label"
-                        for="addNew-select-type"
-                        class="form-label"
-                        >Type <span class="validation-field">*</span>
-                      </label>
-                      <select
-                        id="addNew-select-type"
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option selected>Choose type</option>
-                        <option value="1">Smartphone</option>
-                        <option value="2">Tablet</option>
-                        <option value="3">Laptop</option>
-                        <option value="3">PC</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!-- brand -->
-                  <div class="col-7">
-                    <div class="mb-3">
-                      <label
-                        class="addNew-label"
-                        for="addNew-select-brand"
-                        class="form-label"
-                        >Brand <span class="validation-field">*</span>
-                      </label>
-                      <select
-                        id="addNew-select-brand"
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option selected>Choose type</option>
-                        <option value="1">Apple</option>
-                        <option value="2">Samsung</option>
-                        <option value="3">Sony</option>
-                        <option value="3">Acer</option>
-                        <option value="3">Asus</option>
-                        <option value="3">Dell</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!-- price -->
-                  <div class="col-5">
-                    <div class="mb-3">
-                      <label
-                        class="addNew-label"
-                        for="addNewPrice"
-                        class="form-label"
-                        >Price
-                        <span class="validation-field">*</span>
-                      </label>
-                      <div class="input-group mb-3">
-                        <input
-                          type="number"
-                          class="form-control"
-                          placeholder="Enter Product Price"
-                          aria-label="Enter Product Price"
-                          aria-describedby="basic-addon2"
-                          value="0"
-                        />
-                        <span class="input-group-text" id="basic-addon2"
-                          >đ</span
-                        >
-                      </div>
+                      <span class="input-group-text" id="basic-addon2">đ</span>
                     </div>
                   </div>
                 </div>
+
+                <!-- Description -->
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label
+                      class="addNew-label"
+                      for="addNewDescription"
+                      class="form-label"
+                      >Description
+                      <span class="validation-field">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="addNewDescription"
+                      placeholder="Description expense"
+                    />
+                  </div>
+                </div>
+
+                <!-- Note -->
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label for="addNewNote" class="addNew-label form-label"
+                      >Note</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="addNewNote"
+                      rows="3"
+                      placeholder="Write some text here..."
+                    ></textarea>
+                  </div>
+                </div>
+
+                <!-- ------------------------------- end body modal -------------------------------- -->
               </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-success">Add</button>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              onclick="createNewExpense()"
+              type="button"
+              class="btn btn-success"
+            >
+              Add
+            </button>
           </div>
         </div>
       </div>
-
-      <form
-        id="form-validation"
-        action=""
-        class="row g-3 needs-validation"
-        novalidate
-      >
-        <div class="col-md-4">
-          <label for="validationCustom01" class="form-label">First name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationCustom01"
-            value="Mark"
-            required
-          />
-          <div class="valid-feedback">Looks good!</div>
-        </div>
-        <div class="col-md-4">
-          <label for="validationCustom02" class="form-label">Last name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationCustom02"
-            value="Otto"
-            required
-          />
-          <div class="valid-feedback">Looks good!</div>
-        </div>
-        <div class="col-md-4">
-          <label for="validationCustomUsername" class="form-label"
-            >Username</label
-          >
-          <div class="input-group has-validation">
-            <span class="input-group-text" id="inputGroupPrepend">@</span>
-            <input
-              type="text"
-              class="form-control"
-              id="validationCustomUsername"
-              aria-describedby="inputGroupPrepend"
-              required
-            />
-            <div class="invalid-feedback">Please choose a username.</div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <label for="validationCustom03" class="form-label">City</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationCustom03"
-            required
-          />
-          <div class="invalid-feedback">Please provide a valid city.</div>
-        </div>
-        <div class="col-md-3">
-          <label for="validationCustom04" class="form-label">State</label>
-          <select class="form-select" id="validationCustom04" required>
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
-          </select>
-          <div class="invalid-feedback">Please select a valid state.</div>
-        </div>
-        <div class="col-md-3">
-          <label for="validationCustom05" class="form-label">Zip</label>
-          <input
-            type="text"
-            class="form-control"
-            id="validationCustom05"
-            required
-          />
-          <div class="invalid-feedback">Please provide a valid zip.</div>
-        </div>
-        <div class="col-12">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="invalidCheck"
-              required
-            />
-            <label class="form-check-label" for="invalidCheck">
-              Agree to terms and conditions
-            </label>
-            <div class="invalid-feedback">
-              You must agree before submitting.
-            </div>
-          </div>
-        </div>
-        <div class="col-12">
-          <button id="a" class="btn btn-primary" type="submit">
-            Submit form
-          </button>
-        </div>
-      </form>
-
-      <!-- End -->
     </div>
+
     <!--? ----------------------------------------------------------------------- -->
     <!--?                                    SCRIPT                               -->
     <!--? ----------------------------------------------------------------------- -->

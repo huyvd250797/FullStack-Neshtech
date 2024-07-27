@@ -2,17 +2,21 @@ body {
   padding-top: 20px;
 }
 
+.hide-form {
+  display: none;
+}
+
 /** Tittle */
 .title {
 }
 
-/** Display product Area */
+/** Display expense Area */
 .addNew-area__title,
-.display-product__title {
+.display-expense__title {
   font-weight: 600;
 }
 
-/* List product */
+/* List expense */
 
 tr:hover td {
   background-color: rgb(229, 218, 255);
@@ -22,32 +26,28 @@ tr:active td {
   background-color: rgb(189, 160, 255);
 }
 
-.product-item__name:hover {
-  cursor: pointer;
-}
-
-.product-item__link {
+.expense-item__link {
   text-decoration: none;
   color: black;
   display: block;
   line-height: 1.4rem;
 }
 
-.product-item__link:hover {
+.expense-item__link:hover {
 }
 
-.product-item__icon-edit {
-  color: rgb(68, 96, 255);
+.expense-item__icon-edit {
+  color: rgb(49, 77, 241);
   font-size: 0.9rem;
 }
 
-.product-item__icon-trash {
+.expense-item__icon-trash {
   color: rgb(255, 59, 59);
   font-size: 0.9rem;
 }
 
-.product-item__icon-edit:hover,
-.product-item__icon-trash:hover {
+.expense-item__icon-edit:hover,
+.expense-item__icon-trash:hover {
   cursor: pointer;
 }
 
