@@ -12,7 +12,8 @@ body {
 
 /** Display expense Area */
 .addNew-area__title,
-.display-expense__title {
+.display-expense__title,
+.title-type-modal {
   font-weight: 600;
 }
 
@@ -63,4 +64,16 @@ tr:active td {
 }
 .validation-field {
   color: red;
+}
+
+.icon-type-container {
+  display: block;
+  width: 100%;
+  padding: 20px 30px;
+  font-size: 1.6rem;
+}
+
+.icon-type-container:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }

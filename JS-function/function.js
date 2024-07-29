@@ -21,64 +21,36 @@ function changedateformat(val) {
   return formatteddate;
 }
 
-/* ---------------------------- hàm open Add new ---------------------------- */
-// const openAddNew = () => {
+//* hàm color picker
+const getColorPicker = () => {
+  let getBgColor = document.getElementById("iconColorBgPicker").value;
+  let getTextColor = document.getElementById("iconColorTextPicker").value;
+  let backgroundColorIcon = document.getElementById("iconGroupItem");
+  let colorIcon = document.getElementById("icon-group-item");
 
-// }
+  // Gán set background color theo màu đã chọn
+  backgroundColorIcon.style.backgroundColor = getBgColor;
+
+  // Gán set color theo màu đã chọn
+  colorIcon.style.color = getTextColor;
+};
 
 /* -------------------------- hàm change type ------------------------- */
-const changeType = () => {
-  let addNewType = document.getElementById("addNewType").value;
-  let addNewTypeSpending = document.getElementById("addNewTypeSpending").value;
+const changeType = () => {};
 
-  let addNewTypeSpendingSelect = document.getElementById("addNewTypeSpending");
-
-  //TODO  Check dữ liệu type
-  //? Nếu value type = 1 ==> Spending
-  if (addNewType == 1) {
-    // gán giá trị = Spending
-    addNewType = "Spending";
-
-    // gỡ disable type spending
-    addNewTypeSpendingSelect.disabled = false;
-  }
-
-  //? Nếu value type = 2 ==> Income
-  else if (addNewType == 2) {
-    // gán giá trị = Income
-    addNewType = "Income";
-
-    // disable type spending
-    addNewTypeSpendingSelect.disabled = true;
-
-    // gán giá trị
-    addNewTypeSpending = "";
-  }
-
-  //TODO  Check dữ liệu type spending
-  //? Nếu value type = 1 ==> Spending
-  if (addNewTypeSpending == 1) {
-    // gán giá trị = Spending
-    addNewTypeSpending = "Must Have";
-  }
-
-  //? Nếu value type = 2 ==> Income
-  else if (addNewTypeSpending == 2) {
-    // gán giá trị = Income
-    addNewTypeSpending = "Nice to Have";
-  } else if (addNewTypeSpending == 3) {
-    addNewTypeSpending = "Wasted";
-  } else {
-    addNewTypeSpending == "";
-  }
-
-  return { addNewType, addNewTypeSpending };
+/* -------------------------- hàm group item ------------------------- */
+const getGroupItem = () => {
+  let groupItemVal = document.getElementById("addNewGroupItem").value;
+  console.log(groupItemVal);
 };
 
 //*? ------------------------- hàm Create new product ------------------------- */
 const createNewExpense = () => {
   // Get value type & type-Spending từ hàm changeType return ra object
   let getValType = Object.values(changeType());
+
+  // Get value Group item
+  getGroupItem();
 
   //? getValType[0]: Type
   //? getValType[1]: Type-Spending
