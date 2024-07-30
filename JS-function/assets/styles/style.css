@@ -20,11 +20,11 @@ body {
 /* List expense */
 
 tr:hover td {
-  background-color: rgb(229, 218, 255);
+  background-color: rgb(238, 231, 255);
 }
 
 tr:active td {
-  background-color: rgb(189, 160, 255);
+  background-color: rgb(213, 195, 255);
 }
 
 .expense-item__link {
@@ -76,4 +76,39 @@ tr:active td {
 .icon-type-container:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+
+.icon-type-preview {
+  display: block;
+  width: 100%;
+  padding: 20px 30px;
+  font-size: 1.6rem;
+}
+
+/* ------------------------------------ Color Type ----------------------------------- */
+.color-spending {
+  color: rgb(235, 0, 0);
+  font-weight: 600;
+}
+
+.color-income {
+  color: rgb(0, 172, 0);
+  font-weight: 600;
+}
+
+/* ------------------------------------ Color Type Spending ----------------------------------- */
+
+.color-must-have {
+  color: blue;
+  font-weight: 600;
+}
+
+.color-nice-to-have {
+  color: rgb(195, 0, 255);
+  font-weight: 600;
+}
+
+.color-wasted {
+  color: rgb(179, 0, 0);
+  font-weight: 600;
 }

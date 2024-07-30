@@ -117,8 +117,12 @@
                     <td>2024</td>
                     <td>7. July</td>
                     <td>01/07/2024</td>
-                    <td>Speding</td>
-                    <td>Must Have</td>
+                    <td>
+                      <span class="type-spending color-spending">Spending</span>
+                    </td>
+                    <td>
+                      <span class="color-must-have"> Must Have </span>
+                    </td>
                     <td>80.000 đ</td>
                     <td>Food</td>
                     <td>3 main meal</td>
@@ -140,7 +144,9 @@
                     <td>2024</td>
                     <td>7. July</td>
                     <td>02/07/2024</td>
-                    <td>Income</td>
+                    <td>
+                      <span class="type-income color-income">Income</span>
+                    </td>
                     <td></td>
                     <td>20.000.000 đ</td>
                     <td>Salary</td>
@@ -158,16 +164,48 @@
                       ></span>
                     </td>
                   </tr>
+
                   <tr class="expense-item item-3">
                     <td>2024</td>
                     <td>7. July</td>
                     <td>02/07/2024</td>
-                    <td>Spending</td>
-                    <td>Nice to Have</td>
+                    <td>
+                      <span class="type-spending color-spending">Spending</span>
+                    </td>
+                    <td>
+                      <span class="color-nice-to-have"> Nice to Have </span>
+                    </td>
                     <td>5.000.000 đ</td>
                     <td>Saving</td>
                     <td>Deposit Emergency Fund</td>
                     <td>17.000.000 đ</td>
+                    <td></td>
+                    <td>
+                      <span class="expense-item__icon-edit"
+                        ><i class="fa-solid fa-pen-to-square"></i
+                      ></span>
+                    </td>
+                    <td>
+                      <span class="expense-item__icon-trash"
+                        ><i class="fa-solid fa-trash-can"></i
+                      ></span>
+                    </td>
+                  </tr>
+
+                  <tr class="expense-item item-4">
+                    <td>2024</td>
+                    <td>7. July</td>
+                    <td>03/07/2024</td>
+                    <td>
+                      <span class="color-spending">Spending</span>
+                    </td>
+                    <td>
+                      <span class="color-wasted"> Wasted </span>
+                    </td>
+                    <td>15.000 đ</td>
+                    <td>Drink</td>
+                    <td>Coffee</td>
+                    <td>16.985.000 đ</td>
                     <td></td>
                     <td>
                       <span class="expense-item__icon-edit"
@@ -203,7 +241,7 @@
       aria-labelledby="addNewExpenseModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="addNewExpenseModalLabel">
@@ -253,15 +291,16 @@
                     <div class="col-lg-6 col-sm-6">
                       <div class="mb-3">
                         <input
+                          onchange="chooseType()"
+                          id="radioSpending"
                           type="radio"
                           class="btn-check"
                           name="options-outlined"
-                          id="danger-outlined"
                           autocomplete="off"
                         />
                         <label
                           class="btn btn-outline-danger"
-                          for="danger-outlined"
+                          for="radioSpending"
                           >Spending</label
                         >
                       </div>
@@ -271,15 +310,14 @@
                     <div class="col-lg-6 col-sm-6">
                       <div class="mb-3">
                         <input
+                          onchange="chooseType()"
+                          id="radioIncome"
                           type="radio"
                           class="btn-check"
                           name="options-outlined"
-                          id="success-outlined"
                           autocomplete="off"
                         />
-                        <label
-                          class="btn btn-outline-success"
-                          for="success-outlined"
+                        <label class="btn btn-outline-success" for="radioIncome"
                           >Income</label
                         >
                       </div>
@@ -341,9 +379,13 @@
                       aria-label="Default select example"
                     >
                       <option value="" selected>Choose group item</option>
-                      <option value="1">Food</option>
-                      <option value="2">Salary</option>
-                      <option value="3">Saving</option>
+                      <option value="1">Debt Payment</option>
+                      <option value="2">Drink</option>
+                      <option value="3">Entertain</option>
+                      <option value="4">Food</option>
+                      <option value="5">Gasoline</option>
+                      <option value="6">Salary</option>
+                      <option value="7">Saving</option>
                     </select>
                   </div>
                 </div>
@@ -419,6 +461,8 @@
             >
               Close
             </button>
+            <!-- onclick="createNewExpense()" -->
+
             <button
               onclick="createNewExpense()"
               type="button"
@@ -440,26 +484,41 @@
       tabindex="-1"
       aria-labelledby="modifyIconModalLabel"
       aria-hidden="true"
+      data-bs-backdrop="static"
     >
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="modifyIconModalLabel">
-              Modal title
+              Choose Icon
             </h1>
             <button
               type="button"
               class="btn-close"
-              data-bs-dismiss="modal"
               aria-label="Close"
+              data-bs-toggle="modal"
+              data-bs-target="#addNewExpenseModal"
             ></button>
           </div>
           <div class="modal-body d-flex justify-content-around">
+            <!-- Preview icon -->
+            <div class="mb-3">
+              <div
+                id="iconBgColorPreview"
+                class="icon-type-preview border border-secondary-subtle rounded-3"
+                style="background-color: #474747; color: #ffffff"
+              >
+                <i id="iconTextTextPreview" class="fa-solid fa-utensils"></i>
+              </div>
+            </div>
+
+            <!-- make background corlor -->
             <div class="icon-bg">
               <label for="iconColorBgPicker" class="form-label"
                 >Background</label
               >
               <input
+                onchange="backgroundColorPreview()"
                 type="color"
                 class="form-control form-control-color"
                 id="iconColorBgPicker"
@@ -468,9 +527,11 @@
               />
             </div>
 
+            <!-- make text corlor -->
             <div class="icon-text">
               <label for="iconColorTextPicker" class="form-label">Text</label>
               <input
+                onchange="textColorPreview()"
                 type="color"
                 class="form-control form-control-color"
                 id="iconColorTextPicker"

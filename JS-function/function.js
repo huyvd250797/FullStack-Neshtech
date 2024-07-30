@@ -35,8 +35,78 @@ const getColorPicker = () => {
   colorIcon.style.color = getTextColor;
 };
 
-/* -------------------------- hàm change type ------------------------- */
-const changeType = () => {};
+//* ------------------- hàm preview background color picker ------------------ */
+const backgroundColorPreview = () => {
+  let getBgColor = document.getElementById("iconColorBgPicker").value;
+  let getBgColorPreview = document.getElementById("iconBgColorPreview");
+  getBgColorPreview.style.backgroundColor = getBgColor;
+};
+
+//* ---------------------- hàm preview text color picker --------------------- */
+const textColorPreview = () => {
+  let getTextColor = document.getElementById("iconColorTextPicker").value;
+  let getTextColorPreview = document.getElementById("iconTextTextPreview");
+  getTextColorPreview.style.color = getTextColor;
+};
+
+//*? -------------------------- hàm choose type ------------------------- */
+const chooseType = () => {
+  let btnSpending = document.getElementById("radioSpending");
+  let btnIncome = document.getElementById("radioIncome");
+
+  // get element addNewTypeSpending
+  let addNewTypeSpending = document.getElementById("addNewTypeSpending");
+
+  let checkedBtn;
+
+  //? Nếu btnSpending check
+  if (btnSpending.checked == true) {
+    // gán giá trị là Spending
+    checkedBtn = "Spending";
+    addNewTypeSpending.disabled = false;
+  }
+  //? Nếu btnIncome check
+  else if (btnIncome.checked == true) {
+    // gán giá trị là Income
+    checkedBtn = "Income";
+    addNewTypeSpending.disabled = true;
+    addNewTypeSpending.value = "";
+  }
+  // ngược lại gán giá trị rỗng
+  else {
+    checkedBtn = "";
+  }
+
+  return checkedBtn;
+};
+
+//*? -------------------------- hàm choose type-Spending ------------------------- */
+const chooseTypeSpending = () => {
+  let getValSelected = document.getElementById("addNewTypeSpending").value;
+  let getValue;
+
+  //? nếu giá trị được chọn là 1
+  if (getValSelected == 1) {
+    // gán giá trị Must Have và add class Must Have
+    getValue = `<span class="color-must-have">Must Have</span>`;
+  }
+  //? nếu giá trị được chọn là 2
+  else if (getValSelected == 2) {
+    // gán giá trị Nice to Have và add class Nice to Have
+    getValue = `<span class="color-nice-to-have">Nice to Have</span>`;
+  }
+  //? nếu giá trị được chọn là 3
+  else if (getValSelected == 3) {
+    // gán giá trị Wasted và add class Wasted
+    getValue = `<span class="color-wasted">Wasted</span>`;
+  }
+  // ngược lại gán giá trị rỗng
+  else {
+    getValue = "";
+  }
+
+  return getValue;
+};
 
 /* -------------------------- hàm group item ------------------------- */
 const getGroupItem = () => {
@@ -44,18 +114,13 @@ const getGroupItem = () => {
   console.log(groupItemVal);
 };
 
-//*? ------------------------- hàm Create new product ------------------------- */
+//*TODO ------------------------- hàm Add New ------------------------- */
 const createNewExpense = () => {
-  // Get value type & type-Spending từ hàm changeType return ra object
-  let getValType = Object.values(changeType());
+  let getType = chooseType();
+  let getTypeSpending = chooseTypeSpending();
 
   // Get value Group item
   getGroupItem();
-
-  //? getValType[0]: Type
-  //? getValType[1]: Type-Spending
-
-  console.log(getValType);
 
   let addNewDate = document.getElementById("addNewExpenseDate").value;
   let addNewGroupItem = document.getElementById("addNewGroupItem").value;
@@ -66,10 +131,10 @@ const createNewExpense = () => {
 
   if (addNewDate.length == 0) {
     alert("Choose Date Expense");
-  } else if (getValType[0].length == 0) {
-    alert("Choose Type Expense");
-  } else if (getValType[1].length == 0 && getValType[0] == "Spending") {
-    alert("Choose Type Spending Expense");
+  } else if (getType.length == 0) {
+    alert("Choose Expense Type");
+  } else if (getTypeSpending.length == 0 && getType == "Spending") {
+    alert("Choose Type Spending");
   } else if (addNewGroupItem.length == 0) {
     alert("Choose Group Item Expense");
   } else if (addNewAmount.length == 0) {
@@ -83,8 +148,12 @@ const createNewExpense = () => {
     <td>2024</td>
     <td>7. July</td>
     <td>${addNewDate}</td>
-    <td>${getValType[0]}</td>
-    <td>${getValType[1]}</td>
+    <td>
+      <span>${getType}</span>
+    </td>
+    <td>
+      <span>${getTypeSpending}</span>
+    </td>
     <td>${addNewAmount} đ</td>
     <td>${addNewGroupItem}</td>
     <td>${addNewDescription}</td>
@@ -104,3 +173,17 @@ const createNewExpense = () => {
   `;
   }
 };
+
+// hàm add color Spending
+const addColorType = () => {
+  let getType = chooseType();
+};
+
+// hàm add color Must Have
+const addcolorMustHave = () => {};
+
+// hàm add color Nice to Have
+const addColorNiceToHave = () => {};
+
+// hàm add color Wasted
+const addColorWasted = () => {};
