@@ -66,6 +66,14 @@ tr:active td {
   color: red;
 }
 
+.note-date {
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-left: 5px;
+  margin-top: 3px;
+  color: rgb(124, 124, 124);
+}
+
 .icon-type-container {
   display: block;
   width: 100%;
